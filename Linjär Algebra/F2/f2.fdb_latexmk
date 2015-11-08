@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1447003667 "f2.tex" "f2.pdf" "f2" 1447003669
+["pdflatex"] 1447009888 "f2.tex" "f2.pdf" "f2" 1447009889
   "../../tex/lecturePreamble.tex" 1447002689 1119 aa0577c7371df7a84a0b308daa316f5e ""
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
@@ -60,11 +60,11 @@
   "/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/zref-base.sty" 1335995445 20510 d34f2ff6da5204141c620ec21d6b3170 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def" 1306616590 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty" 1428932888 10214 78c09985255ed93018b1db2c4e2f6deb ""
-  "f2.aux" 1447003669 384 913035585cdb143a22f8d83ef0e3fba9 ""
-  "f2.tex" 1447003666 7758 f5b5e168ebaf5579c2399897312a84ea ""
+  "f2.aux" 1447009889 384 913035585cdb143a22f8d83ef0e3fba9 ""
+  "f2.tex" 1447009888 7753 0c144349e8e4c1786f50ededd4ddd61b ""
   "kryssprodukt_08.png" 1446804741 6883 34086abef89227308220ec3f279c747e ""
   "projection.png" 1446809442 16393 618a633d5147bb4e0f59cfa31d068d6f ""
   (generated)
   "f2.log"
-  "f2.aux"
   "f2.pdf"
+  "f2.aux"
