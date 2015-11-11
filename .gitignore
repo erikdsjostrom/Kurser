@@ -1,5 +1,5 @@
 # Ignorera alla onödiga filer som skapas vid kompilering
 **/*.log
 **/*.synctex.gz
-**/.fdb_latexmk
-**/.aux
+**/*.fdb_latexmk
+**/*.aux
