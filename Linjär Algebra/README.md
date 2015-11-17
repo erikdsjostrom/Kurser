@@ -15,7 +15,7 @@ Licens för bilderna: [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/
 1. Inga bilder tagna
 2. Inga bilder tagna
 3. [2015-11-05](F3/foton-på-tavlor/)
-4. [2015-11-10](F4/foton-på-tavlor/)
+4. [2015-11-09](F4/foton-på-tavlor/)
 5. [2015-11-11](F5/foton-på-tavlor/)
 6. [2015-11-13](F6/foton-på-tavlor/)
 7. [2015-11-16](F7/foton-på-tavlor/)
