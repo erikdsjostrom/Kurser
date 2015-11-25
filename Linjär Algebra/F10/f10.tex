@@ -47,7 +47,7 @@ Två fundamentala frågor:
     &x_2 = \frac{x_1 + 1}{2} = l_1 & x_1 = 3x_2 -3 = l_2
     \end{align*}
     \begin{center}
-    	Här ska det vara en figur
+    	\includegraphics[scale=0.4]{skarning.png}
     \end{center}
     Lösningen ges av skärningen mellan linjerna:
     \[
@@ -75,6 +75,7 @@ Tillåtna elementära radoperationer i gauseliminering är:
 	\item Skalning: Multiplicera en rad med en konstant $\neq 0$
 \end{itemize}
 Dessa operationer bibehåller lösningsmängden.
+\newpage
 \begin{Ex}
     \[
         \begin{cases}
@@ -97,7 +98,7 @@ Dessa operationer bibehåller lösningsmängden.
     \]
     Vi vill ha noll i det nedre vänstra hörnet. Så vi använder additionsoperationen, och adderar rad 1 till rad 2:
     \begin{elimination}[1]{2}{1.75em}{1.1}
-    \eliminationstep
+    \step
     {
         1 & -2 & -1\\
         -1 & 3 & 3
@@ -106,7 +107,7 @@ Dessa operationer bibehåller lösningsmängden.
                \\
         +R_{1} \\
     }
-    \eliminationstep
+    \step
     {
         1 & -2 & -1\\
         0 & 1 & 2
@@ -119,7 +120,7 @@ Dessa operationer bibehåller lösningsmängden.
 \noindent
 Nu vill vi sätta det första elementet i den andra kolumnen (\textit{-2}) till 0. Det gör vi genom att kombinera skalnings- och additions-operationen. Vi adderar alltså 2 $\cdot$ Rad 2 till Rad 1.
 \begin{elimination}[1]{2}{1.75em}{1.1}
-\eliminationstep
+\step
 {
     1 & -2 & -1 \\
     0 & 1 & 2
@@ -128,7 +129,7 @@ Nu vill vi sätta det första elementet i den andra kolumnen (\textit{-2}) till 
     + 2 \cdot R_2\\
     \\
 }
-\eliminationstep
+\step
 {
     1 & 0 & 3\\
     0 & 1 & 2
@@ -169,7 +170,234 @@ Vi har nu löst ekvationssystemet med gauseliminering och:
     Obs: De är ej lika.
 \end{Rem}
 
-Nu tittar vi på systemet \textbf{A}
-% section R^n (end)
+Nu tittar vi på systemet $\mathbf{A} \cdot \vec{x} = \vec{b}$ där:
+\begin{align*}
+&&\mathbf{A} = \begin{bmatrix} 1&-2\\1&2 \end{bmatrix}
+&&\text{och}
+&&\vec{b} = \begin{bmatrix} b_1\\b_2 \end{bmatrix}
+\end{align*}
+Vi söker en reducerad trappstegsform för totalmatrisen:
+\[
+\begin{bmatrix}
+\begin{array}{c|c}
+    \mathbf{A} & \vec{b}
+\end{array}
+\end{bmatrix}
+\]
+Vi gauseliminerar:
 
+\begin{elimination}[1]{2}{2.7em}{1.1}
+\step
+{
+    1 & -2 & b_1\\
+    -1 & 2 & b_2
+}
+{
+    \\
+    + R_1
+}
+\step
+{
+    1 & -2 & b_1\\
+    0 & 0 & b_2 + b_1
+}
+{
+    \\
+    \\
+}
+\end{elimination}
+\textbf{Falluppdelning:}
+\begin{enumerate}
+    \item ($b_2 + b_1$) $\neq 0$ $\Rightarrow 0x_1 + 0_x2 = b_2 + b_1 \neq 0$\\
+    Funkar inte, då saknar $\mathbf{A} \cdot \vec{x} = \vec{b}$ lösning
+    \item $(b_2 + b_1) = 0$\\
+    Då har $\mathbf{A} \cdot \vec{x} = \vec{b}$ oändligt många lösningar:
+    \[
+    x_1 + 2x_2 = b_1
+    \]
+    Låt $x_2 = t$, vi får då lösningen:
+    \begin{gather*}
+        x_1 = b_1 + 2t\\
+        x_2 = t
+    \end{gather*}
+    där $t \in \mathbb{R}$.
+\end{enumerate}
+\begin{Ex}
+    Låt:
+    \[
+    \begin{cases}
+        x_1 - 2x_2 + x_3 = 0 &\text{2 ekvationer}\\
+        2x_2 - 8x_3 = -8 &\text{3 obekanta}
+    \end{cases}
+    \]
+    \begin{elimination}[1]{3}{1.75em}{1.1}
+    \step
+    {
+        1 & -2 & 1 & 0\\
+        0 & 2 & -8 & 8
+    }
+    {
+        \\
+        \cdot \frac{1}{2}
+    }
+    \step
+    {
+    1 & -2 & 1 & 0\\
+    0 & 1 & -4 & 4
+    }
+    {
+    + 2 \cdot R_{2}\\
+    \\
+    }
+    \step
+    {
+    1 & 0 & -7 & 8\\
+    0 & 1 & -4 & 4
+    }
+    {
+    \\
+    \\
+    }
+    \end{elimination}
+\end{Ex}
+% section R^n (end)
+\section{Terminologi}
+En plats i matrisen där matriselementet på den platsen är nollskillt och alla nedanför och till vänster om den är 0, kallas för en pivotposition, och motsvarande kolumn för pivotkolumn. Kolumner som ej har pivotelement kallas för fria kolumner.\\
+I ovanstående exempel:
+\[
+\begin{bmatrix}
+\begin{array}{cc}
+\overbrace{
+    \begin{array}{cc}
+        1 & 0\\
+        0 & 1
+    \end{array}
+}^\text{Pivotkolumner}
+\overbrace{
+    \begin{array}{c|c}
+        -7 & 8\\
+        -4 & 4
+    \end{array}
+}^\text{Fria kolumner}
+\end{array}
+\end{bmatrix}
+\]
+Varje matris är radekvivalent med exakt en reducerad rappstegsmatris.
+\begin{sats}
+    Antag att totalmatrisen
+    $\begin{bmatrix}
+    \begin{array}{c|c}
+        \mathbf{A}& \vec{b}
+    \end{array}
+    \end{bmatrix}$
+     gauselimineras med elementära radoperationer till en reducerad trappstegsform och kallar den för
+     $\begin{bmatrix}
+    \begin{array}{c|c}
+        \mathbf{u}& \vec{d}
+    \end{array}
+    \end{bmatrix}$
+    . Då gäller:
+    \begin{itemize}
+        \item Om sista kolumnen i $\begin{bmatrix}
+    \begin{array}{c|c}
+        \mathbf{u}& \vec{d}
+    \end{array}
+    \end{bmatrix}$ är en pivotkolumn saknar systemet lösningar. (dvs: $\vec{d}$ är en pivotkolumn)
+    \item Om sista kolumnen i $\begin{bmatrix}
+    \begin{array}{c|c}
+        \mathbf{u}& \vec{d}
+    \end{array}
+    \end{bmatrix}$ inte är en pivotkolumn och antalet pivotkolumner är färre än antalet variabler så finns det oändligt många lösningar.
+    \item Om alla kolumner i \textbf{u} är pivotkolumner så finns det exakt en lösning.
+    \end{itemize}
+\end{sats}
+Så i fallet:
+\[
+\begin{bmatrix}
+\begin{array}{ccc|c}
+    1 & 0 & -7 & 8\\
+    0 & 1 & -4 & 4
+\end{array}
+\end{bmatrix}
+\]
+Har vi oändligt många lösningar.\\
+$x_3$:s kolumn är fri. Motsvarande variabel $x_3$ kallas för en fri variabel.\\
+Låt oss uttrycka lösningen i termer av de fria variablerna:\\
+Låt $x_3 = t$. Vi får:
+\[
+\begin{cases}
+    x_1 - 7t = 8 \Rightarrow x_1 = 8 + 7t\\
+    x_2 - 4t = 4 \Rightarrow x_2 = 4 + 4t
+\end{cases}
+\]
+Dvs:
+\begin{align*}
+&&\begin{cases}
+    x_1 = 8 + 7t\\
+    x_2 = 4 + 4t\\
+    x_3 = t
+\end{cases}
+&&\Longleftrightarrow
+&&x = \begin{bmatrix} 8\\4\\0 \end{bmatrix} + t \cdot \begin{bmatrix} 7\\4\\1 \end{bmatrix}
+\end{align*}
+Vilket är en linje i $\mathbb{R}^3$ på parameterform.
+\section{Geometrisk tolkning}
+Vi har:
+\[
+    \begin{cases}
+        x_1 - 2x_2 + x_3 = 0\\
+        2x_2 - 8x_3 = -8 
+    \end{cases}
+\]
+Den geometriska tolkningen av:
+\[
+x_1 - 2x_2 + x_3 = 0
+\]
+är ett plan på normalform, med normalen:
+\[
+\vec{n} = \begin{bmatrix} 1\\-2\\1 \end{bmatrix}    
+\]
+Den geometriska tolkningen av:
+\[
+2x_2 - 8x_3 = -8 
+\]
+är ett plan på normalform, med normalen
+\[
+\vec{n} = \begin{bmatrix} 0\\2\\-8 \end{bmatrix}
+\]
+Lösningen ges av skärningslinjen mellan planen:
+\begin{center}
+    \includegraphics[scale=0.5]{tvaplan.png}
+\end{center}
+Vi kan lägga till en ekvation:
+\[
+    \begin{cases}
+        x_1 - 2x_2 + x_3 = 0\\
+        2x_2 - 8x_3 = -8\\
+        4x_1 + 5x_2 + 9x_3 = 9
+    \end{cases}
+\]
+\begin{elimination}[1]{3}{1.75em}{1.1}
+\step
+{
+    1 & -2 & 1 & 0\\
+    0 & 2 & -8 & 8\\
+    4 & 5 & 9 & 9
+}
+{
+    \\
+    \\
+}
+\step
+{
+    1 & 0 & 0 & 29\\
+    0 & 1 & 0 & 16 \\
+    0 & 0 & 1 & 3
+}
+{
+    \\
+    \\
+}
+\end{elimination}
+Tolkningen blir tre plan och lösningen blir skärningspunkten mellan dessa.
 \end{document}
