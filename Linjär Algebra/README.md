@@ -10,6 +10,7 @@
 8. [2015-11-18](F8/f8.pdf) - [Direktlänk](https://github.com/erikdsjostrom/Kurser/raw/master/Linjär%20Algebra/F8/f8.pdf)
 9. [2015-11-19](F9/f9.pdf) - [Direktlänk](https://github.com/erikdsjostrom/Kurser/raw/master/Linjär%20Algebra/F9/f9.pdf)
 10. [2015-11-23](F10/f10.pdf) - [Direktlänk](https://github.com/erikdsjostrom/Kurser/raw/master/Linjär%20Algebra/F10/f10.pdf)
+11. [2015-11-25](F11/f11.pdf) - [Direktlänk](https://github.com/erikdsjostrom/Kurser/raw/master/Linjär%20Algebra/F11/f11.pdf)
 
 ## Bilder av tavlorna från föreläsningarna
 Bilder av Emil Hemdal (@emilhem)
