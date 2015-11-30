@@ -1,0 +1,186 @@
+\input{../../tex/lecturePreamble}
+
+\title{
+	 Linjär Algebra\\
+	 Föreläsning 12
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\section{Homogena ekvationssystem} % (fold)
+\label{sec:homogena_ekvationssystem}
+\begin{Ex}
+    Låt $\mathbf{A} \cdot = \emptyset$ ges av:
+    \[
+        \begin{bmatrix} 
+        3 & 0 & -1 & 0\\
+        8 & 0 & 0 & -2\\
+        0 & 2 & -2 & -1
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+        x_1\\x_2\\x_3\\x_4
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        0\\0\\0
+        \end{bmatrix}
+    \]
+    En lösning är förstås:
+    \[
+        \begin{bmatrix} x_1\\x_2\\x_3\\x_4 \end{bmatrix} = 
+        \begin{bmatrix} 0\\0\\0\\0 \end{bmatrix}
+    \]
+    Den lösningen kallas för den triviala lösning.\\
+    Finns det fler lösningar? Vi gausseliminerar:
+    \begin{elimination}[1]{4}{1.75em}{1.1}
+    \step
+    {
+    3 & 0 & -1 & 0 & 0\\
+    8 & 0 & 0 & -2 & 0\\
+    0 & 2 & -2 & -1 & 0
+    }
+    {
+    \\
+    \cdot -\frac{8}{3}\\
+    \\
+    }
+    \step
+    {
+    3 & 0 & -1 & 0 & 0\\
+    0 & 0 & \frac{8}{3} & -2 & 0 \\
+    0 & 2 & -2 & -1 & 0
+    }
+    {
+    \\
+    = R_3\\
+    = R_2\\
+    }
+    \end{elimination}
+    \begin{elimination}[1]{4}{1.75em}{1.1}
+    \step
+    {
+    3 & 0 & -1 & 0 & 0\\
+    0 & 2 & -2 & -1 & 0\\
+    0 & 0 & \frac{8}{3} & -2 & 0
+    }
+    {
+    \cdot \frac{1}{2}\\
+    \cdot \frac{1}{2}\\
+    \cdot \frac{1}{8/3}\\
+    }
+    \step
+    {
+    1 & 0 & -\frac{1}{3} & 0 & 0\\
+    0 & 1 & -1 & -\frac{1}{2} & 0\\
+    0 & 0 & 1 & -\frac{3}{4} & 0\\
+    }
+    {
+    \\
+    \\
+    \\
+    }
+    \end{elimination}
+    Låt $x_4 = t$, ($x_4$ är en fri variabel)\\
+    Vi får:
+    \[
+        \begin{cases}
+        	x_3 = \frac{3}{4} \cdot t\\
+        	x_2 = \frac{3}{4} \cdot t + \frac{1}{2} \cdot t = \frac{5}{4} \cdot t\\
+        	x_1 = \frac{1}{3} \cdot \frac{3}{4} \cdot t = \frac{1}{4} \cdot t
+        \end{cases}
+    \]
+    Vi får alltså svaret:
+    \[
+        \begin{bmatrix} x_1\\x_2\\x_3\\x_4 \end{bmatrix} =
+        \begin{bmatrix} 1/4\\5/4\\3/4\\1 \end{bmatrix} \cdot t
+    \]
+    Dvs: En linje i $\mathbb{R}^4$ genom origo.
+\end{Ex}
+\newpage
+\noindent
+Den homogena ekvationen $\mathbf{A} \cdot \vec{x} = \vec{b}$ har icke-trivial lösning omm reducering av totalmatrisen 
+$\begin{bmatrix}
+\begin{array}{c|c}
+    \mathbf{A} & \emptyset
+\end{array}
+\end{bmatrix}$
+till trappstegsform ger minst en fri kolumn.
+\begin{sats}
+    Antag att ekvationen $\mathbf{A} \cdot \vec{x} = \vec{b}$ har en lösning $\vec{x}_p$ (partikulärlösning). Då gäller att alla lösningar till $\mathbf{A} \cdot \vec{x} = \vec{b}$ kan skrivas som:
+    \[
+    \vec{x} = \vec{x}_p + \vec{x}_h
+    \]
+    Där $\vec{x}_h$ är lösningen till den homogena ekvationen:
+    \[
+    \mathbf{A} \cdot \vec{x} = \emptyset
+    \]
+\end{sats}
+\begin{Ex}
+    Vi ser på $\mathbf{A} \cdot \vec{x} = \vec{b}$ där:
+    \begin{align*}
+    & A = \begin{bmatrix} 1 & -2 & 1 \\ 0 & 2 & -8 \end{bmatrix}
+    && \vec{b} = \begin{bmatrix} 0 \\ 8 \end{bmatrix}
+    \end{align*}
+    Radreducering ger:
+    \begin{elimination}[1]{3}{1.75em}{1.1}
+    \step
+    {   
+    1 & -2 & 1 & 0 \\
+    0 & 2 & -8 & 8 \\
+    }
+    {
+    + R_2\\
+    \\
+    }
+    \step
+    {
+    1 & 0 & -7 & 8\\
+    0 & 2 & -8 & 8\\
+    }
+    {
+    \\
+    \cdot \frac{1}{2}\\
+    }
+    \step
+    {
+    1 & 0 & -7 & 0\\
+    0 & 1 & -4 & 4\\
+    }
+    {
+    \\
+    \\
+    }
+    \end{elimination}
+    $x_3$ är en fri variabel. Låt $x_3=t$, $t \in \mathbb{R}$. Vi får:
+    \begin{align*}
+    &\begin{cases}
+        x_1 = 8 + 7t\\
+        x_2 = 4 + 4t\\
+        x_3 = t\\
+    \end{cases}
+    &&\mbox{dvs}
+    && \vec{x} = \overbrace{\begin{bmatrix} 8\\4\\0 \end{bmatrix}}^{\vec{x}_p} + \overbrace{\begin{bmatrix} 7\\4\\1 \end{bmatrix} \cdot t}^{\vec{x}_h}
+    \end{align*}
+\end{Ex}
+\paragraph{Obs:} % (fold)
+\label{par:obs_}
+Vi har:
+\begin{gather*}
+    \mathbf{A} \cdot \vec{x}_p = \begin{bmatrix} 1 & -2 & 1\\0 & 2 & -8 \end{bmatrix} \cdot \begin{bmatrix} 8\\4\\0 \end{bmatrix} = \begin{bmatrix} 0\\8 \end{bmatrix}\\
+    \mathbf{A} \cdot \vec{x}_h = \begin{bmatrix} 1 & -2 & 1\\0 & 2 & -8 \end{bmatrix} \cdot \begin{bmatrix} 7\\4\\1 \end{bmatrix} \cdot t = \begin{bmatrix} 0\\0 \end{bmatrix} \cdot t = \begin{bmatrix} 0\\0 \end{bmatrix}
+\end{gather*}
+\paragraph{Gemoetrisk tolkning:} % (fold)
+\label{par:gemoetrisk_tolkning_}
+Två plan som skär:
+\begin{center}
+    \includegraphics[scale=0.25]{tvaplan.png}
+\end{center}
+$\vec{x}_p  = \begin{bmatrix} 8\\4\\0 \end{bmatrix}$ är bara en av punkterna på linjen, nämligen den då $t=0$.\\
+$\vec{x} = \vec{x}_p + \vec{x}_h$ är linjen i $\mathbb{R}^3$ förskjuten $\begin{bmatrix} 8\\4\\0 \end{bmatrix}$ från origo.
+% paragraph gemoetrisk_tolkning_ (end)
+% paragraph obs_ (end)
+% section homogena_ekvationssystem (end)
+
+\end{document}
