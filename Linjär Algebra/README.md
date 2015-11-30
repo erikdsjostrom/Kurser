@@ -17,6 +17,8 @@ Bilder av Emil Hemdal (@emilhem)
 
 Licens för bilderna: [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+OBS! På grund av taveltekniken som läraren har så kan vissa bilder av tavlor saknas samt vara i fel ordning!
+
 1. Inga bilder tagna
 2. Inga bilder tagna
 3. [2015-11-05](F3/foton-på-tavlor/)
@@ -24,3 +26,9 @@ Licens för bilderna: [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/
 5. [2015-11-11](F5/foton-på-tavlor/)
 6. [2015-11-13](F6/foton-på-tavlor/)
 7. [2015-11-16](F7/foton-på-tavlor/)
+8. [2015-11-18](F8/foton-på-tavlor/)
+9. [2015-11-19](F9/foton-på-tavlor/)
+10. [2015-11-23](F10/foton-på-tavlor/)
+11. [2015-11-25](F11/foton-på-tavlor/)
+12. [2015-11-26](F12/foton-på-tavlor/)
+13. [2015-11-30](F13/foton-på-tavlor/)
