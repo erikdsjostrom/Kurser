@@ -59,7 +59,7 @@ Helt analogt definieras den ortogonala projektionen av vektorer på plan som:
     \end{Rem}
 \end{Def}
 % section projektion (end)
-\newpage
+
 \section{Avstånd mellan punkt och plan} % (fold)
 \label{sec:avst_nd}
 Givet en punkt P = (x,y,z), och ett plan $\pi : Ax + By + Cz =D$
@@ -92,7 +92,7 @@ Välj en punkt $Q$ i $\pi$ och bilda $\overrightarrow{QP}$ $d$ ges av den ortogo
         d = \frac{\abs{2 \cdot 1 + (-r)(-4) + 6(-3) + 1}}{\sqrt{2^2 + (-3)^2 + 6^2}} = \frac{\abs{-3}}{7} = \frac{3}{7}
     \]
 \end{Ex}
-\newpage
+
 \section{Avstånd mellan punkt och linje} % (fold)
 \label{sec:avst_nd_mellan_punkt_och_linje}
 Givet en punkt P, en linje $L:x = P_0 + t \cdot \vec{v}$, där $\vec{v}$ är riktningsvektorn till $L$, $P_0$ är en punkt på $L$ och $t \in \mathbb{R}$\\
@@ -106,7 +106,7 @@ Vi ser då at:
     d = \norm{\overrightarrow{P_0P}} \cdot \sin(\alpha) = \frac{\norm{\overrightarrow{P_0P}} \cdot \norm{\vec{v}} \cdot \sin(\alpha)}{\norm{\vec{v}}} = \frac{\norm{\overrightarrow{P_0P} \times \vec{v}}}{\norm{\vec{v}}}
 \]
 \begin{Ex}
-    Bestäm avstndet d från punkten $P=(3,-2,4) till linjen$
+    Bestäm avståndet d från punkten $P=(3,-2,4)$ till linjen:
     \[
         L:x = \begin{bmatrix} -1\\1\\2 \end{bmatrix} + t \cdot \begin{bmatrix} 2\\1\\1 \end{bmatrix}, t \in \mathbb{R}
     \]
@@ -127,7 +127,7 @@ Vi ser då at:
 \section{Spegling} % (fold)
 \label{sec:spegling_i_linje}
 \begin{Def}
-    Speglingen $\vec{u_s}$ ac $\vec{u}$	 i en linje $L$ ges av:
+    Speglingen $\vec{u_s}$ av $\vec{u}$	 i en linje $L$ ges av:
     \[
         \vec{u_s} = 2 \vec{u_L} - \vec{u}
     \]
@@ -146,7 +146,7 @@ Vi ser då at:
     	\includegraphics[scale=0.5]{speglingplan.png}
     \end{center}
 \end{Def}
-\newpage
+
 \section{Matriser} % (fold)
 \label{sec:matriser}
 En matris är ett talschema med m rader och n kolumner, betecknas oftast som:
@@ -159,7 +159,7 @@ En matris är ett talschema med m rader och n kolumner, betecknas oftast som:
 \end{itemize}
 \begin{Ex}
     \[
-        A = \begin{bmatrix} 2&3&5\\-2&1&0 \end{bmatrix}
+        \mathbf{A} = \begin{bmatrix} 2&3&5\\-2&1&0 \end{bmatrix}
     \]
     \begin{itemize}
     	\item 
@@ -174,38 +174,39 @@ Ibland skriver man:
 Vilket är kolumnvektorerna till matrisen A
 \section{Räkneregler} % (fold)
 \label{sec:r_kneregler}
-Matrisadditionen $A + B$ definieras: Elementen i respektive kolumn adderas.
+Matrisadditionen $\mathbf{A} + \mathbf{B}$ definieras: Elementen i respektive kolumn adderas.
 \begin{Rem}
-    A och B måste vara av samma typ/storlek
+    \textbf{A} och \textbf{B} måste vara av samma typ/storlek
 \end{Rem}
+\newpage
 \begin{Ex}
     \begin{gather*}
-    	A = \begin{bmatrix} 1&0\\2&3 \end{bmatrix}, B = \begin{bmatrix} 0&5\\5&1 \end{bmatrix}\\
-    	A + B = \begin{bmatrix} 1&0\\2&3 \end{bmatrix} + \begin{bmatrix} 0&5\\5&1 \end{bmatrix} = \begin{bmatrix} 1&5\\7&4 \end{bmatrix}
+    	\mathbf{A} = \begin{bmatrix} 1&0\\2&3 \end{bmatrix}, \mathbf{B} = \begin{bmatrix} 0&5\\5&1 \end{bmatrix}\\
+    	\mathbf{A} + \mathbf{B} = \begin{bmatrix} 1&0\\2&3 \end{bmatrix} + \begin{bmatrix} 0&5\\5&1 \end{bmatrix} = \begin{bmatrix} 1&5\\7&4 \end{bmatrix}
     \end{gather*}
 \end{Ex}
-\newpage
+
 \noindent
 Multiplikation med skalär: 
 \begin{align*}
-&k \cdot A &k \in \mathbb{R}
+&k \cdot \mathbf{A} &k \in \mathbb{R}
 \end{align*}
-Alla elementen i A multipliceras med k.
+Alla elementen i \textbf{A} multipliceras med k.
 \begin{Ex}
-    k = 5, A som innan
+    k = 5, \textbf{A} som innan
     \[
-        k \cdot A = 5 \cdot \begin{bmatrix} 1&0\\2&3 \end{bmatrix} = \begin{bmatrix} 5&0\\10&15 \end{bmatrix}
+        k \cdot \mathbf{A} = 5 \cdot \begin{bmatrix} 1&0\\2&3 \end{bmatrix} = \begin{bmatrix} 5&0\\10&15 \end{bmatrix}
     \]
 \end{Ex}
 Följande räkneregler gäller för matrisaddition respektive multiplikation med skalär:\\
-Låt: A, B, C vara $m \times n$ matriser, och $r,s \in \mathbb{R}$
+Låt: \textbf{A}, \textbf{B}, \textbf{C} vara $m \times n$ matriser, och $r,s \in \mathbb{R}$
 \begin{itemize}
-	\item A + B = B + A
-	\item (A + B) + C = A + (B + C)
-	\item A + $\mathbb{O}$ = A
-	\item r $\cdot$ (A + B) = r $\cdot$ A + r $\cdot$ B
-	\item (r + s) $\cdot$ A = r $\cdot$ A + s $\cdot$ A
-	\item r $\cdot$ (s $\cdot$ A) = (r $\cdot$ s) $\cdot$ A
+	\item \textbf{A} + \textbf{B} = \textbf{B} + \textbf{A}
+	\item (\textbf{A} + \textbf{B}) + \textbf{C} = \textbf{A} + (\textbf{B} + \textbf{C})
+	\item \textbf{A} + $\mathbb{O}$ = \textbf{A}
+	\item r $\cdot$ (\textbf{A} + \textbf{B}) = r $\cdot$ \textbf{A} + r $\cdot$ \textbf{B}
+	\item (r + s) $\cdot$ \textbf{A} = r $\cdot$ \textbf{A} + s $\cdot$ \textbf{A}
+	\item r $\cdot$ (s $\cdot$ \textbf{A}) = (r $\cdot$ s) $\cdot$ \textbf{A}
 \end{itemize}
 \begin{Rem}
     $\mathbb{O}$ är nollmatrisen, dvs den matris där alla element är 0.

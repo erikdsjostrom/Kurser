@@ -10,95 +10,96 @@
 \section{Matrisvektorprodukt} % (fold)
 \label{sec:matrisvektorprodukt}
 \begin{Def}
-    Låt $A = \begin{bmatrix} a_1,a_2, \dots, a_n \end{bmatrix}$ och $\vec{v} = \begin{bmatrix} v_1\\v_2\\ \vdots \\v_n \end{bmatrix}$ Då defineras matrisvektorprodukten som:
+    Låt $\mathbf{A} = \begin{bmatrix} a_1,a_2, \dots, a_n \end{bmatrix}$ och $\vec{v} = \begin{bmatrix} v_1\\v_2\\ \vdots \\v_n \end{bmatrix}$ Då defineras matrisvektorprodukten som:
     \[
-        A \cdot \vec{v} = v_1 \cdot a_1 + v_2 \cdot a_2 + \dots + v_n \cdot a_n
+        \mathbf{A} \cdot \vec{v} = v_1 \cdot a_1 + v_2 \cdot a_2 + \dots + v_n \cdot a_n
     \]
 \end{Def}
 \begin{Ex}
     \begin{align*}
-    &A = \begin{bmatrix} 1&2&-1\\0&-5&3 \end{bmatrix} &&\vec{v} = \begin{bmatrix} 4\\3\\7 \end{bmatrix}
+    &\mathbf{A} = \begin{bmatrix} 1&2&-1\\0&-5&3 \end{bmatrix} &&\vec{v} = \begin{bmatrix} 4\\3\\7 \end{bmatrix}
     \end{align*}
 
     \[
-        A \cdot \vec{v} = \begin{bmatrix} 1&2&-1\\0&-5&3 \end{bmatrix} \begin{bmatrix} 4\\3\\7 \end{bmatrix} = 4 \begin{bmatrix} 1\\0 \end{bmatrix} + 3 \begin{bmatrix} 2\\-5 \end{bmatrix} + 7 \begin{bmatrix} -1\\3 \end{bmatrix} = \begin{bmatrix} 4\\0 \end{bmatrix} + \begin{bmatrix} 6\\-15 \end{bmatrix} + \begin{bmatrix} -7\\21 \end{bmatrix} = \begin{bmatrix} 3\\6 \end{bmatrix}
+        \mathbf{A} \cdot \vec{v} = \begin{bmatrix} 1&2&-1\\0&-5&3 \end{bmatrix} \begin{bmatrix} 4\\3\\7 \end{bmatrix} = 4 \begin{bmatrix} 1\\0 \end{bmatrix} + 3 \begin{bmatrix} 2\\-5 \end{bmatrix} + 7 \begin{bmatrix} -1\\3 \end{bmatrix} = \begin{bmatrix} 4\\0 \end{bmatrix} + \begin{bmatrix} 6\\-15 \end{bmatrix} + \begin{bmatrix} -7\\21 \end{bmatrix} = \begin{bmatrix} 3\\6 \end{bmatrix}
     \]
 \end{Ex}
 \begin{Rem}
-    Man får samma svar om man beräknar skalärprodukten mellan raderna i A och kolmunen i $\vec{v}$
+    Man får samma svar om man beräknar skalärprodukten mellan raderna i \textbf{A} och kolmunen i $\vec{v}$
 \end{Rem}
 Räkneregler för matrisvektorprodukten:\\
-A och B är $(m \times n)$ matriser och $\vec{v}$, $\vec{u}$ $(nx1)$ kolumnvektorer, $k \in \mathbb{R}$
+\textbf{A} och \textbf{B} är $(m \times n)$ matriser och $\vec{v}$, $\vec{u}$ $(nx1)$ kolumnvektorer, $k \in \mathbb{R}$
 \begin{itemize}
-	\item $A(\vec{v} + \vec{u}) = A \cdot \vec{u} + A \cdot \vec{v}$
-	\item $(A + B) \cdot \vec{v} = A \cdot \vec{v} + B \cdot \vec{v}$
-	\item $A(k \cdot \vec{v}) = k \cdot (A \cdot \vec{v}) = (k \cdot A) \cdot \vec{v}$
+	\item $\mathbf{A}(\vec{v} + \vec{u}) = \mathbf{A} \cdot \vec{u} + \mathbf{A} \cdot \vec{v}$
+	\item $(\mathbf{A} + \mathbf{B}) \cdot \vec{v} = \mathbf{A} \cdot \vec{v} + \mathbf{B} \cdot \vec{v}$
+	\item $\mathbf{A}(k \cdot \vec{v}) = k \cdot (\mathbf{A} \cdot \vec{v}) = (k \cdot \mathbf{A}) \cdot \vec{v}$
 \end{itemize}
 % section matrisvektorprodukt (end)
 
 \section{Matrismultiplikation} % (fold)
 \label{sec:matrismultiplikation}
 \begin{Def}
-    Låt en matris A vara av storlek $(m \times n)$, och en matris B vara av storlek $(n \times p)$ med kolumnerna $b_1,b_2, \dots ,b_p$ då är matrismultiplikationen $A \cdot B$ den $(m \times p$ matris vars kolumner är, $A \cdot b_1, A \cdot b_2, \dots, A \cdot b_p$ dvs:
+    Låt en matris \textbf{A} vara av storlek $(m \times n)$, och en matris \textbf{B} vara av storlek $(n \times p)$ med kolumnerna $b_1,b_2, \dots ,b_p$ då är matrismultiplikationen $\mathbf{A} \cdot \mathbf{B}$ den $(m \times p$ matris vars kolumner är, $\mathbf{A} \cdot b_1, \mathbf{A} \cdot b_2, \dots, \mathbf{A} \cdot b_p$ dvs:
     \[
-        A \cdot B = A \cdot \begin{bmatrix} b_1,b_2, \dots, b_p \end{bmatrix} = \begin{bmatrix} Ab_1,Ab_2, \dots, Ab_p \end{bmatrix}
+        \mathbf{A} \cdot \mathbf{B} = \mathbf{A} \cdot \begin{bmatrix} b_1,b_2, \dots, b_p \end{bmatrix} = \begin{bmatrix} \mathbf{A}b_1,\mathbf{A}b_2, \dots, \mathbf{A}b_p \end{bmatrix}
     \]
 \end{Def}
+\newpage
 \begin{Ex}
    \begin{align*}
-   &A = \begin{bmatrix} 2&3\\1&-5 \end{bmatrix}_{2 \times 2} &B = \begin{bmatrix} 4&3&6\\1&-2&3 \end{bmatrix}_{2 \times 3}
+   &\mathbf{A} = \begin{bmatrix} 2&3\\1&-5 \end{bmatrix}_{2 \times 2} &\mathbf{B} = \begin{bmatrix} 4&3&6\\1&-2&3 \end{bmatrix}_{2 \times 3}
    \end{align*}
    \[
-       A \cdot B = \begin{bmatrix} 2&3\\1&-5 \end{bmatrix} \cdot \begin{bmatrix} 4&3&6\\1&-2&3 \end{bmatrix} = \begin{bmatrix} \begin{bmatrix} 2&3\\1&-5 \end{bmatrix}\begin{bmatrix} 4\\1 \end{bmatrix} &\begin{bmatrix} 2&3\\1&-5 \end{bmatrix}\begin{bmatrix} 3\\-2 \end{bmatrix} &\begin{bmatrix} 2&3\\1&-5 \end{bmatrix} \begin{bmatrix} 6\\3 \end{bmatrix} \end{bmatrix}
+       \mathbf{A} \cdot \mathbf{B} = \begin{bmatrix} 2&3\\1&-5 \end{bmatrix} \cdot \begin{bmatrix} 4&3&6\\1&-2&3 \end{bmatrix} = \begin{bmatrix} \begin{bmatrix} 2&3\\1&-5 \end{bmatrix}\begin{bmatrix} 4\\1 \end{bmatrix} &\begin{bmatrix} 2&3\\1&-5 \end{bmatrix}\begin{bmatrix} 3\\-2 \end{bmatrix} &\begin{bmatrix} 2&3\\1&-5 \end{bmatrix} \begin{bmatrix} 6\\3 \end{bmatrix} \end{bmatrix}
    \]
    Problemt blir nu att räkna ut tre matrisvektorprodukter:
    \[
        \begin{bmatrix} 2 \cdot 4 + 3 \cdot 1 & 2 \cdot 3 + 3 \cdot (-2) & 2 \cdot 6	+ 3 \cdot 3 \\ 1 \cdot 4 - 5 \cdot 1 & 1 \cdot 3 + (-5)(-2) & 1 \cdot 6 - 5 \cdot 3 \end{bmatrix} = \begin{bmatrix} 11&0&21\\-1&13&-9 \end{bmatrix}
    \]
 \end{Ex}
-Det är oftast enklare att beräkna skalärprodukten mellan raderna i A och kolumnerna i B.
+Det är oftast enklare att beräkna skalärprodukten mellan raderna i \textbf{A} och kolumnerna i \textbf{B}.
 \begin{Rem}
-    Storlekarna (typerna) måste stämma överens för att matrismultiplikation skall var definierad. Dvs om A är en $(m \times n)$ matris, och B en $(i \times j)$ matris, så är matrismultiplikationen:
+    Storlekarna (typerna) måste stämma överens för att matrismultiplikation skall var definierad. Dvs om \textbf{A} är en $(m \times n)$ matris, och \textbf{B} en $(i \times j)$ matris, så är matrismultiplikationen:
     \[
-        A_{m \times n} \cdot B_{i \times j}
+        \mathbf{A}_{m \times n} \cdot \mathbf{B}_{i \times j}
     \]
     definierad omm $n = i$. Storleken på den resulterande matrisen blir $m \times j$
 \end{Rem}
 \subsection{Räkneregler} % (fold)
 \label{sub:r_kneregler}
-Låt A,B,C vara matriser, och $\vec{v}$ en kolumnvektor definierade så att följande operationer är giltiga. Då gäller:
+Låt \textbf{A},\textbf{B},\textbf{C} vara matriser, och $\vec{v}$ en kolumnvektor definierade så att följande operationer är giltiga. Då gäller:
 \begin{itemize}
-	\item $A \cdot (k \cdot B) = k \cdot (A \cdot B) = (k \cdot A) \cdot B$ \mbox{ för } $k \in \mathbb{R}$
-	\item $A \cdot (B + C) = A \cdot B + A \cdot C$
-	\item $(B + C) \cdot A = B \cdot A + C \cdot A$
-	\item $A \cdot (B \cdot \vec{v}) = (A \cdot B) \cdot \vec{v}$
-	\item $A \cdot (B \cdot C) = (A \cdot B) \cdot C$
+	\item $\mathbf{A} \cdot (k \cdot \mathbf{B}) = k \cdot (\mathbf{A} \cdot \mathbf{B}) = (k \cdot \mathbf{A}) \cdot \mathbf{B}$ \mbox{ för } $k \in \mathbb{R}$
+	\item $\mathbf{A} \cdot (\mathbf{B} + \mathbf{C}) = \mathbf{A} \cdot \mathbf{B} + \mathbf{A} \cdot \mathbf{C}$
+	\item $(\mathbf{B} + \mathbf{C}) \cdot \mathbf{A} = \mathbf{B} \cdot \mathbf{A} + \mathbf{C} \cdot \mathbf{A}$
+	\item $\mathbf{A} \cdot (\mathbf{B} \cdot \vec{v}) = (\mathbf{A} \cdot \mathbf{B}) \cdot \vec{v}$
+	\item $\mathbf{A} \cdot (\mathbf{B} \cdot \mathbf{C}) = (\mathbf{A} \cdot \mathbf{B}) \cdot \mathbf{C}$
 \end{itemize}
 \begin{Rem}
-\textbf{   OBS!}
+\textbf{   O\textbf{B}S!}
     \begin{itemize}
-    	\item Det gäller oftast att $A \cdot B \neq B \cdot A$
-    	\item Om $A \cdot B = A \cdot C$ kan man inte dra slutsatsen att $B = C$
-    	\item Om $A \cdot B = \mathbb{O}$, kan man ej dra slutsatsen att $A = \mathbb{O}$ eller $B = \mathbb{O}$
+    	\item Det gäller oftast att $\mathbf{A} \cdot \mathbf{B} \neq \mathbf{B} \cdot \mathbf{A}$
+    	\item Om $\mathbf{A} \cdot \mathbf{B} = \mathbf{A} \cdot \mathbf{C}$ kan man inte dra slutsatsen att $\mathbf{B} = \mathbf{C}$
+    	\item Om $\mathbf{A} \cdot \mathbf{B} = \mathbb{O}$, kan man ej dra slutsatsen att $\mathbf{A} = \mathbb{O}$ eller $\mathbf{B} = \mathbb{O}$
     \end{itemize}
 \end{Rem}
-\newpage
+
 \begin{Ex}
     \begin{align*}
-    &A = \begin{bmatrix} -1&1\\1&-1 \end{bmatrix} &B = \begin{bmatrix} 2&2\\2&2 \end{bmatrix}
+    &\mathbf{A} = \begin{bmatrix} -1&1\\1&-1 \end{bmatrix} &\mathbf{B} = \begin{bmatrix} 2&2\\2&2 \end{bmatrix}
     \end{align*}
     \[
-        A \cdot B = \begin{bmatrix} -1&1\\1&-1 \end{bmatrix}\begin{bmatrix} 2&2\\2&2 \end{bmatrix} = \begin{bmatrix} 0&0\\0&0 \end{bmatrix} = \mathbb{O}
+        \mathbf{A} \cdot \mathbf{B} = \begin{bmatrix} -1&1\\1&-1 \end{bmatrix}\begin{bmatrix} 2&2\\2&2 \end{bmatrix} = \begin{bmatrix} 0&0\\0&0 \end{bmatrix} = \mathbb{O}
     \]
 \end{Ex}
 \begin{Ex}
     \begin{align*}
-    &A = \begin{bmatrix} 5&1\\3&-1 \end{bmatrix} &B = \begin{bmatrix} 2&0\\4&3 \end{bmatrix}
+    &\mathbf{A} = \begin{bmatrix} 5&1\\3&-1 \end{bmatrix} &\mathbf{B} = \begin{bmatrix} 2&0\\4&3 \end{bmatrix}
     \end{align*}
     Då är:
     \begin{gather*}
-    	A \cdot B = \begin{bmatrix} 5&1\\3&-1 \end{bmatrix} \begin{bmatrix} 2&0\\4&3 \end{bmatrix} = \begin{bmatrix} 14&3\\2&-3 \end{bmatrix}\\
-    	B \cdot A = \begin{bmatrix} 2&0\\4&3 \end{bmatrix} \begin{bmatrix} 5&1\\3&-1 \end{bmatrix} = \begin{bmatrix} 10&2\\29&1 \end{bmatrix}
+    	\mathbf{A} \cdot \mathbf{B} = \begin{bmatrix} 5&1\\3&-1 \end{bmatrix} \begin{bmatrix} 2&0\\4&3 \end{bmatrix} = \begin{bmatrix} 14&3\\2&-3 \end{bmatrix}\\
+    	\mathbf{B} \cdot \mathbf{A} = \begin{bmatrix} 2&0\\4&3 \end{bmatrix} \begin{bmatrix} 5&1\\3&-1 \end{bmatrix} = \begin{bmatrix} 10&2\\29&1 \end{bmatrix}
     \end{gather*}
 \end{Ex}
 % subsection r_kneregler (end)
@@ -107,11 +108,11 @@ Låt A,B,C vara matriser, och $\vec{v}$ en kolumnvektor definierade så att föl
 \section{Transponat} % (fold)
 \label{sec:transponat}
 \begin{Def}
-    Transponatet av en matris A ges av $A^T$ vars kolumner är raderna i A.
+    Transponatet av en matris \textbf{A} ges av $\mathbf{A}^T$ vars kolumner är raderna i \textbf{A}.
 \end{Def}
 \begin{Ex}
     \[
-        A = \begin{bmatrix} -5&2\\1&-3\\0&4 \end{bmatrix} \mbox{ så är } A^T = \begin{bmatrix} -5&1&0\\2&-3&4 \end{bmatrix}
+        \mathbf{A} = \begin{bmatrix} -5&2\\1&-3\\0&4 \end{bmatrix} \mbox{ så är } \mathbf{A}^T = \begin{bmatrix} -5&1&0\\2&-3&4 \end{bmatrix}
     \]
 \end{Ex}
 \begin{Ex}
@@ -123,16 +124,16 @@ Låt A,B,C vara matriser, och $\vec{v}$ en kolumnvektor definierade så att föl
 \end{Ex}
 \subsection{Räkneregler} % (fold)
 \label{sub:r_kneregler2}
-Låt A,B vara matriser så att följande operationer är giltiga, $k \in \mathbb{R}$.
+Låt \textbf{A},\textbf{B} vara matriser så att följande operationer är giltiga, $k \in \mathbb{R}$.
 \begin{itemize}
-	\item $(A^T)^T = A$
-	\item $(A + B)^T = A^T + B^T$
-	\item $(k \cdot A)^T = k \cdot A^T$
-	\item $(A \cdot B)^T = B^T \cdot A^T$ $\leftarrow$ observera ordningen.
+	\item $(\mathbf{A}^T)^T = \mathbf{A}$
+	\item $(\mathbf{A} + \mathbf{B})^T = \mathbf{A}^T + \mathbf{B}^T$
+	\item $(k \cdot \mathbf{A})^T = k \cdot \mathbf{A}^T$
+	\item $(\mathbf{A} \cdot \mathbf{B})^T = \mathbf{B}^T \cdot \mathbf{A}^T$ $\leftarrow$ observera ordningen.
 \end{itemize}
 % subsection r_kneregler (end)
 \begin{Def}
-    En $A_{n \times n}$ matris är symetrisk om $A = A^T$
+    En $\mathbf{A}_{n \times n}$ matris är symetrisk om $\mathbf{A} = \mathbf{A}^T$
 \end{Def}
 \begin{Ex}
     Om $\vec{u} = \begin{bmatrix} u_1\\u_2 \end{bmatrix}$ så är $\vec{u} \cdot \vec{u}^T$ symertrisk.
@@ -158,40 +159,40 @@ Låt A,B vara matriser så att följande operationer är giltiga, $k \in \mathbb
 \end{Ex}
 
 \begin{Def}
-    En $(n \times n)$ matris A är inverterbar om det finns en matris $C-{n \times m}$ så att:
+    En $(n \times n)$ matris \textbf{A} är inverterbar om det finns en matris $\mathbf{C}-{n \times m}$ så att:
     \begin{align*}
-    &C \cdot A = \mathbb{I}_n \\ &A \cdot C = \mathbb{I}_n
+    &\mathbf{C} \cdot \mathbf{A} = \mathbb{I}_n \\ &\mathbf{A} \cdot \mathbf{C} = \mathbb{I}_n
     \end{align*}
-    C kallas då för inversen till A. Betecknas $A^{-1}$
+    \textbf{C} kallas då för inversen till \textbf{A}. \textbf{B}etecknas $\mathbf{A}^{-1}$
 \end{Def}
-\newpage
+
 \begin{Ex}
     \begin{align*}
-    &A = \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} &C = \begin{bmatrix} -7&-5\\3&2 \end{bmatrix}
+    &\mathbf{A} = \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} &\mathbf{C} = \begin{bmatrix} -7&-5\\3&2 \end{bmatrix}
     \end{align*}
     Då är:
     \begin{align*}
-    &C \cdot A = \begin{bmatrix} -7&-5\\3&2 \end{bmatrix} \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} = \begin{bmatrix} 1&0\\0&1 \end{bmatrix} = \mathbb{I}_2\\
-    &A \cdot C = \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} \begin{bmatrix} -7&-5\\3&2 \end{bmatrix} = \begin{bmatrix} 1&0\\0&1 \end{bmatrix} = \mathbb{I}_2
+    &\mathbf{C} \cdot \mathbf{A} = \begin{bmatrix} -7&-5\\3&2 \end{bmatrix} \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} = \begin{bmatrix} 1&0\\0&1 \end{bmatrix} = \mathbb{I}_2\\
+    &\mathbf{A} \cdot \mathbf{C} = \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} \begin{bmatrix} -7&-5\\3&2 \end{bmatrix} = \begin{bmatrix} 1&0\\0&1 \end{bmatrix} = \mathbb{I}_2
     \end{align*}
-    dvs $C = A^{-1}$
+    dvs $\mathbf{C} = \mathbf{A}^{-1}$
 \end{Ex}
-
+\newpage
 \begin{sats}
-    Låt $A_{2\times 2} = \begin{bmatrix} a_{11}&a_{21}\\a_{21}&a_{22} \end{bmatrix}$. Om $d = a_{11} \cdot a_{22} - a_{21} \cdot a_{12} \neq 0$. Så är A inverterbar, och inversen ges av:
+    Låt $\mathbf{A}_{2\times 2} = \begin{bmatrix} a_{11}&a_{21}\\a_{21}&a_{22} \end{bmatrix}$. Om $d = a_{11} \cdot a_{22} - a_{21} \cdot a_{12} \neq 0$. Så är \textbf{A} inverterbar, och inversen ges av:
     \[
-         A^{-1} = \frac{1}{d}\begin{bmatrix} a_{22}&-a_{12}\\-a_{21}&a_{11} \end{bmatrix}
+         \mathbf{A}^{-1} = \frac{1}{d}\begin{bmatrix} a_{22}&-a_{12}\\-a_{21}&a_{11} \end{bmatrix}
      \] 
 \end{sats}
 \begin{Ex}
     \begin{align*}
-    &A = \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} &d = 2(-7) - (-3)5 = 1 \neq 0
+    &\mathbf{A} = \begin{bmatrix} 2&5\\-3&-7 \end{bmatrix} &d = 2(-7) - (-3)5 = 1 \neq 0
     \end{align*}
     \[
-        A^{-1} = \frac{1}{1} \cdot \begin{bmatrix} -7&5\\3&2 \end{bmatrix} = \begin{bmatrix} -7&5\\3&2 \end{bmatrix}
+        \mathbf{A}^{-1} = \frac{1}{1} \cdot \begin{bmatrix} -7&5\\3&2 \end{bmatrix} = \begin{bmatrix} -7&5\\3&2 \end{bmatrix}
     \]
     
 \end{Ex}
-d kallas för determinanten till A.
+\textit{d} kallas för determinanten till \textbf{A}.
 % section inverterbara_matriser (end)
 \end{document}
