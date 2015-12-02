@@ -36,7 +36,7 @@
 \end{array} 
 \end{bmatrix}
 \end{align*}
-% paragraph obs_ (end)
+% paragraph obs_ (ende)
 \begin{Def}
 	Vektorerna $\vec{v}_1, \vec{v}_2,...,\vec{v}_n$ är \underline{linjärt oberoende} om enda lösningen till ekvationen:
 	\begin{align*}
@@ -52,7 +52,7 @@
 	\[
 	x_1 \cdot \vec{v}_1 + x_2 \cdot \vec{v}_2 + ... + x_n \cdot \vec{v}_n	= \emptyset
 	\]
-	har en lösning där åtminstonde något $x_i \neq 0$
+	har en lösning där åtminstone något $x_i \neq 0$
 \end{Def}
 \begin{Ex}
 	\begin{align*}
@@ -65,6 +65,7 @@
 	x_1 \cdot \vec{e}_1 + x_2 \cdot \vec{e}_2 + x_3 \cdot \vec{e}_3 = x_1 \begin{bmatrix} 1\\0\\0 \end{bmatrix} + x_2 \begin{bmatrix} 0\\1\\0 \end{bmatrix} + x_3 \begin{bmatrix} 0\\0\\1 \end{bmatrix} \Leftrightarrow \begin{bmatrix} 1&0&0\\0&1&0\\0&0&1 \end{bmatrix} = \begin{bmatrix} 0\\0\\0 \end{bmatrix} \Rightarrow x_1=x_2=x_3=0
 	\]
 \end{Ex}
+\newpage
 \begin{Ex}
 	\begin{align*}
 	&\vec{v}_1 = \begin{bmatrix} 1\\1\\1 \end{bmatrix}
@@ -183,12 +184,8 @@ Ta bort $\vec{v}_3$, vi kan fortfarande uttrycka lika många linjärkombinatione
 	är en bas i $\mathbb{R}^2$ eftersom de är \underline{linjärt oberoende} och alla vektorer i $\mathbb{R}^2$ kan skrivas som en linjärkombination av $\vec{e}_1$ och $\vec{e}_2$
 \end{Ex}
 \begin{Ex}
-	Låt $\vec{v} = \begin{bmatrix} 2\\1 \end{bmatrix}$. Då är $\vec{e}_1 = \begin{bmatrix} 1\\0 \end{bmatrix}$ och $\vec{v}$ ej parallella.
-	\begin{center}
-		INFOGA FIGUR HÄR
-	\end{center}
-	så vi vet att de är \underline{linjärt oberoende}
-	Alla andra vektorer i $\mathbb{R}^2$ kan skrivas so en linjärkombination ($\vec{e}_1$, $\vec{v}$), t.ex.:
+	Låt $\vec{v} = \begin{bmatrix} 2\\1 \end{bmatrix}$. Då är $\vec{e}_1 = \begin{bmatrix} 1\\0 \end{bmatrix}$ och $\vec{v}$ ej parallella, så vi vet att de är \underline{linjärt oberoende}
+	Alla andra vektorer i $\mathbb{R}^2$ kan skrivas som en linjärkombination ($\vec{e}_1$, $\vec{v}$), t.ex.:
 	\[
 	\vec{e}_2 = \begin{bmatrix} 0\\1 \end{bmatrix} = -2 \vec{e}_1 + \vec{v} = -2 \begin{bmatrix} 1\\0 \end{bmatrix} + \begin{bmatrix} 2\\1 \end{bmatrix} = \begin{bmatrix} 0\\1 \end{bmatrix}
 	\]
@@ -285,6 +282,7 @@ Om $\mathbf{A} = \begin{bmatrix} \vec{v}_1 & \vec{v}_2 &...&\vec{v}_n \end{bmatr
 \mathbf{A} \cdot \vec{x} = \emptyset
 \]
 Vilket har den triviala lösningen: $\vec{x} = \emptyset$
+\newpage
 \begin{sats}
 	$\vec{v}_1, \vec{v}_2,..., \vec{v}_r$ är en bas för $\mathbb{R}^n$ oom $r = n$ (och $\vec{v}_1,..., \vec{v}_r \in \mathbb{R}^n$) och dom är \underline{linjärt oberoende}
 \end{sats}
