@@ -1,0 +1,304 @@
+\input{../../tex/lecturePreamble}
+\usepackage{gauss}
+
+\title{
+	 Linjär Algebra\\
+	 Föreläsning 14 - Baser och linjärt beroende
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+\section{Linjärt beroende} % (fold)
+\label{sec:linj_rt_beroende}
+\paragraph{Obs:} % (fold)
+\label{par:obs_}
+\begin{align*}
+&&\begin{cases}
+	x_1 + x_2 + 2x_3 = 0\\
+	x_1 + 2x_2 + x_3 = 0\\
+	x_1 + x_2 + x_3 = 0
+\end{cases}
+& \Leftrightarrow
+&& \begin{bmatrix} 1\\1\\1 \end{bmatrix} \cdot x_1 + 
+\begin{bmatrix} 1\\2\\1 \end{bmatrix} \cdot x_2 + 
+\begin{bmatrix} 2\\1\\1 \end{bmatrix} \cdot x_3 = 
+\begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
+&&
+& \Leftrightarrow 
+&&\begin{bmatrix} 1&1&2\\1&2&1\\1&1&1 \end{bmatrix} \cdot \begin{bmatrix} x_1\\x_2\\x_3 \end{bmatrix} = \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
+&&
+& \Leftrightarrow
+&& \begin{bmatrix}
+	\begin{array}{ccc|c}
+	1 & 1 & 2 & 0\\
+	1 & 2 & 1 & 0\\
+	1 & 1 & 1 & 0\\
+\end{array} 
+\end{bmatrix}
+\end{align*}
+% paragraph obs_ (end)
+\begin{Def}
+	Vektorerna $\vec{v}_1, \vec{v}_2,...,\vec{v}_n$ är \underline{linjärt oberoende} om enda lösningen till ekvationen:
+	\begin{align*}
+	&&x_1 \cdot \vec{v}_1 + x_2 \cdot \vec{v}_2 + ... + x_n \cdot \vec{v}_n	= \emptyset
+	&&\mbox{är}
+	&&x_1 = x_2 = ... = x_n = 0
+	&&x_i \in \mathbb{R}
+	\end{align*}
+	
+\end{Def}
+\begin{Def}
+	Vektorerna $\vec{v}_1, \vec{v}_2,...,\vec{v}_n$ är \underline{linjärt beroende} om enda lösningen till ekvationen:
+	\[
+	x_1 \cdot \vec{v}_1 + x_2 \cdot \vec{v}_2 + ... + x_n \cdot \vec{v}_n	= \emptyset
+	\]
+	har en lösning där åtminstonde något $x_i \neq 0$
+\end{Def}
+\begin{Ex}
+	\begin{align*}
+	&\vec{e}_1 = \begin{bmatrix} 1\\0\\0 \end{bmatrix}
+	&&\vec{e}_2 = \begin{bmatrix} 0\\1\\0 \end{bmatrix}
+	&&\vec{e}_3	= \begin{bmatrix} 0\\0\\1 \end{bmatrix}
+	\end{align*}
+	är \underline{linjärt oberoende} ty:
+	\[
+	x_1 \cdot \vec{e}_1 + x_2 \cdot \vec{e}_2 + x_3 \cdot \vec{e}_3 = x_1 \begin{bmatrix} 1\\0\\0 \end{bmatrix} + x_2 \begin{bmatrix} 0\\1\\0 \end{bmatrix} + x_3 \begin{bmatrix} 0\\0\\1 \end{bmatrix} \Leftrightarrow \begin{bmatrix} 1&0&0\\0&1&0\\0&0&1 \end{bmatrix} = \begin{bmatrix} 0\\0\\0 \end{bmatrix} \Rightarrow x_1=x_2=x_3=0
+	\]
+\end{Ex}
+\begin{Ex}
+	\begin{align*}
+	&\vec{v}_1 = \begin{bmatrix} 1\\1\\1 \end{bmatrix}
+	&&\vec{v}_2	= \begin{bmatrix} 1\\2\\1 \end{bmatrix}
+	&&\vec{v}_3 = \begin{bmatrix} 2\\1\\1 \end{bmatrix}
+	\end{align*}
+	är \underline{linjärt oberoende} ty:
+	\[
+	x_1 \cdot \vec{v}_1 + x_2 \cdot \vec{v}_2 + x_3 \cdot \vec{v}_3 = \emptyset \Leftrightarrow \begin{bmatrix} 1 & 1 & 2\\1 & 2 & 1\\1&1&1 \end{bmatrix}\begin{bmatrix} x_1\\x_2\\x_3 \end{bmatrix} = \begin{bmatrix} 0\\0\\0 \end{bmatrix}
+	\]
+	Gausseliminering ger:
+	\[
+	\begin{bmatrix}
+		\begin{array}{ccc|c}
+			1 & 1 & 2 & 0\\
+			1 & 2 & 1 & 0\\
+			1 & 1 & 1 & 0
+		\end{array}
+	\end{bmatrix} \sim ... \sim
+	\begin{bmatrix}
+		\begin{array}{ccc|c}
+			1 & 0 & 0 & 0\\
+			0 & 1 & 0 & 0\\
+			0 & 0 & 1 & 0
+		\end{array}
+	\end{bmatrix} \Rightarrow x_1 = x_2 = x_3 = 0
+	\]
+\end{Ex}
+\begin{Ex}
+	\begin{align*}
+	&\vec{v}_1 = \begin{bmatrix} 1\\1\\1 \end{bmatrix}
+	&&\vec{v}_2 = \begin{bmatrix} 1\\2\\1 \end{bmatrix}
+	&&\vec{v}_3 = \begin{bmatrix} 1\\3\\1 \end{bmatrix}
+	\end{align*}
+	Är \underline{linjärt beroende} ty:
+	\[
+	x_1 \cdot \vec{v}_1 0 x_2 \cdot \vec{v}_2 + x_3 + \vec{v}_3 =
+	\begin{bmatrix}
+		1 & 1 & 1\\
+		1 & 2 & 3\\
+		1 & 1 & 1\\
+	\end{bmatrix}
+	\begin{bmatrix} x_1\\x_2\\x_3 \end{bmatrix} = \begin{bmatrix} 0\\0\\0 \end{bmatrix}
+	\]
+	Gausseliminering ger:
+	\[
+	\begin{bmatrix}
+		\begin{array}{ccc|c}
+			1 & 1 & 1 & 0\\
+			1 & 2 & 3 & 0\\
+			1 & 1 & 1 & 0
+		\end{array}
+	\end{bmatrix} \sim ... \sim
+	\begin{bmatrix}
+		\begin{array}{ccc|c}
+			1 & 1 & 1 & 0\\
+			0 & 1 & 2 & 0\\
+			0 & 0 & 0 & 0\\
+		\end{array}
+	\end{bmatrix}
+	\]
+	Vi har en fri kolumn, och en fri variabel $x_3$, vilket ger lösningarna:
+	\[
+	\begin{cases}
+		x_1 = -(-2t) - t = t\\
+		x_2 = -2t\\
+		x_3 = t
+	\end{cases}
+	\]
+	Vi får:
+	\[
+	t \cdot \vec{v}_1 - 2t \cdot \vec{v}_2 + t \cdot \vec{v}_3 = \emptyset
+	\]
+	\textit{t} är ett godtyckligt reellt tal. Om vi sätter $t = 1$ får vi:
+	\[
+	\begin{cases}
+		x_1 = 1, \\ 
+		x_2 = -2, \\
+		x_3 = 1
+	\end{cases}
+	\]
+	Vi har då:
+	\[
+	\vec{v}_1 = 2 \vec{v}_2 - \vec{v}_3
+	\]
+\end{Ex}
+\newpage
+\begin{itemize}
+	\item Två vektorer $\vec{v}_1$ och $\vec{v}_2$ är \underline{linjärt beroende} om de är parallella, ty $\vec{v}_1 = t \cdot \vec{v}_2$, $t \in \mathbb{R}$
+	\item \textit{n} stycken vektorer är \underline{linjärt beroende} om minst en av dom kan uttryckas som en linjärkombination av dom andra vektorerna.\\
+	(dvs: denna vektor är "överflödig" i den mening att man kan uttrycka lika många linjärkombinationer om man tar bort denna vektor)
+\end{itemize}
+\begin{mdframed}
+\paragraph{Exempel: 1.3.} % (fold)
+\label{par:ex_1_3_}
+\textbf{(igen)}\\
+Ta bort $\vec{v}_3$, vi kan fortfarande uttrycka lika många linjärkombinationer med $\vec{v}_1$ och $\vec{v}_2$
+% paragraph ex_1_3_ (end)
+\end{mdframed}
+% section linj_rt_beroende (end)
+
+\section{Baser} % (fold)
+\label{sec:baser}
+\begin{Def}
+	Vektorerna $\vec{v}_1, \vec{v}_2,..., \vec{v}_n$ utgör en bas för en mängd $\mathbb{V}$ om de är \underline{linjärt oberoende} och om varje vektor $\vec{v} \in \mathbb{V}$ kan skrivas som en linjärkombination av vektorerna $\vec{v}_1, \vec{v}_2,..., \vec{v}_n$.
+\end{Def}
+\paragraph{-} % (fold)
+\label{par:dimension_}
+\textbf{Dimensionen} för $\mathbb{V}$ är antalet vektorer i basen.
+% paragraph dimension_ (end)
+\begin{Ex}
+	\begin{align*}
+	&\vec{e}_1 = \begin{bmatrix} 1\\0 \end{bmatrix}
+	&&\vec{e}_2 = \begin{bmatrix} 0\\1 \end{bmatrix}
+	\end{align*}
+	är en bas i $\mathbb{R}^2$ eftersom de är \underline{linjärt oberoende} och alla vektorer i $\mathbb{R}^2$ kan skrivas som en linjärkombination av $\vec{e}_1$ och $\vec{e}_2$
+\end{Ex}
+\begin{Ex}
+	Låt $\vec{v} = \begin{bmatrix} 2\\1 \end{bmatrix}$. Då är $\vec{e}_1 = \begin{bmatrix} 1\\0 \end{bmatrix}$ och $\vec{v}$ ej parallella.
+	\begin{center}
+		INFOGA FIGUR HÄR
+	\end{center}
+	så vi vet att de är \underline{linjärt oberoende}
+	Alla andra vektorer i $\mathbb{R}^2$ kan skrivas so en linjärkombination ($\vec{e}_1$, $\vec{v}$), t.ex.:
+	\[
+	\vec{e}_2 = \begin{bmatrix} 0\\1 \end{bmatrix} = -2 \vec{e}_1 + \vec{v} = -2 \begin{bmatrix} 1\\0 \end{bmatrix} + \begin{bmatrix} 2\\1 \end{bmatrix} = \begin{bmatrix} 0\\1 \end{bmatrix}
+	\]
+	Eller som en gausselimination:
+	\[
+	\begin{bmatrix}
+		\begin{array}{cc|c}
+			1 & 2 & 0\\
+			0 & 1 & 0
+		\end{array}
+	\end{bmatrix}
+	\Rightarrow
+	\begin{cases}
+		x_1 = 1\\
+		x_2 = -2
+	\end{cases}
+	\]
+\end{Ex}
+\begin{mdframed}
+	\paragraph{Exempel 1.2.} % (fold)
+	\label{par:ex_}
+	\textbf{(igen)}\\
+	\begin{align*}
+	&\vec{e}_1 = \begin{bmatrix} 1\\1\\1 \end{bmatrix}
+	&&\vec{e}_2 = \begin{bmatrix} 1\\2\\1 \end{bmatrix}
+	&&\vec{e}_3	= \begin{bmatrix} 2\\1\\1 \end{bmatrix}
+	\end{align*}
+	är tre stycken \underline{linjärt oberoende} vektorer i $\mathbb{R}^3$, och utgör därmed en bas för $\mathbb{R}^3$.
+	% paragraph ex_ (end)
+\end{mdframed}
+\begin{mdframed}
+	\paragraph{Exempel 1.3.} % (fold)
+	\label{par:exempel_1_3_}
+	\textbf{(igen)}\\
+	\begin{align*}
+	& \vec{v}_1 = \begin{bmatrix} 1\\1\\1 \end{bmatrix}
+	&& \vec{v}_2 = \begin{bmatrix} 1\\2\\1 \end{bmatrix}
+	&& \vec{v}_3 = \begin{bmatrix} 1\\3\\1 \end{bmatrix}
+	\end{align*}
+	är inte en bas för $\mathbb{R}^3$ eftersom de är \underline{linjärt beroende}.
+	% paragraph exempel_1_3_ (end)
+\end{mdframed}
+Vi måste alltså ha tre stycken \underline{linjärt oberoende} vektorer i $\mathbb{R}^3$ för att få en bas för $\mathbb{R}^3$, det finns alltså en vektor $\vec{b} \in \mathbb{R}^3$ som ej kan skrivas som en linjärkombination av $\vec{v}_1, \vec{v}_2, \vec{v}_3$, t.ex. $\vec{b} = \begin{bmatrix} 0\\0\\1 \end{bmatrix}$\\
+I exempel \textbf{1.3.} fick vi en gausseliminering som gav:
+\[
+... \sim
+\begin{bmatrix}
+	\begin{array}{ccc|c}
+		1 & 1 & 1 & 0\\
+		0 & 1 & 2 & 0\\
+		0 & 0 & 0 & 0
+	\end{array}
+\end{bmatrix}
+\]
+Om det hade stått $\begin{bmatrix} 0\\0\\1 \end{bmatrix}$ i högerledet så hade vi fått ett system som saknar lösningar, ty vi hade då fått en ekvation:
+\[
+0x_1 + 0x_2 + 0x_3 = 1
+\]
+Vilket saknar lösning. Alltså har vi funnit en vektor som ej är en linjärkombinationen av $\vec{v}_1, \vec{v}_2, \vec{v}_3$\\
+\paragraph{-} % (fold)
+\label{par:_1}
+Om $\vec{v}_1, \vec{v}_2,..., \vec{v}_n$ är \underline{linjärt beroende} så har ekvationen:
+\[
+\vec{v}_1 \cdot x_1 + \vec{v}_2 \cdot x_2 + ... + \vec{v}_n \cdot x_n = \vec{b}
+\]
+\begin{itemize}
+	\item oändligt många lösningar om $\vec{b}$ kan skrivas som en linjärkombination av $\vec{v}_1, \vec{v}_2,..., \vec{v}_n$.
+	\item inga lösningar om $\vec{b}$ ej kan skrivas som en linjärkombination av $\vec{v}_1, \vec{v}_2,..., \vec{v}_n$.
+\end{itemize}
+% paragraph _1 (end)
+Eller uttryckt i matrisform:\\
+Om $\mathbf{A} = \begin{bmatrix} \vec{v}_1&\vec{v}_2&\vec{v}_3 \end{bmatrix}$ har linjärt beroende kolumner så har:
+\[
+\mathbf{A} \cdot \vec{x} = \vec{b}
+\]
+\begin{itemize}
+	\item oändligt många lösningar om $\vec{b}$ kan skrivas som en linjärkombination av kolumnerna.
+	\item inga lösningar om $\vec{b}$ ej kan skrivas som en linjärkombination av kolumnerna.
+\end{itemize}
+Om vektorerna $\vec{v}_1, \vec{v}_2,..., \vec{v}_n \in \mathbb{R}^n$ är \underline{linjärt oberoende} så har:
+\[
+\vec{v}_1 \cdot x_1 + \vec{v}_2 \cdot x_2 +...+ \vec{v}_n \cdot x_n = \emptyset
+\]
+Bara lösningen $x_1 = x_2 = ... = x_n = 0$\\
+Vilket betyder att:
+\begin{align*}
+&\vec{v}_1 \cdot x_1 + \vec{v}_2 \cdot x_2 +...+ \vec{v}_n \cdot x_n = \emptyset
+&&\vec{b} \in \mathbb{R}^n
+\end{align*}
+har en entydig lösning.\\
+Eller uttryckt i matriform:
+Om $\mathbf{A} = \begin{bmatrix} \vec{v}_1 & \vec{v}_2 &...&\vec{v}_n \end{bmatrix}$ har \underline{linjärt oberoende} kolumner så har $\mathbf{A} \cdot \vec{x} = \vec{b}$ en entydigt bestämd lösning. Dvs den homogena ekvationen:
+\[
+\mathbf{A} \cdot \vec{x} = \emptyset
+\]
+Vilket har den triviala lösningen: $\vec{x} = \emptyset$
+\begin{sats}
+	$\vec{v}_1, \vec{v}_2,..., \vec{v}_r$ är en bas för $\mathbb{R}^n$ oom $r = n$ (och $\vec{v}_1,..., \vec{v}_r \in \mathbb{R}^n$) och dom är \underline{linjärt oberoende}
+\end{sats}
+\begin{bevis}
+	Låt $\mathbf{A} = \begin{bmatrix} \vec{v}_1&\vec{v}_2&...&\vec{v}_r \end{bmatrix}$ och gausseliminera \textbf{A} till \textbf{T} (trappstgsform). Om:
+	\begin{itemize}
+		\item $r > n$, då har vi fler obekanta än ekvationer. Vilket betyder att vi får fria kolumner i lösningen, dvs vi får oändligt många lösningar, dvs kolumnerna i \textbf{A} är linjärt beroende. De utgör alltså ej en bas för $\mathbb{R}^n$.
+		\item $r < n$, få har vi fler ekvationer än obekanta. Vilket betyder att minst en rad ej kommer innehålla ett pivotelement. Eftersom $\vec{b}$ kan väljas fritt, jämför exempel \textbf{1.3.}. Välj $\vec{b}$:
+		\[
+		\vec{b} = \begin{bmatrix} 0\\0\\\vdots\\0\\1 \end{bmatrix}
+		\]
+		detta är ej lösbart av samma anledning som i exempel \textbf{1.3.}. Dvs $\vec{b}$ kan ej skrivas som en linjärkombination av $\vec{v}_1, \vec{v}_2,..., \vec{v}_r$. Dvs $\vec{v}_1, \vec{v}_2,..., \vec{v}_r$ är ej en bas för $\mathbb{R}^n$
+		\item $r = n$, är det enda kvarstående alternativet.
+	\end{itemize}
+\end{bevis}
+% section baser (end)
+\end{document}
