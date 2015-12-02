@@ -1,4 +1,4 @@
-\input{../../tex/lecturePreamble}
+ \input{../../tex/lecturePreamble}
 \title{
 	 Linjär Algebra\\
 	 Föreläsning 6
@@ -10,29 +10,29 @@
 \section{Determinanter} % (fold)
 \label{sec:matrisvektorprodukt}
 
-En determinant för en matris $A_{n \times n}$ är en funktion som ordnar ett tal till A.
+En determinant för en matris $\textbf{A}_{n \times n}$ är en funktion som ordnar ett tal till \textbf{A}.
 \begin{Def}
-    Determinanten för en $(2 \times 2)$-matris $A = \begin{bmatrix} a_{11}&a_{12}\\a_{21}&a_{22} \end{bmatrix}$:
+    Determinanten för en $(2 \times 2)$-matris $\mathbf{A} = \begin{bmatrix} a_{11}&a_{12}\\a_{21}&a_{22} \end{bmatrix}$:
     \[
-        \mathbf{det}(A) = \begin{vmatrix} a_{11}&a_{12}\\a_{21}&a_{22} \end{vmatrix} = a_{11} \cdot a_{22} - a_{21} \cdot a_{22}
+        \mathbf{det}(\mathbf{A}) = \begin{vmatrix} a_{11}&a_{12}\\a_{21}&a_{22} \end{vmatrix} = a_{11} \cdot a_{22} - a_{21} \cdot a_{22}
     \]
 \end{Def}
 \begin{Ex}
     \begin{align*}
-    &A = \begin{bmatrix} \frac{1}{2}&1\\1&0 \end{bmatrix} &\mathbf{det}(A) = \frac{1}{2} \cdot 0 - 1 \cdot 1 = -1
+    &\mathbf{A} = \begin{bmatrix} \frac{1}{2}&1\\1&0 \end{bmatrix} &\mathbf{det}(\mathbf{A}) = \frac{1}{2} \cdot 0 - 1 \cdot 1 = -1
     \end{align*}
 \end{Ex}
 
 \begin{Ex}
     \begin{align*}
-    &B = \begin{bmatrix} 2&4\\1&2 \end{bmatrix} & \mathbf{det}(B) = 2 \cdot 2 - 1 \cdot 4 = 0
+    &\mathbf{B} = \begin{bmatrix} 2&4\\1&2 \end{bmatrix} & \mathbf{det}(\mathbf{B}) = 2 \cdot 2 - 1 \cdot 4 = 0
     \end{align*}
 \end{Ex}
-\newpage
+
 \section{Geometrisk tolkning} % (fold)
 \label{sec:geometrisk_tolkning}
 \begin{sats}
-    Låt $A_{2 \times 2}$ = $\begin{bmatrix} \vec{a_1} &\vec{a_2} \end{bmatrix}$ där $\vec{a_1}$, $\vec{a_2}$ är vektorer i $\mathbb{R}^2$. Arean av parallellogrammet som spänns upp av $\vec{a_1}$ och $\vec{a_2}$ ges av $\abs{\mathbf{det}(A)}$
+    Låt $\mathbf{A}_{2 \times 2}$ = $\begin{bmatrix} \vec{a_1} &\vec{a_2} \end{bmatrix}$ där $\vec{a_1}$, $\vec{a_2}$ är vektorer i $\mathbb{R}^2$. Arean av parallellogrammet som spänns upp av $\vec{a_1}$ och $\vec{a_2}$ ges av $\abs{\mathbf{det}(\mathbf{A})}$
     \begin{center}
         \includegraphics[scale=0.5]{areagram.png}
     \end{center}
@@ -40,21 +40,21 @@ En determinant för en matris $A_{n \times n}$ är en funktion som ordnar ett ta
 
 \begin{Ex}
     \begin{align*}
-    &A = \begin{bmatrix} 0.5&1\\1&0 \end{bmatrix} &\mathbf{det}(A) = 0.5 \cdot 0 - 1 \cdot 1 = -1
+    &\mathbf{A} = \begin{bmatrix} 0.5&1\\1&0 \end{bmatrix} &\mathbf{det}(\mathbf{A}) = 0.5 \cdot 0 - 1 \cdot 1 = -1
     \end{align*}
     \begin{center}
         \includegraphics[scale=0.5]{areaex1.png}
     \end{center}
 \end{Ex}
-\newpage
+
 \begin{Ex}
     \begin{align*}
-    &B = \begin{bmatrix} 2&4\\1&2 \end{bmatrix} & \mathbf{det}(B) = 2 \cdot 2 - 1 \cdot 4 = 0
+    &\mathbf{B} = \begin{bmatrix} 2&4\\1&2 \end{bmatrix} & \mathbf{det}(\mathbf{B}) = 2 \cdot 2 - 1 \cdot 4 = 0
     \end{align*},
     \begin{center}
         \includegraphics[scale=0.5]{areaex2.png}
     \end{center}
-    Kolumnvektorerna i B är pararella:
+    Kolumnvektorerna i \textbf{B} är pararella:
     \[
         \begin{bmatrix} 4\\2 \end{bmatrix} = 2 \begin{bmatrix} 2\\1 \end{bmatrix}
     \]
@@ -71,7 +71,7 @@ En determinant för en matris $A_{n \times n}$ är en funktion som ordnar ett ta
             \item Riktningsvektor för $L$: $\vec{v} = \begin{bmatrix} -a_{21}\\a_{11} \end{bmatrix}$
         \end{itemize}
     \end{itemize}
-    \newpage
+    
     Hur kom vi fram till att $\vec{v} = \begin{bmatrix} -a_{21}\\a_{11} \end{bmatrix}$?\\
     Vi har:
     \[
@@ -93,15 +93,15 @@ En determinant för en matris $A_{n \times n}$ är en funktion som ordnar ett ta
     \begin{align*}
     D = \mbox{ basen } \cdot \mbox{ höjden } &= \norm{\vec{a_1}} \cdot \norm{\vec{a_{2L}}} = \norm{\vec{a_1}} \cdot \frac{\abs{\vec{a_2} \cdot \vec{v}}}{\norm{\vec{v}}} = \sqrt{a_{11}^2 + a_{21}^2} \cdot \frac{\abs{\vec{a_2} \cdot \vec{v}}}{\sqrt{(-a_{21})^2 + a_{11}^2}} \\
     &= \abs{\vec{a_2} \cdot \vec{v}} = \abs{\begin{bmatrix} a_{12}\\a_{22} \end{bmatrix} \cdot \begin{bmatrix} -a_{21}\\a_{11} \end{bmatrix}} = \abs{a_{12} \cdot (-a_{21}) + a_{22} \cdot a_{11}} \\
-    &= \abs{a_{11} \cdot a_{22} - a_{21} \cdot a_{12}} = \abs{\mathbf{det}(A)}
+    &= \abs{a_{11} \cdot a_{22} - a_{21} \cdot a_{12}} = \abs{\mathbf{det}(\mathbf{A})}
     \end{align*}
 \end{bevis}
 \noindent
 \paragraph
-- När blir $\mathbf{det}(A)$: $<0$, $>0$, och $=0$?\\
+- När blir $\mathbf{det}(\mathbf{A})$: $<0$, $>0$, och $=0$?\\
 Vi har från beviset att:
 \[
-    \mathbf{det}(A) = \vec{a_2} \cdot \vec{v}
+    \mathbf{det}(\mathbf{A}) = \vec{a_2} \cdot \vec{v}
 \]
 Och detta vet vi (från definitionen av skalärprodukt) är lika med:
 \[
@@ -113,7 +113,7 @@ Vi ser då att:
     \item $<0$ om $\alpha$ trubbig
     \item $=0$ om $\vec{v}$, $\vec{a_2}$ är ortogonala
 \end{itemize}
-\newpage
+
 \section{Orientering} % (fold)
 \label{sec:orientering}
 Två vektorer $\vec{u}$, $\vec{v}$ (ej parallella) i $\mathbb{R}^2$ (planet) är högerorienterade om den kortaste vägen att vrida $\vec{u}$ till $\vec{v}$ så att $\vec{u}$ får samma riktning som $\vec{v}$ är moturs, är den kortaste vägen istället medurs så är de vänsterorienterade.
@@ -129,16 +129,16 @@ Två vektorer $\vec{u}$, $\vec{v}$ (ej parallella) i $\mathbb{R}^2$ (planet) är
     \end{center}
 \end{Ex}
 \paragraph
-- Låt $A = \begin{bmatrix} \vec{a_1}&\vec{a_2} \end{bmatrix}$ ($\vec{a_1}$, $\vec{a_2}$ vektorer i $\mathbb{R}^2$)\\
-\textbf{Om} ($\vec{a_1}$, $\vec{a_2}$) är \textbf{högerorienterade} så är vinkeln mellan $\vec{a_{2L}}$ och $\vec{a_2}$ \textbf{spetsig}, och $\mathbf{det}(A) > 0$\newline
-\textbf{Om} ($\vec{a_1}$, $\vec{a_2}$) är \textbf{vänsterorienterade} så är vinkeln mellan $\vec{a_{2L}}$ och $\vec{a_2}$ \textbf{trubbig}, och $\mathbf{det}(A) < 0$
+- Låt $\mathbf{A} = \begin{bmatrix} \vec{a_1}&\vec{a_2} \end{bmatrix}$ ($\vec{a_1}$, $\vec{a_2}$ vektorer i $\mathbb{R}^2$)\\
+\textbf{Om} ($\vec{a_1}$, $\vec{a_2}$) är \textbf{högerorienterade} så är vinkeln mellan $\vec{a_{2L}}$ och $\vec{a_2}$ \textbf{spetsig}, och $\mathbf{det}(\mathbf{A}) > 0$\newline
+\textbf{Om} ($\vec{a_1}$, $\vec{a_2}$) är \textbf{vänsterorienterade} så är vinkeln mellan $\vec{a_{2L}}$ och $\vec{a_2}$ \textbf{trubbig}, och $\mathbf{det}(\mathbf{A}) < 0$
 % section orientering (end)
-\newpage
+
 \section{Determinant för ($3 \times 3$)} % (fold)
 \label{sec:determinant_f_r_}
 \begin{Def}
     \[
-        \mathbf{det}(A) = \begin{vmatrix} a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33} \end{vmatrix} = a_{11} \begin{vmatrix} a_{21}&a_{23}\\a_{32}&a_{33} \end{vmatrix} - a_{12} \begin{vmatrix} a_{21}&a_{23}\\a_{31}&a_{33} \end{vmatrix} + a_{13} \begin{vmatrix} a_{21}&a_{22}\\a_{31}&a_{32} \end{vmatrix}
+        \mathbf{det}(\mathbf{A}) = \begin{vmatrix} a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33} \end{vmatrix} = a_{11} \begin{vmatrix} a_{21}&a_{23}\\a_{32}&a_{33} \end{vmatrix} - a_{12} \begin{vmatrix} a_{21}&a_{23}\\a_{31}&a_{33} \end{vmatrix} + a_{13} \begin{vmatrix} a_{21}&a_{22}\\a_{31}&a_{32} \end{vmatrix}
     \]
 \end{Def}
 \begin{Ex}
@@ -167,7 +167,7 @@ Två vektorer $\vec{u}$, $\vec{v}$ (ej parallella) i $\mathbb{R}^2$ (planet) är
     \end{align*}
 \end{Ex}
 % section determinant_f_r_ (end)
-\newpage
+
 \section{Geometrisk tolkning} % (fold)
 \label{sec:geometrisk_tolkning}
 Volymen av en parallellepiped med kanterna:
@@ -192,15 +192,17 @@ Volymen av en parallellepiped med kanterna:
 \begin{vmatrix} a_{22}&a_{23}\\a_{32}&a_{33} \end{vmatrix} \\
 - \begin{vmatrix} a_{21}&a_{23}\\a_{31}&a_{33} \end{vmatrix} \\
 \begin{vmatrix} a_{21}&a_{22}\\a_{31}&a_{32} \end{vmatrix}
-\end{bmatrix} = a_{11} \cdot \begin{vmatrix} a_{22}&a_{23}\\a_{32}&a_{33} \end{vmatrix} - a_{12} \cdot \begin{vmatrix} a_{21}&a_{23}\\a_{31}&a_{33} \end{vmatrix} + a_{13} \cdot \begin{vmatrix} a_{21}&a_{22}\\a_{31}&a_{32} \end{vmatrix} = \mathbf{det}(A)
+\end{bmatrix} = a_{11} \cdot \begin{vmatrix} a_{22}&a_{23}\\a_{32}&a_{33} \end{vmatrix} - a_{12} \cdot \begin{vmatrix} a_{21}&a_{23}\\a_{31}&a_{33} \end{vmatrix} + a_{13} \cdot \begin{vmatrix} a_{21}&a_{22}\\a_{31}&a_{32} \end{vmatrix} = \mathbf{det}(\mathbf{A})
 \end{align*}
-\textbf{det}(A) =
+\textbf{det}(\textbf{A}) =
+\[
 \begin{cases}
     \mbox{V om } (\vec{a_1},\vec{a_2},\vec{a_3}) \mbox{ är högerorienterade}\\
     \mbox{-V om } (\vec{a_1},\vec{a_2},\vec{a_3}) \mbox{ är vänsterorienterade}
 \end{cases}
+\]
 % section geometrisk_tolkning (end)
-\newpage
+
 \section{Orientering} % (fold)
 \label{sec:orientering}
 

@@ -26,7 +26,7 @@ f: \mathbb{R}^n \rightarrow \mathbb{R}^m
 \begin{Ex}
     Låt:
     \begin{align*}
-    &A= \begin{bmatrix} 1&1\\1&-1 \end{bmatrix}, &&f(\vec{x}) = A \cdot \vec{x} \mbox{,  }\mbox{ }\mbox{ }\forall \vec{x} \in \mathbb{R}^2
+    &\mathbf{A}= \begin{bmatrix} 1&1\\1&-1 \end{bmatrix}, &&f(\vec{x}) = \mathbf{A} \cdot \vec{x} \mbox{,  }\mbox{ }\mbox{ }\forall \vec{x} \in \mathbb{R}^2
     \end{align*}
     Dvs:
     \[
@@ -41,7 +41,6 @@ f: \mathbb{R}^n \rightarrow \mathbb{R}^m
 	    f: \mathbb{R}^2 \rightarrow \mathbb{R}^2
 	\]
 \end{Ex}
-\newpage
 \begin{Def}
     En avbildning $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ är \underline{linjär} om:
     \begin{itemize}
@@ -51,19 +50,19 @@ f: \mathbb{R}^n \rightarrow \mathbb{R}^m
     $\forall \vec{u}, \vec{v} \in \mathbb{R}^n$ och $c \in \mathbb{R}$
 \end{Def}
 \begin{sats}
-    Låt $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ och låt $f(\vec{x}) = A \cdot \vec{x}$, då är $f$ en linjär avbildning.
+    Låt $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ och låt $f(\vec{x}) = \mathbf{A} \cdot \vec{x}$, då är $f$ en linjär avbildning.
 \end{sats}
 \noindent
 Visas genom att visa att matrisvektorprodukten uppfyller villkoren för en linjär avbildning.
 \begin{bevis}
 Låt $\vec{x}_1$ och $\vec{x}_2$ vara två stycken $(n \times 1)$ vektorer, vi har då:
 	\begin{itemize}
-		\item $f(\vec{x}_1 + \vec{x}_2) = A \cdot (\vec{x}_1 + \vec{x}_2) = A \cdot \vec{x}_1 + A \cdot \vec{x}_2 = f(\vec{x}_1) + f(\vec{x}_2)$
-		\item $f(c \cdot \vec{x}_1) = A \cdot (c \cdot \vec{x}_1) = (c \cdot A) \cdot \vec{x}_1 = c \cdot (A \cdot \vec{x}_1) = c \cdot f(\vec{x}_1)$
+		\item $f(\vec{x}_1 + \vec{x}_2) = \mathbf{A} \cdot (\vec{x}_1 + \vec{x}_2) = \mathbf{A} \cdot \vec{x}_1 + \mathbf{A} \cdot \vec{x}_2 = f(\vec{x}_1) + f(\vec{x}_2)$
+		\item $f(c \cdot \vec{x}_1) = \mathbf{A} \cdot (c \cdot \vec{x}_1) = (c \cdot \mathbf{A}) \cdot \vec{x}_1 = c \cdot (\mathbf{A} \cdot \vec{x}_1) = c \cdot f(\vec{x}_1)$
 	\end{itemize}
 \end{bevis}
 \begin{sats}[Bassatsen]
-    Låt $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ vara en linjär avbildning. Då finns det en entydigt bestämd matris $A_{m \times n}$ sådan att $f(\vec{x}) = A \cdot \vec{x}$
+    Låt $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ vara en linjär avbildning. Då finns det en entydigt bestämd matris $\mathbf{A}_{m \times n}$ sådan att $f(\vec{x}) = \mathbf{A} \cdot \vec{x}$
 \end{sats}
 \begin{bevis}
 	i $\mathbb{R}^2$\\
@@ -73,13 +72,13 @@ Låt $\vec{x}_1$ och $\vec{x}_2$ vara två stycken $(n \times 1)$ vektorer, vi h
 	 \]
 	 Vi har då:
 	 \[
-	     f(\vec{x}) = f(x \cdot \vec{e}_x + y \cdot \vec{e}_y) = x \cdot f(\vec{e}_x) + y \cdot f(\vec{e}_y) = \overbrace{\begin{bmatrix} f(\vec{e}_x)&f(\vec{e}_y) \end{bmatrix}}^\text{$A$ = Standardmatrisen} \cdot \begin{bmatrix} x\\y \end{bmatrix}
+	     f(\vec{x}) = f(x \cdot \vec{e}_x + y \cdot \vec{e}_y) = x \cdot f(\vec{e}_x) + y \cdot f(\vec{e}_y) = \overbrace{\begin{bmatrix} f(\vec{e}_x)&f(\vec{e}_y) \end{bmatrix}}^\text{$\mathbf{A}$ = Standardmatrisen} \cdot \begin{bmatrix} x\\y \end{bmatrix}
 	 \]
 	 Avbildningen bestäms helt av vad den gör med $\vec{e}_x$ och $\vec{e}_y$. 
 \end{bevis}
 
 \begin{Ex}
-    Låt $f(\vec{x}) = \begin{bmatrix} x+y\\x-y \end{bmatrix}$ vara avbildningen $\mathbb{R}^2\rightarrow \mathbb{R}^2$. Bestäm standardmatrisen $A$.\\
+    Låt $f(\vec{x}) = \begin{bmatrix} x+y\\x-y \end{bmatrix}$ vara avbildningen $\mathbb{R}^2\rightarrow \mathbb{R}^2$. Bestäm standardmatrisen $\mathbf{A}$.\\
     \textbf{Lösning:} Eftersom:
     \begin{align*}
     &\vec{e}_x = \begin{bmatrix} 1\\0 \end{bmatrix} &\vec{e}_y = \begin{bmatrix} 0\\1 \end{bmatrix}
@@ -91,31 +90,30 @@ Låt $\vec{x}_1$ och $\vec{x}_2$ vara två stycken $(n \times 1)$ vektorer, vi h
     \end{gather}
     Vi får då standardmatrisen:
     \[
-        A = \begin{bmatrix} 1&1\\1&-1 \end{bmatrix}
+        \mathbf{A} = \begin{bmatrix} 1&1\\1&-1 \end{bmatrix}
     \]
 \end{Ex}
-
+\newpage
 \begin{Ex}
-	Låt $f: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ vara rotationen moturs med vinkeln $\theta$. Bestäm standardmatrisen $A$.
+	Låt $f: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ vara rotationen moturs med vinkeln $\theta$. Bestäm standardmatrisen $\mathbf{A}$.
 	\begin{center}
 		\includegraphics[scale=0.5]{roation.png}	    	
 	\end{center}	
 	\begin{align*}
 	&f(\vec{e}_x) = f(\begin{bmatrix} 1\\0 \end{bmatrix}) = \begin{bmatrix} \cos(\theta)\\\sin(\theta) \end{bmatrix} && &&&f(\vec{e}_y) = f(\begin{bmatrix} 0\\1 \end{bmatrix}) = \begin{bmatrix} -\sin(\theta)\\\cos(\theta) \end{bmatrix}\\
-	&&A = \begin{bmatrix} \cos(\theta)&-\sin(\theta)\\\sin(\theta)&\cos(\theta) \end{bmatrix}
+	&&\mathbf{A} = \begin{bmatrix} \cos(\theta)&-\sin(\theta)\\\sin(\theta)&\cos(\theta) \end{bmatrix}
 	\end{align*}
 	Kallas även rotationsmatrisen.
 \end{Ex}
-\newpage
 \noindent
-Låt $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ vara en linjär avbildning och $f(\vec{x}) = A \cdot \vec{x}$. Bilden av en linje $L$ där:
+Låt $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ vara en linjär avbildning och $f(\vec{x}) = \mathbf{A} \cdot \vec{x}$. Bilden av en linje $L$ där:
 \[
     L: \vec{x}_0 + t \cdot \vec{v}
 \]
 $t\in \mathbb{R}$\\
-Blir en linje som går genom en punkt $A \cdot \vec{x}_0$ med riktningsvektor $A \cdot \vec{v}$, ty:
+Blir en linje som går genom en punkt $\mathbf{A} \cdot \vec{x}_0$ med riktningsvektor $\mathbf{A} \cdot \vec{v}$, ty:
 \[
-    f(\vec{x}_0 + t \cdot \vec{v}) = f(\vec{x}_0) + t \cdot f(\vec{v}) = A \cdot \vec{x}_0 + t \cdot A \cdot \vec{v}
+    f(\vec{x}_0 + t \cdot \vec{v}) = f(\vec{x}_0) + t \cdot f(\vec{v}) = \mathbf{A} \cdot \vec{x}_0 + t \cdot \mathbf{A} \cdot \vec{v}
 \]
 Följden blir att vi kan avbilda n-hörningar.
 \begin{Ex}
@@ -128,11 +126,11 @@ Följden blir att vi kan avbilda n-hörningar.
     \end{align*}
     $\pi/6$ radianer moturs.
     \begin{align*}
-    	A &= \begin{bmatrix} cos(\pi/6)&-sin(\pi/6)\\sin(\pi/6)&cos(\pi/6)\end{bmatrix} = \begin{bmatrix} \sqrt{3}/2&-1/2\\1/2&\sqrt{3}/2 \end{bmatrix}\\
-    	A \cdot \vec{x}_1 &= \begin{bmatrix} cos(\pi/6)&-sin(\pi/6)\\sin(\pi/6)&cos(\pi/6)\end{bmatrix} = \begin{bmatrix} \sqrt{3}/2&-1/2\\1/2&\sqrt{3}/2 \end{bmatrix} \begin{bmatrix} 1\\1 \end{bmatrix} = \begin{bmatrix} \sqrt{3}/2-1/2\\1/2+\sqrt{3}/2 \end{bmatrix}\\
-    	A \cdot \vec{x}_2 &= \cdots \\
-    	A \cdot \vec{x}_3 &= \cdots\\
-    	A \cdot \vec{x}_4 &= \cdots
+    	\mathbf{A} &= \begin{bmatrix} cos(\pi/6)&-sin(\pi/6)\\sin(\pi/6)&cos(\pi/6)\end{bmatrix} = \begin{bmatrix} \sqrt{3}/2&-1/2\\1/2&\sqrt{3}/2 \end{bmatrix}\\
+    	\mathbf{A} \cdot \vec{x}_1 &= \begin{bmatrix} cos(\pi/6)&-sin(\pi/6)\\sin(\pi/6)&cos(\pi/6)\end{bmatrix} = \begin{bmatrix} \sqrt{3}/2&-1/2\\1/2&\sqrt{3}/2 \end{bmatrix} \begin{bmatrix} 1\\1 \end{bmatrix} = \begin{bmatrix} \sqrt{3}/2-1/2\\1/2+\sqrt{3}/2 \end{bmatrix}\\
+    	\mathbf{A} \cdot \vec{x}_2 &= \cdots \\
+    	\mathbf{A} \cdot \vec{x}_3 &= \cdots\\
+    	\mathbf{A} \cdot \vec{x}_4 &= \cdots
     \end{align*}
     \begin{center}
     	\includegraphics[scale=0.5]{F7.png}
@@ -166,13 +164,14 @@ Den är ej linjär, så det finns ingen \underline{standardmatris}. Men vi kan s
     	\includegraphics[scale=0.5]{F7plan.png}
     \end{center}
 \end{Ex}
+\newpage
 \section{Rotation och translation i $\mathbf{\mathbb{R}^3}$} % (fold)
 \label{sec:rotation_och_translation_i_}
 Går till på samma sätt som i $\mathbb{R}^2$
 \begin{Ex}
     Rotation moturs $\theta$ i radianer i xy-planet
     \[
-        A = \begin{bmatrix} \cos(\theta)&-\sin(\theta)\\\sin(\theta)&\cos(\theta) \end{bmatrix}
+        \mathbf{A} = \begin{bmatrix} \cos(\theta)&-\sin(\theta)\\\sin(\theta)&\cos(\theta) \end{bmatrix}
     \]
     Låt $f: \mathbb{R}^3 \rightarrow \mathbb{R}^3$ vara:
     \begin{align*}
@@ -182,9 +181,9 @@ Går till på samma sätt som i $\mathbb{R}^2$
     \end{align*}
     $\Rightarrow$ Standardmatris:
     \[
-        A = \begin{bmatrix} \cos(\theta)&-\sin(\theta)&0\\\sin(\theta)&\cos(\theta)&0\\0&0&1 \end{bmatrix}
+        \mathbf{A} = \begin{bmatrix} \cos(\theta)&-\sin(\theta)&0\\\sin(\theta)&\cos(\theta)&0\\0&0&1 \end{bmatrix}
     \]
-    Vilket då blir en rota ion moturs runt Z-axeln.
+    Vilket då blir en rotation moturs runt Z-axeln.
 \end{Ex}
 
 % section rotation_och_translation_i_ (end)
