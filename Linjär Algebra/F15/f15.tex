@@ -16,7 +16,7 @@
 	x = \begin{bmatrix} 1\\6 \end{bmatrix} = 1 \cdot \begin{bmatrix} 1\\0 \end{bmatrix} + 6 \cdot \begin{bmatrix} 0\\1 \end{bmatrix}
 	\]
 	\begin{center}
-		INFOGA FIGUR HÄR
+		\includegraphics[scale=0.25]{ON.png}
 	\end{center}
 \end{Ex}
 När vi anger en vektor så är det relativt en bas. Byter vi bas så ändras koordinaterna.
@@ -27,14 +27,9 @@ När vi anger en vektor så är det relativt en bas. Byter vi bas så ändras ko
 	&&\vec{f}_2 = \begin{bmatrix} 1\\2 \end{bmatrix}
 	\end{align*}
 	vara en bas i $\mathbb{R}^2$
-	Låt 
-	\begin{align*}
-	&\vec{x}_\mathbf{F} = \begin{bmatrix} -2\\3 \end{bmatrix}
-	&&\mbox{dvs}
-	&&
-	\end{align*}
+	Låt $x_\mathbf{F} = \begin{pmatrix} -2\\3 \end{pmatrix}$ vara en punkt uttryckt i \textbf{F}-basen.
 	\begin{center}
-		INFOGA FIGUR HÄR, rita ut $\vec{x}_F$
+		\includegraphics[scale=0.25]{egen.png}
 	\end{center}
 	Bestäm $\vec{x}_\mathbf{F}$ i basen ($\vec{e}_1, \vec{e}_2$):
 	\begin{gather*}
@@ -81,7 +76,7 @@ där $\vec{u}_F$ är koordinaterna av $\vec{u}$ i basen \textbf{F}.
 &&\mbox{och}
 &&\mathbf{F}^{-1} \cdot \vec{u} = \vec{u}_\mathbf{F}
 \end{align*}
-\textbf{F} är inverterbar ty kolumnerna i \textbf{F} är \textit{n} stycken linjärt oberoende vektoreri i $\mathbb{R}^n$
+\textbf{F} är inverterbar ty kolumnerna i \textbf{F} är \textit{n} stycken linjärt oberoende vektorer i $\mathbb{R}^n$
 \paragraph{-} % (fold)
 \label{par:_2}
 Låt $\mathbf{F} = \begin{bmatrix} \vec{f}_1 & \vec{f}_2 & ... & \vec{f}_n \end{bmatrix}$ och $\mathbf{G} = \begin{bmatrix} \vec{g}_1 & \vec{g}_2 & ... & \vec{g}_n \end{bmatrix}$.\\
@@ -103,7 +98,7 @@ Låt $\vec{x}$ vara en vektor med koordinaten $\vec{x}_\mathbf{F}$ i basen \text
 	\end{align*}
 	vara två matriser vars kolumner bildar två olika baser i $\mathbb{R}^2$
 	\begin{center}
-		INFOGA FIGUR HÄR
+		\includegraphics[scale=0.25]{baser.png}
 	\end{center}
 	Antag $\vec{v}_{\mathbf{F}} = \begin{bmatrix} 2\\3 \end{bmatrix}$, bestäm $\vec{v}_{\mathbf{G}}$
 	\begin{gather*}
@@ -250,8 +245,11 @@ för $\vec{x}$, $\vec{y}$ $\in \mathbb{R}^n$. Dvs den isometriska avbildningen b
   \cos(\theta) = \frac{\vec{x} \cdot \vec{y}}{\norm{\vec{x}} \cdot \norm{\vec{y}}}
   \]
   % paragraph vinkeln_i_ (end)
-Om \textbf{A} är en ON-matris så är $\mathbf{A}^T = \mathbf{A}^{-1}$:\\
-Vill visa att:
+\begin{sats}
+	Om \textbf{A} är en ON-matris så är $\mathbf{A}^T = \mathbf{A}^{-1}$:
+\end{sats}\\
+\begin{bevis}
+	Vill visa att:
 \[
 \begin{cases}
   	\mathbf{A} \cdot \mathbf{B} = \mathbf{I}\\
@@ -265,9 +263,11 @@ Vi vet att:
 	\mathbf{A}^T \cdot \mathbf{A} = \mathbf{I}
 \end{cases}
 \]
+Så:
 \[
 \mathbf{A} \cdot \mathbf{A}^T = \mathbf{C} \Rightarrow \mathbf{A} \cdot \overbrace{\mathbf{A}^T \cdot \mathbf{A}}^\mathbf{I} = \overbrace{\mathbf{C}}^\mathbf{I} \cdot \mathbf{A}
 \]
+\end{bevis}
 % section isometriska_avbildningar (end)
 
 % section baser (end)
