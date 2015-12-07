@@ -1,0 +1,260 @@
+\input{../../tex/lecturePreamble}
+
+\title{
+	 Linjär Algebra\\
+	 Föreläsning 16
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\section{Basbyten} % (fold)
+\label{sec:basbyten}
+\begin{center}
+	BILD FRÅN FÖRELÄSNING
+\end{center}
+
+\paragraph{Hur utnyttjar man basbyten?} % (fold)
+\label{par:hur_utnyttjar_man_basbyten_}
+Låt:
+\[
+\vec{x} = \begin{bmatrix} x_1\\x_2\\x_2 \end{bmatrix}
+\]
+$\in \mathbb{R}^3$. Antag att vi vill rotera $\vec{x}$ runt axeln vars riktning är $\vec{v}$ (som ej är $\vec{e}_1, \vec{e}_2, \vec{e}_3$-axlarna)\\
+Rotationen ska ske med vinkeln $\theta$ moturs. Relativt $\vec{v}$:s riktning.
+\begin{center}
+	BILD		
+\end{center}
+Vi kan via basbyte återföra denna rotation till en rotation runt t.ex. $x_1$-axeln (som vi ju har en rotationsmatris för,se lab 4).\\
+Vi bildar en bas runt $\vec{v}$. Låt $\mathbf{G} = (\vec{g}_1, \vec{g}_2, \vec{g}_3)$ vara en ortonormal bas för $\mathbb{R}^3$ och $\vec{g}_1 = \frac{\vec{v}}{\norm{\vec{v}}}$\\
+Låt $\mathbf{G} = \begin{bmatrix} \vec{g}_1&\vec{g}_2&\vec{g}_3 \end{bmatrix}$ vara basbytetsmatrisen, dvs:
+\[
+\mathbf{G} \cdot \vec{x}_{\mathbf{G}} = \vec{x} \Leftrightarrow \vec{x}_{\mathbf{G}} = \mathbf{G}^{-1} \cdot \vec{x}
+\]
+Rotera $\vec{x}_{\mathbf{G}}$ runt $\vec{g}_1$ axeln med standardmatrisen:
+\begin{align*}
+&\mathbf{A} = \begin{bmatrix} 1&0&0\\0&\sin(\theta)&-\sin(\theta)\\0&\sin(\theta)&\cos(\theta) \end{bmatrix}
+&&\mathbf{A} \cdot \vec{x}_{\mathbf{G}} \mbox{rotationen uttryckt i basen ($\vec{g}_1, \vec{g}_2, \vec{g}_3$)}
+\end{align*}
+Uttryck rotationen i stadardbasen:
+\[
+\mathbf{G} \cdot (\mathbf{A} \cdot \vec{x}_{\mathbf{G}})
+\]
+Vi har alltså beräknat:
+\[
+\overbrace{\mathbf{G} \cdot \overbrace{\mathbf{A} \cdot \overbrace{\mathbf{G}^{-1} \cdot \vec{x}}^{\vec{x}_{\mathbf{G}}}}^\text{roterad $\vec{x}_{\mathbf{G}}$ i basen \textbf{G}}}^\text{roterad $\vec{x}$ ($\vec{x}_{\mathbf{G}}$ uttryckt i ($\vec{e}_1, \vec{e}_2, \vec{e}_3$))}
+\]
+Låt en linjär avbildning $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ ha matrisen $\mathbf{A}_{\mathbf{G}}$ relativt basen $\mathbf{G} = (\vec{g}_1, \vec{g}_2, ..., \vec{g}_n$\\
+Då har avbildningen relativt stadardbasen, matrisen:
+\[
+\mathbf{A}_{\mathbf{E}} = \mathbf{G} \cdot \mathbf{A}_{\mathbf{G}} \cdot \mathbf{G}^{-1}
+\]
+% paragraph hur_utnyttjar_man_basbyten_ (end)
+% section basbyten (end)
+\section{Linjära avbildningar} % (fold)
+\label{sec:linj_ra_avbildningar}
+Till en linjär avbildning $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ hör en $(m \times n)$-matris \textbf{A} sådan att:
+\begin{align*}
+&f(\vec{x})_{\mathbf{E}} = \mathbf{A}_{\mathbf{E}} \cdot \vec{x}_{\mathbf{E}}
+&&\mbox{och}
+&&\mathbf{A} = \begin{bmatrix} f(\vec{e}_1)&f(f(\vec{e}_2))&...&f(\vec{e}_n) \end{bmatrix}
+\end{align*}
+(i standardbasen \textbf{E}). Vi har antagit förut att vi har opererat i standardbasen.
+\paragraph{Den allmänna formulering av Bassatsen:} % (fold)
+\label{par:den_allm_nna_formulering_av_bassatsen_}
+Låt $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ vara en linjär avbildning och låt $\mathbf{G} = (\vec{g_1}, \vec{g}_2, ..., \vec{g}_m)$ vara en bas i $\mathbb{R}^m$ och låt $\mathbf{H} = (\vec{h}_1, \vec{h}_2, ..., \vec{h}_n)$ vara en bas för $\mathbb{R}^n$.\\
+Då gäller att standardmatrisen för \textit{f} relativt baserna \textbf{G} och \textbf{H} ges av:
+\[
+ \mathbf{A}_{\mathbf{H} \rightarrow \mathbf{G}} = \begin{bmatrix} f(\vec{h}_1)_{\mathbf{G}} & f(\vec{h}_2)_{\mathbf{G}}&...& f(\vec{h}_n)_{\mathbf{G}} \end{bmatrix}
+ \]
+ där $f(\vec{h}_i)_{\mathbf{G}}$ är $f(\vec{h}_i)_{\mathbf{G}}$ i basen \textbf{G}.
+% paragraph den_allm_nna_formulering_av_bassatsen_ (end)
+\begin{Ex}
+	I rotationsexemplet har vi $m=n=3$, $\mathbf{G}=\mathbf{H}$. Dvs:
+	\[
+	\mathbf{A} =
+	\begin{bmatrix}
+	1 & 0 & 0\\
+	0 & \cos(\theta) & -\sin(\theta)\\
+	0 & \sin(\theta) & \cos{t\theta}
+	\end{bmatrix}
+	\]
+	är stadardmatris: $f: \mathbf{G} \rightarrow \mathbf{G}: f(\vec{x}_{\mathbf{G}}) = \mathbf{A} \cdot \vec{x}_{\mathbf{G}}$
+\end{Ex}
+% section linj_ra_avbildningar (end)
+\section{Egenvärden och egenvektorer} % (fold)
+\label{sec:egenv_rden_och_egenvektorer}
+Givet en kvadratisk matris $A_{(n \times m)}$, bestäm en vektor $\vec{v} \neq 0$ och tillhörande tal $\lambda$ så att:
+\[
+\mathbf{A} \cdot \vec{v} = \lambda \cdot \vec{v}
+\]
+$\vec{v}$ är en egenvektor till \textbf{A} om $\vec{v}$ och $\mathbf{A} \cdot \vec{v}$ är parallella.
+\begin{Ex}
+	Givet en matris och en vektor:
+	\[
+	A = \begin{bmatrix} 3&-2\\1&0 \end{bmatrix}
+	\]
+	Så är vektorn $\vec{v} = \begin{bmatrix} 2\\1 \end{bmatrix}$ en egenvektor och $\lambda = 2$ egenvärde ty:
+	\[
+	\mathbf{A} \cdot \vec{v} = \begin{bmatrix} 3&-2\\1&0 \end{bmatrix} \begin{bmatrix} 2\\1 \end{bmatrix} = \begin{bmatrix} 4\\2 \end{bmatrix} = 2 \cdot \begin{bmatrix} 2\\1 \end{bmatrix}
+	\]
+	Vektor $\vec{v} = \begin{bmatrix} 1\\1 \end{bmatrix}$ är en egenvektor och $\lambda = 1$ är det tillhörande egenvärdet ty:
+	\[
+	\mathbf{A} \cdot \vec{v} = \begin{bmatrix} 3&-2\\1&0 \end{bmatrix}\begin{bmatrix} 1\\1 \end{bmatrix} = \begin{bmatrix} 1\\1 \end{bmatrix} = 1 \cdot \begin{bmatrix} 1\\1 \end{bmatrix}
+	\]
+	Men $\vec{v} = \begin{bmatrix} -1\\1 \end{bmatrix}$ är inte en egenvektor, eftersom:
+	\[
+	\mathbf{A} \cdot \vec{v} = \begin{bmatrix} 3&-2\\1&0 \end{bmatrix}\begin{bmatrix} -1\\1 \end{bmatrix} = \begin{bmatrix} -5\\-1 \end{bmatrix}
+	\]
+	är ej parallell med $\vec{v}$.\\
+\end{Ex}
+Om $\vec{v}$ är en egenvektor så är den en lösning till:
+\[
+(\mathbf{A} - \lambda \cdot \mathbf{I}) \cdot \vec{v} = \emptyset
+\]
+ty:
+\begin{align*}
+\mathbf{A} \cdot \vec{v} = \lambda \cdot \vec{v} &\Leftrightarrow \mathbf{A} \cdot \vec{v} - \lambda \cdot \vec{v} = \emptyset\\
+&\Leftrightarrow A \cdot \vec{v} - \lambda \cdot \mathbf{I} \cdot \vec{v} = \emptyset\\
+&\Leftrightarrow(\mathbf{A} - \lambda \cdot \mathbf{I}) \cdot \vec{v} = \emptyset
+\end{align*}
+
+\paragraph{-} % (fold)
+\label{par:_}
+Matrisen $(\mathbf{A} - \lambda \cdot \mathbf{I})$ är inte inverterbar om:
+\[
+\overbrace{\mathbf{det}(\mathbf{A} - \lambda \cdot \mathbf{I} = 0)}^\text{karakteristiska ekvationen}
+\]
+\begin{Ex}
+	För:
+	\[
+	A = \begin{bmatrix} 1&4\\1&1 \end{bmatrix}
+	\]
+	har vi att:
+	\begin{align*}
+	\mathbf{det}(\mathbf{A} - \lambda \cdot \mathbf{I}) = \mathbf{det}\begin{pmatrix} \begin{bmatrix} 1&4\\1&1 \end{bmatrix} - \lambda \begin{bmatrix} 1&0\\0&1 \end{bmatrix} \end{pmatrix} &= \mathbf{det}\begin{pmatrix} \begin{bmatrix} 1 - \lambda & 4\\1 & 1 - \lambda \end{bmatrix} \end{pmatrix} \\
+	&= (1 - \lambda)(1 - \lambda) - 1 \cdot 4 = (1 - \lambda)^2 - 4 = 0
+	\end{align*}
+	Som har lösningen:
+	\[
+	\begin{cases}
+		\lambda_1 = -1\\
+		\lambda_2 = 3
+	\end{cases}
+	\]
+	Egenvektorn som hör till egenvärdet $\lambda_1 = -1$ får vi genom att lösa ekvationen:
+	\[
+	(\mathbf{A} - \lambda \cdot \mathbf{I}) \cdot \vec{v} = (\mathbf{A} + \mathbf{I}) \cdot \vec{v} = \emptyset
+	\]
+	Dvs:
+	\begin{align*}
+		\begin{pmatrix}
+			\begin{bmatrix}
+				1 & 4\\
+				1 & 1 
+			\end{bmatrix} + 
+			\begin{bmatrix} 
+				1 & 1\\
+				0 & 1 
+			\end{bmatrix}
+		\end{pmatrix} \cdot 
+		\begin{bmatrix}
+		v_1\\
+		v_2 
+		\end{bmatrix} = 
+		\begin{bmatrix}
+			0\\
+			0 
+		\end{bmatrix}
+		&\Leftrightarrow
+		\begin{bmatrix}
+		2 & 4\\
+		1 & 2 
+		\end{bmatrix}
+		\begin{bmatrix} 
+			v_1\\
+			v_2 
+		\end{bmatrix} = 
+		\begin{bmatrix} 
+			0\\
+			0 
+		\end{bmatrix}\\
+		&\Leftrightarrow 
+		\begin{bmatrix}
+			\begin{array}{cc|c}
+			    2 & 4 & 0\\
+			    1 & 2 & 0
+			\end{array}
+		\end{bmatrix}
+		\sim
+		\begin{bmatrix}
+			\begin{array}{cc|c}
+			    2 & 4 & 0\\
+			    0 & 0 & 0
+			\end{array}
+		\end{bmatrix}
+	\end{align*}
+	Låt $\vec{v}_2 = t$, vi får då $\vec{v}_1 = -2t$, dvs:
+	\begin{align*}
+	&\vec{v} = 
+	\begin{bmatrix}
+	    1\\
+	    -2
+	\end{bmatrix} \cdot t
+	&&\mbox{där $t \neq 0$ kan väljas godtyckligt}
+	\end{align*}
+	Egenvektorn som hör ihop med $\lambda_2 = 3$
+	\begin{gather*}
+		\begin{pmatrix}
+			\begin{bmatrix}
+				1 & 4\\
+				1 & 1	
+			\end{bmatrix}
+			- 3 \cdot
+			\begin{bmatrix}
+				1 & 0\\
+				0 & 1
+			\end{bmatrix}
+		\end{pmatrix}
+		\begin{bmatrix}
+		    v_1\\
+		    v_2
+		\end{bmatrix} = 
+		\begin{bmatrix}
+		    0 \\
+		    0
+		\end{bmatrix}
+		\Leftrightarrow
+		\begin{bmatrix}
+		    -2 & 4\\
+		    1 & -2
+		\end{bmatrix}
+		\begin{bmatrix}
+		    v_1\\
+		    v_2
+		\end{bmatrix} = 
+		\begin{bmatrix}
+		    0\\
+		    0
+		\end{bmatrix} \Rightarrow 
+		\begin{bmatrix}
+		    v_1\\
+		    v_2
+		\end{bmatrix}
+		= t \cdot 
+		\begin{bmatrix}
+		    2\\
+		    1
+		\end{bmatrix}
+	\end{gather*}
+	där $t \neq 0$ kan väljas godtyckligt.\\
+\end{Ex}
+% paragraph _ (end)
+Vi ser att om $\vec{v}$ är en egenvektor så är $t \cdot \vec{v}$ ($t \neq 0$) det också. (Ofta väljs \textit{t} så att $\norm{\vec{v}} = 1$)
+\paragraph{-} % (fold)
+\label{par:_1}
+Ett egenvärdesproblem för en ($n \times m$)-matris har \textit{n} stycken egenvärden. Med tillhörande egenvektorer. (Egenvärdena kan vara multipla och behöver ej vara reella).
+% paragraph _ (end)
+
+% section egenv_rden_och_egenvektorer (end)
+\end{document}
