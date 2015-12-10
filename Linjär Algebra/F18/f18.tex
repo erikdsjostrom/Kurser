@@ -8,7 +8,7 @@
 \begin{document}
 \maketitle
 
-\section{Egenvärdensproblemet som linjär avbildning} % (fold)
+\section{Egenvärdesproblem som linjär avbildning} % (fold)
 \label{sec:egenv_rdensproblemet_som_linj_r_avbildning}
 \begin{align*}
 &f : \mathbb{R}^n \rightarrow \mathbb{R}^n
@@ -20,7 +20,7 @@ Man ställer sig frågan: Vilka $\vec{x}$ avbildas på $\lambda \cdot \vec{x}$?
 	\mathbf{A} \cdot \vec{x} = \lambda \cdot \vec{x}
 \]
 \begin{Ex}
-	Projektion (se lab 4) på ett plan $\pi$:
+	Projektion (se labb 4) på ett plan $\pi$:
 	\[
 	a \cdot \vec{x} + b \cdot \vec{y} + c \cdot \vec{z} = 0 \mbox{ ,genom origo}
 	\]
@@ -30,7 +30,7 @@ Man ställer sig frågan: Vilka $\vec{x}$ avbildas på $\lambda \cdot \vec{x}$?
 	\]
 	Egenvärden, egenvektorer till \textbf{A}?
 	\begin{itemize}
-		\item Alla vektorer $\vec{x}_{\pi}$ i planet kommer att vara offörändrade så de kommer att vara egenvektorer med egenvärde 1.
+		\item Alla vektorer $\vec{x}_{\pi}$ i planet kommer att vara oförändrade så de kommer att vara egenvektorer med egenvärde 1.
 		\[
 		1 \cdot \vec{x}_{\pi} = \mathbf{A} \cdot \vec{x}_{\pi}
 		\]
@@ -75,35 +75,40 @@ Man ställer sig frågan: Vilka $\vec{x}$ avbildas på $\lambda \cdot \vec{x}$?
 	\end{align*}
 \end{Def}
 \begin{Ex}
+Graf:
 	\begin{center}
 		\includegraphics[scale=0.5]{grafEX.png}
 	\end{center}
 	\begin{align*}
 		&\mathbf{E} = \{ \{1,2\}, \{1,3\}\}
 		&& \mathbf{V} = \{1,2,3\}\\
-		&\mathbf{A}_G = 
+	\end{align*}
+	\[
+	\mathbf{A}_G = 
 		\begin{bmatrix}
 			0 & 1 & 1\\
 			1 & 0 & 0\\
 			1 & 0 & 0
 		\end{bmatrix}
-	\end{align*}
+	\]
 \end{Ex}
 \begin{Ex}
-	Riktad grad:
+	Riktad graf:
 	\begin{center}
 		\includegraphics[scale=0.5]{grafEX.png}
 	\end{center}
 	\begin{align*}
 		&\mathbf{E} = \{(1,2), (1,3)\}
 		&&\mathbf{V} = \{1,2,3\}\\
-		&\mathbf{A}_G = 
+	\end{align*}
+	\[
+	\mathbf{A}_G = 
 		\begin{bmatrix}
 			0 & 1 & 1\\
 			0 & 0 & 0\\
 			0 & 0 & 0
 		\end{bmatrix}
-	\end{align*}
+	\]
 \end{Ex}
 \begin{sats}
 	Element (i,j) i grannmatris $\mathbf{A}_G^K$ ger antal vägar av längd \textit{k} från $v_i$ till $v_j$
@@ -174,22 +179,23 @@ Man studerar oftast slumpvandring med markovkedjor.
 	&&.........
 	\end{align*}
 \end{Def}
+\newpage	x
 \noindent
 Övergångsmatrisen:
 \begin{itemize}
 	\item $\mathbf{P} = \mathbf{M}_G^T$ (alla kolumnsummor i \textbf{P} är 1). 
 	\item I \textbf{P} kan förekomma andra element än $1/d(v_i)$.
 	\item \textbf{P} har ofta element på diagonalen.
-	\item \textbf{P} mpste vara en stokastisk matris. (Kolumnsummorna måste vara 1, och alla element $\ge 0$)
+	\item \textbf{P} måste vara en stokastisk matris. (Kolumnsummorna måste vara 1, och alla element $\ge 0$)
 \end{itemize}
 \begin{Ex}
-	Utför slumpvandring på två websidor.
+	Utför slumpvandring på två webbsidor.
 	\begin{center}
-		Infoga exempelbild
+		\includegraphics[scale=0.5]{relation.png}
 	\end{center}
 	\begin{itemize}
-		\item Antag att $95\%$ att jag forsätter läsa \textcircled{1}, i nästa tidsteg, $5\%$ att jag byter till sida \textcircled{2}
-		\item Antag att $97\%$ att jag forsätter läsa \textcircled{2}, i nästa tidsteg, $3\%$ att jag byter till sida \textcircled{1}
+		\item Antag att $95\%$ att jag fortsätter läsa \textcircled{1}, i nästa tidsteg, $5\%$ att jag byter till sida \textcircled{2}
+		\item Antag att $97\%$ att jag fortsätter läsa \textcircled{2}, i nästa tidsteg, $3\%$ att jag byter till sida \textcircled{1}
 	\end{itemize}
 	\begin{align*}
 	&\mathbf{P} = 
@@ -225,7 +231,7 @@ Man studerar oftast slumpvandring med markovkedjor.
 			0.625
 		\end{bmatrix}
 	\end{gather*}
-	Det kommer att kovergera. Stationär fördelning (steady state)\\
+	Det kommer att konvergera. Stationär fördelning (steady state)\\
 	Varje markovkedja med stokastisk matris har en stationär fördelning (steady state) $\vec{q}$ sådan att:
 	\[
 	\mathbf{P} \cdot \vec{q} = \vec{q}
