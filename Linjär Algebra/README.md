@@ -42,3 +42,4 @@ OBS! På grund av taveltekniken som läraren har så kan vissa bilder av tavlor 
 15. [2015-12-03](F15/foton-på-tavlor/)
 16. [2015-12-07](F16/foton-på-tavlor/)
 17. [2015-12-09](F17/foton-på-tavlor/)
+18. [2015-12-10](F18/foton-på-tavlor/)
