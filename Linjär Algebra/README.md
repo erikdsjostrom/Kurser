@@ -27,8 +27,8 @@ Licens för bilderna: [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/
 
 OBS! På grund av taveltekniken som läraren har så kan vissa bilder av tavlor saknas samt vara i fel ordning!
 
-1. Inga bilder tagna
-2. Inga bilder tagna
+1. 2015-11-02 - Inga bilder tagna
+2. 2015-11-04 - Inga bilder tagna
 3. [2015-11-05](F3/foton-på-tavlor/)
 4. [2015-11-09](F4/foton-på-tavlor/)
 5. [2015-11-11](F5/foton-på-tavlor/)
@@ -46,3 +46,4 @@ OBS! På grund av taveltekniken som läraren har så kan vissa bilder av tavlor 
 17. [2015-12-09](F17/foton-på-tavlor/)
 18. [2015-12-10](F18/foton-på-tavlor/)
 19. [2015-12-14](F19/foton-på-tavlor/)
+20. 2015-12-16 - Inga bilder tagna på denna föreläsning.
