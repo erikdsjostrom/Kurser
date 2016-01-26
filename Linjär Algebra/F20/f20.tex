@@ -1,0 +1,430 @@
+\input{../../tex/lecturePreamble}
+
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\title{
+     Linjär Algebra\\
+     Föreläsning 20 - Om tentan
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},
+}
+
+\section{Att kunna} % (fold)
+\label{sec:att_kunna}
+
+\begin{itemize}
+    \item Läsa enkel matlabkod
+    \item Frågor relaterade till lab3-lab6 kan kommma på tentan
+\end{itemize}
+\begin{Ex}
+    Låt \textbf{A} vara en matris med 1000 rader och 1000 kolumner, och låt $\vec{x}$ vara en $1000 \times 1$ vektor. Ungefär hur många multiplikationer och additioner av matriselement behövs göras för att beräkna $\vec{v}_1$ respektive $\vec{v}_2$ i matlabsekvensen nedan?\\
+    \begin{lstlisting}
+        v1 = (A * A) * v;
+        v2 = A * (A * v);
+    \end{lstlisting}
+    \textbf{Lösning: }\\
+    Skalärprodukt 2 st $1000 \times 1$ vektorer ca:
+    \[
+        \begin{bmatrix}
+            v_1\\
+            v_2\\
+            \vdots\\
+            v_{1000}
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            u_1\\
+            u_2\\
+            \vdots\\
+            u_{1000}
+        \end{bmatrix}
+         = v_1 \cdot u_1 + v_2 \cdot u_2 + ... + v_{1000} \cdot u_{1000} \approx 1000 \mbox{addition och multiplikation}
+    \]
+    \[
+        \mathbf{A} \cdot \mathbf{A} \approx 1000^2 \mbox{ att beräkna, dvs } 1000 \cdot 1000^2 \mbox{ oberationer, totalt } 1000^3
+    \]
+    \[
+        \vec{v}_1 = \overbrace{\overbrace{(\mathbf{A} \cdot \mathbf{A})}^{1000^3} \cdot \vec{v}}^{1000^2} \approx 1000^3 + 1000^2 \mbox{ op }
+    \]
+    \[
+        \vec{v}_2 = \overbrace{\mathbf{A} \cdot \overbrace{(\mathbf{A} \cdot \vec{v})}^{1000^2}}^{1000^2} \approx 1000^2 + 1000^2 \mbox{ op}
+    \]
+
+\end{Ex}
+\begin{Ex}
+    \begin{center}
+        Fråga i kod och algebra
+    \end{center}
+    \textbf{Lösning: } Vi ska lösa:
+    \[
+        \mathbf{A}^T \mathbf{A} \cdot \vec{x} = \mathbf{A}^T \cdot \vec{b}
+    \]
+    \begin{gather*}
+        \mathbf{A}^T \mathbf{A} =
+        \begin{bmatrix}
+            1 & 2 & 3\\
+            1 & 1 & 1
+        \end{bmatrix} \cdot
+        \begin{bmatrix}
+            1 & 1\\
+            2 & 1\\
+            3 & 1
+        \end{bmatrix} =
+        \begin{bmatrix}
+            14 & 6\\
+            6 & 3
+        \end{bmatrix} \\
+        \mathbf{A}^T \vec{b} =
+        \begin{bmatrix}
+            1 & 2 & 3\\
+            1 & 1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 \\
+            6 \\
+            14
+        \end{bmatrix} =
+        \begin{bmatrix}
+            58 \\
+            24
+        \end{bmatrix}
+        \end{gather*}
+        \[
+            \begin{bmatrix}
+            \begin{array}{cc|c}
+                14 & 6 & 58\\
+                6 & 3 & 24
+            \end{array}
+            \end{bmatrix}
+            \sim ... \sim
+            \begin{bmatrix}
+            \begin{array}{cc|c}
+                1 & 0 & 5\\
+                0 & 1 & -2
+            \end{array}
+            \end{bmatrix}
+            \Rightarrow \mbox{ svar } \vec{x} =
+            \begin{bmatrix}
+                5\\
+                -2
+            \end{bmatrix}
+        \]
+
+\end{Ex}
+
+\begin{Ex}
+    Bestäm lösningen till det överbestämda ekvationssystemet $\mathbf{A} \cdot \vec{x} = \vec{b}$ där:
+    \begin{align*}
+    &\mathbf{A} =
+    \begin{bmatrix}
+        1 & 1 \\
+        2 & 1\\
+        3 & 1
+    \end{bmatrix}
+    \end{align*}
+
+    \textbf{Lösning: } Beräkna ortogonal projektion av $\vec{b}$ på planet $\vec{a} x + \vec{b} y+ \vec{x}z$
+    \[
+        \vec{b}_p = \vec{b} + \alpha \cdot \vec{n}
+    \]
+    där:
+    \[
+        \alpha = \frac{d - \vec{n} \cdot \vec{b}}{\vec{n} \cdot \vec{n}}
+    \]
+    Måste uttrycka planet på normalform (F3)\\
+    Vi vet att vi har 2 vektorer:
+    \begin{align*}
+    &\begin{bmatrix} 1\\2\\3 \end{bmatrix}
+    &&\begin{bmatrix} 1\\1\\1 \end{bmatrix}
+    \end{align*}
+    och en punkt, t.ex $x_0 = \begin{bmatrix} 0\\0\\0 \end{bmatrix}$\\
+    En normalvektor:
+    \[
+        \begin{bmatrix} 1\\2\\3 \end{bmatrix} \times \begin{bmatrix} 1\\1\\1 \end{bmatrix} = \begin{bmatrix} -1\\2\\-1 \end{bmatrix}
+    \]
+    Minnesregel för kryssprodukt:
+    \[
+    \begin{vmatrix}
+        e_1 & e_2 & e_3\\
+        1 & 2 & 3\\
+        1 & 1 & 1
+    \end{vmatrix}
+    = e_1
+    \begin{vmatrix}
+        2 & 3\\
+        1 & 1
+    \end{vmatrix}
+     - e_2
+     \begin{vmatrix}
+         1 & 3\\
+         1 & 1
+     \end{vmatrix}
+     + e_3
+     \begin{vmatrix}
+         1 & 2\\
+         1 & 1
+     \end{vmatrix}
+    \]
+    Vi får planets ekvations på normalform:
+    \[
+        \vec{a}(x -0) + \vec{b}(y -0) + \vec{c}(z -0) \Leftrightarrow \vec{a}x + \vec{b}y + \vec{c}z = 0 \Leftrightarrow -x + 2y -z = 0
+    \]
+    Projicera $\vec{b} = \begin{bmatrix} 4\\6\\14 \end{bmatrix}$
+    \[
+        \alpha = \frac{0 - \begin{bmatrix} -1\\2\\-1 \end{bmatrix} \cdot \begin{bmatrix} 4\\6\\14 \end{bmatrix}}{\begin{bmatrix} -1\\2\\-1 \end{bmatrix} \cdot \begin{bmatrix} -1\\2\\-1 \end{bmatrix}} = \frac{6}{6} = 1
+    \]
+    \[
+        \vec{b}_p = \begin{bmatrix} 4\\6\\14 \end{bmatrix} + 1 \cdot \begin{bmatrix} -1\\2\\-1 \end{bmatrix} = \begin{bmatrix} 3\\8\\13 \end{bmatrix}
+    \]
+    Vi ska lösa:
+    \[
+        \begin{bmatrix}
+            1 & 1\\
+            2 & 1\\
+            3 & 1
+        \end{bmatrix}
+        \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 3 \\8\\13 \end{bmatrix}
+    \]
+    \[
+        \begin{bmatrix}
+        \begin{array}{cc|c}
+            1 & 1 & 3\\
+            2 & 1 & 8\\
+            3 & 1 & 13
+        \end{array}
+        \end{bmatrix}
+        \sim ... \sim
+        \begin{bmatrix}
+        \begin{array}{cc|c}
+            1 & 1 & 3\\
+            0 & -1 & 2\\
+            0 & 0 & 0
+        \end{array}
+        \end{bmatrix}
+        \Rightarrow
+        \begin{cases}
+            x_1 = 3 + 2 = 5\\
+            x_2 = -2
+        \end{cases}
+    \]
+\end{Ex}
+
+% section att_kunna (end)
+
+\section{Tenta 150115} % (fold)
+\label{sec:tenta_150115}
+
+\subsection{Fråga 1}
+\textbf{Lösning: }
+Bestäm  $\pi$:s ekvation på normalform:
+\begin{gather*}
+    \vec{n} = \begin{bmatrix} a\\b\\c \end{bmatrix} = \overrightarrow{AB} \times \overrightarrow{AC}
+\end{gather*}
+Planet ges då av:
+\[
+    a(x -x_0) + b(y - y_0) + c(z - z_0) = 0 \Rightarrow \pi: x -3y -3z = 3
+\]
+Linjens ekvation på parameterform:
+\begin{gather*}
+    \vec{v} = \overrightarrow{DE} = \begin{bmatrix} -1\\4\\3 \end{bmatrix}\\
+    \vec{x} = D + \begin{bmatrix} -1\\3\\3 \end{bmatrix} \cdot t \Rightarrow
+    \begin{cases}
+        x = -t\\
+        y = 1 + 4t\\
+        z = 1 + 3t
+    \end{cases}
+\end{gather*}
+Vilken t uppfyller planets ekvation?
+\begin{gather*}
+    (-t) -3 (1 + 4t) - 3(1 + 3t) = 3 \Leftrightarrow t = \frac{-9}{22}
+\end{gather*}
+Vilken punkt är det?
+\begin{gather*}
+    \begin{cases}
+        x = 9/22\\
+        y = 1 - 4 \cdot 9/22 = -7/11\\
+        z = 1 - 3 \cdot 9/22 = 16/22
+    \end{cases}
+\end{gather*}
+\subsection{Fråga 2}
+\subsubsection{(a)}
+För att anpassa en rät linje så måste detta gälla:
+\[
+    \begin{cases}
+        4 = k \cdot 1 + m\\
+        6 = k \cdot 2 + m\\
+        14 = k \cdot 3 + m
+    \end{cases}
+\]
+Man får då:
+\[
+    \begin{bmatrix} 4\\6\\14 \end{bmatrix} =
+    \begin{bmatrix}
+        1 & 1\\
+        2 & 1\\
+        3 & 1
+    \end{bmatrix}
+    \begin{bmatrix} k\\m \end{bmatrix}
+\]
+Man ser att detta inte har någon lösning.
+\subsubsection{(b)}
+Lös:
+\[
+    \mathbf{A}^T \mathbf{A} \cdot \vec{x} = \mathbf{A}^T \vec{b}
+\]
+\subsection{Fråga 3}
+Lös:
+\begin{gather*}
+    \vec{x} \cdot \mathbf{A} = \mathbf{B} + 2 \vec{x}
+\end{gather*}
+där:
+\begin{align*}
+&A =
+\begin{pmatrix}
+    1 & -1 & 0\\
+    1 & 3 & 1\\
+    0 & 2 & 1
+\end{pmatrix}
+&&B =
+\end{align*}
+\textbf{Lösning:}
+\begin{gather*}
+    \vec{x} \cdot \mathbf{A} = \mathbf{B} + 2 \vec{x} \Leftrightarrow\\
+    \vec{x} \cdot \mathbf{A} - 2 \vec{x} = \mathbf{B} \Leftrightarrow\\
+    \vec{x} \cdot \mathbf{A} - \vec{x} \cdot 2 = \mathbf{B} \Leftrightarrow\\
+    \vec{x} \cdot \overbrace{(\mathbf{A} - 2 \cdot \mathbf{I})}^\text{om inverterbar} = \mathbf{B} \Leftrightarrow\\
+    \vec{x} = \mathbf{B} (\mathbf{A} - 2 \cdot \mathbf{I})^{-1}
+\end{gather*}
+Bestäm inversen:
+\[
+    \begin{bmatrix}
+    \begin{array}{c|c}
+        \mathbf{A} - 2 \cdot \mathbf{I} & \mathbf{I}
+    \end{array}
+    \end{bmatrix}
+    \sim ... \sim
+    \begin{bmatrix}
+    \begin{array}{c|c}
+        \mathbf{I} & (\mathbf{A} - 2 \cdot \mathbf{I})^{-1}
+    \end{array}
+    \end{bmatrix}
+\]
+\subsection{Fråga 4}
+\subsubsection{(a)}
+Egenvärden till \textbf{A}:
+\[
+    \mathbf{det}(\mathbf{A} - \mathbf{I} \cdot \lambda) = 0
+\]
+dvs
+\[
+    \begin{vmatrix}
+        1 - \lambda & -1 & 0\\
+        0 & 3 - \lambda & 1\\
+        0 & 0 & 2 - \lambda
+    \end{vmatrix}
+    = (1 - \lambda) \cdot (3 - \lambda) \cdot (2 - \lambda) = 0 \Rightarrow
+    \begin{cases}
+        \lambda_1 = 1\\
+        \lambda_2 = 2\\
+        \lambda_3 = 3
+    \end{cases}
+\]
+Bestäm egenvektorerna $\vec{v}_1, \vec{v}_2, \vec{v}_3$ till egenvärdena:
+\begin{align*}
+&(\mathbf{A} - \lambda_i \cdot \mathbf{I}) \vec{v}_i = \emptyset
+&& \leftarrow \mbox{ lös för $\lambda_1, \lambda_2, \lambda_3$}
+\end{align*}
+\subsubsection{(b)}
+Visa egenvektorerna linjärt obereoende (ty 3 linjärt oberoende vektorer i $\mathbb{R}^3$ utgör en bas för $\mathbb{R}^3$)\\
+\textbf{Lösning:} Visa att
+\[
+    x_1 \vec{v}_1 + x_2 \vec{v}_2 + x_3 \vec{v}_3 = \emptyset
+\]
+Har bara lösningen:
+\[
+    x_1 0 x_2 = x_3 = 0
+\]
+\[
+    \begin{bmatrix} \vec{v}_1 & \vec{v}_2 & \vec{v}_3 \end{bmatrix}
+    \begin{bmatrix} x_1\\x_2\\x_3 \end{bmatrix} =
+    \begin{bmatrix} 0\\0\\0 \end{bmatrix}
+\]
+\subsubsection{(c)}
+$\vec{u} = \begin{bmatrix} 1 & 2 & 3 \end{bmatrix}^T$ Beräkna $\mathbf{A}^n \cdot \vec{u}$ där $n>0 \in \mathbb{R}$\\
+\textbf{Lösning:} \textbf{A} diagonaliserbar, dvs
+\begin{gather*}
+    \mathbf{A} = \vec{v} \cdot \mathbf{D} \cdot \vec{v}^{-1}\\
+    \mathbf{D} =
+    \begin{bmatrix}
+        \lambda_1 & 0 & 0\\
+        0 & \lambda_2 & 0\\
+        0 & 0 & \lambda_3
+    \end{bmatrix}
+\end{gather*}
+\begin{align*}
+& \vec{v} =
+\begin{bmatrix}
+    1 & 1 & 1\\
+    0 & -2 & -1\\
+    0 & 0 & 1
+\end{bmatrix}
+\vec{v}^{-1} =
+\begin{bmatrix}
+    1 & 1/2 & -1/2\\
+    0 & -1/2 & -1/2\\
+    0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+\begin{gather*}
+    \mathbf{A}^n \vec{u} = (\vec{v} \cdot \mathbf{D} \cdot \vec{v}^{-1}) \cdot \vec{u} \\
+    \vec{v} \cdot \mathbf{D}^n \cdot \vec{v}^{-1} \vec{u} =
+\end{gather*}
+\begin{align*}
+&\begin{bmatrix} 1/2 & -5/2 & 3 \end{bmatrix}
+&& \mathbf{D} = \begin{bmatrix} 1 & 0 & 0\\ 0 & 3 & 0\\0 & 0 & 2 \end{bmatrix}\\
+&
+\begin{bmatrix}
+    1/2\\
+    -5/2 \cdot 3^n\\
+    3 \cdot 2^n
+\end{bmatrix}
+&& \mathbf{D}^n =
+\begin{bmatrix}
+    1^n & 0 & 0 \\
+    0 & 3^n & 0\\
+    0 & 0 & 2^n
+\end{bmatrix}\\
+&
+\begin{bmatrix}
+    1/2 - 5/2 \cdot 3^n + 3 \cdot 2^n\\
+    5 \cdot 3^n/2 - 3 \cdot 2^n\\
+    3 \cdot 2^n
+\end{bmatrix}
+\end{align*}
+
+
+% section tenta_150115 (end)
+
+
+\end{document}
