@@ -1,0 +1,248 @@
+\input{../../tex/lecturePreamble}
+
+\title{
+     Analys\\
+     Föreläsning 7
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\section{Kedjeregeln} % (fold)
+\label{sec:kedjeregeln}
+\[
+f \circ g(x) = f(g(x))
+\]
+\[
+\frac{d}{dx}f(x) = f^\prime(g(x))g^\prime(x)
+\]
+\begin{sats}
+    \[
+    \lim\limits_{h \to o}\frac{\sin(h)}{h}=1
+    \]
+\end{sats}
+\begin{sats}
+    \[
+    \frac{d}{dx}\sin(x) = \cos(x)
+    \]
+\end{sats}
+\begin{bevis}
+	\begin{align*}
+		\frac{\sin(x + h)-\sin(h)}{h} &= \{\sin(a + b) = \sin(a)\cos(b) + \sin(b)\cos(a)\}\\
+		&= \frac{1}{h}(\sin(x)\cos(h) + \sin(h)\cos(x) - \sin(x))\\
+		&= \underbrace{\frac{\sin(h)}{h}}_{\to 1} \cdot \cos(x) + \frac{1}{h}(\underbrace{\cos(h)}_{-2\sin^2(\frac{h}{2})} - 1) \cdot \sin(x) \\
+		&= \frac{\sin(h)}{h}\cos(x) \overbrace{- 2 \cdot \underbrace{\frac{\sin^2(\frac{h}{2})}{(\frac{h}{2})^2}}_{\to 1} \cdot \underbrace{h}_{\to 0} \cdot \frac{1}{4}}^{\to 0} \cdot \sin(x)
+	\end{align*}
+	Eftersom $\cos(a + b) = \cos(a)\cos(b) - \sin(a)\sin(b)$\\
+	och $\cos(2a) = \cos^2(a) - \sin^2(a) = $ {trigettan} $= 1 - 2\sin^2(a)$\\
+	\textbf{Alltså:} \[
+	\frac{d}{dx}\sin(x) = \cos(x)
+	\]
+\end{bevis}
+\begin{sats}
+    \[
+    \frac{d}{dx}\cos(x) = -\sin(x)
+    \]
+    \textbf{Bevis:} Se förra föreläsningen
+\end{sats}
+\begin{sats}
+    \[
+    \frac{d}{dx}\tan(x) = 1 + \tan^2(x) = \frac{1}{\cos^2(x)}
+    \]
+\end{sats}
+\begin{bevis}
+	\begin{align*}
+		\frac{d}{dx}\tan(x) &= \frac{d}{dx}\frac{\sin(x)}{\cos(x)}\\
+		&= \frac{(\frac{d}{dx}\sin(x))\cos(x) - \sin(x)(\frac{d}{dx}\cos(x))}{\cos^2(x)} \\
+		&= \frac{\cos^2(x) + \sin^2(x)}{\cos^2(x)} \\
+		&= \begin{cases}
+			\frac{1}{\cos^2(x)}\\
+			1 + (\frac{\sin(x)}{\cos(x)})^2 = 1 + (\tan(x))^2
+		\end{cases}\\
+	\end{align*}
+\end{bevis}
+\begin{Ex}
+    \[
+    f(x) = 3 \cdot \sin^2(4\tan(\cos(x)))
+    \]
+    \begin{align*}
+    	\frac{d}{dx}f(x) &= 3 \cdot \frac{d}{dx}(\sin^2(4\tan(\cos(x)))) \\
+    	&= 3 \cdot 2 \cdot \sin(4\tan(\cos(x))) \cdot \underbrace{\frac{d}{dx}\sin(4\tan(\cos(x)))}_{\cos(4\tan(\cos(x))) \cdot \underbrace{\frac{d}{dx}(3\tan(\cos(x))}_{4(1 + \tan^2(\cos(x))) \cdot \underbrace{\frac{d}{dx}\cos(x)}_{-\sin(x)}}} \\
+    	&= -24 \sin(4\tan(\cos(x))) \cdot \cos(4\tan(\cos(x))) \cdot (1 + \tan^2(\cos(x))) \cdot \sin(x)
+    \end{align*}
+\end{Ex}
+% section kedjeregeln (end)
+\section{Implicit derivering} % (fold)
+\label{sec:implicit_derivering}
+\begin{Ex}
+    \[
+    \begin{cases}
+    	y(x)\sin(x) = x^3 + \cos(y(x))\\
+    	y(0) = \frac{\pi}{2}
+    \end{cases}
+    \]
+    Beräkna $y^\prime (0)$\\
+    Vi får:
+    \[
+    \frac{d}{dx}(y(x)\sin(x)) = \frac{d}{dx}(x^3 + \cos(y(x)))
+    \]
+    \begin{align*}
+    	y ^\prime(x)\sin(x) + y(x)\cos(x) = 3x^2 + (-\sin(y(x))) \cdot y ^\prime(x)
+    \end{align*}
+    Sätt $y x = 0$. Vi får:
+    \begin{align*}
+    	y ^\prime(0) \cdot 0 + \underbrace{y(0) \cdot 1}_{\frac{\pi}{2}} = 0 - \underbrace{\sin(y(0))}_{1} \cdot y ^\prime(0) \\
+    \end{align*}
+    Dvs: 
+    \[
+    y ^\prime(0) = - \frac{\pi}{2}
+    \]
+\end{Ex}
+\begin{Ex}
+    \[
+    \frac{d}{dx}x^{\frac{1}{n}}
+    \]
+    $n$ är ett positivt heltal.\\
+    \textbf{Notera: }
+    \[
+    (x^{\frac{1}{n}})^n = x
+    \]
+    Implicit derivering:
+    \begin{align*}
+    	n \cdot (x^{\frac{1}{n}})^{n-1} \cdot \frac{d}{dx}x^{\frac{1}{n}} = 1
+    \end{align*}
+    Vi får:
+    \begin{align*}
+    	\frac{d}{dx}x^{\frac{1}{n}} = \frac{1}{n}(x^{\frac{1}{n}(n -1)})^{-1} &= \frac{1}{n}(x^{1- \frac{1}{n}})^{-1} \\
+    	&= \frac{1}{n}x^{\frac{1}{n}-1}
+    \end{align*}
+\end{Ex}
+\begin{Ex}
+    \[
+    \frac{d}{dx}x^{\frac{m}{n}}
+    \]
+    Dubbelkolla!   asdålawd
+    \begin{align*}
+    	\frac{d}{dx}(x^{\frac{1}{n}})^m &= m \cdot (x^{\frac{1}{m}})^{m-1} \cdot \frac{d}{dx} x^{\frac{1}{n}} \\
+    	&= \frac{m}{n}x^{\frac{m}{n} - \frac{1}{m} + \frac{1}{m} -1} \\
+    	&= \frac{m}{n}x^{\frac{m}{n}-1}
+    \end{align*}
+\end{Ex}
+
+Antag att $f:[a,b] \rightarrow \mathbb{R}$\\
+Vi säger att: $f$ växande på $[a,b]$ om $f(x) \le f(\tilde{x})$ för alla $a \le x \le \tilde{x} \le b$
+\begin{center}
+	FIGUR
+\end{center}
+$f$ \underline{strängt växande} på $[a,b]$ om $f(x) < f(\tilde{x}$ för alla $a \le x < \tilde{x} \le b$
+\begin{center}
+	FIGUR
+\end{center}
+\underline{Avtagande} ... om $f(x) \ge f(\tilde{x})$ för alla $a \le x < \tilde{x} \le b$ osv fyll i asfafasf\\
+Om $f$ är växande är $-f$ avtagande och omvänt.\\
+Om $f$ är strängt växande är $-f$ strängt avtagande och omvänt.\\
+Vi säger att $f$ har ett heltal max i $x_0$ om det finns ett $\epsilon > 0$ sådant att:
+\[
+f(x) \le f(x_0) \mbox{ för all } x\in(x_0 - \epsilon, x_0 + \epsilon)
+\]
+\begin{center}
+	FIGUR
+\end{center}
+$x_0$ kallas för lokal maxpunkt.\\
+Vi säger att ... min ...
+\[
+f(x) \ge f(x_0) \mbox{ för all } x\in(x_0 - \epsilon, x_0 + \epsilon)
+\]
+...kallas för lokal minpunkt.\\
+Vi säger att att $x_0$ är en lokal extrempunkt om $x_0$ är en lokal maxpunkt eller en lokal minpunkt.
+\begin{sats}
+    Antag att $f:[a,b] \rightarrow \mathbb{R}$ är en kontinuerlig funktion.\\
+    Antag att $x_0 \in (a,b)$ är en lokal extrempunkt, och att $f$ är deriverbar i $x_0$.\\
+    Då gäller:
+    \[
+    f ^\prime(x_0) = 0
+    \]
+\end{sats}
+\begin{bevis}
+	Antag att $x_0$ är en lokal maxpunkt.
+	\begin{align*}
+		h > 0: \mbox{ } \frac{f(x_0 + h) - f(x_0)}{h} \rightarrow \underbrace{f ^\prime(x_0)}_{\le 0} \mbox{ då } h \to 0+
+	\end{align*}
+	Samma differeanskvot:
+	\begin{align*}
+		h < 0: \mbox{ } \frac{f(x_0 + h)- f(x_0)}{h} \rightarrow \underbrace{f ^\prime(x_0)}_{\ge 0} \mbox{ då } h \to 0-
+	\end{align*}
+	Analogt bevisargument för $x_0$ lokal minpunkt.
+\end{bevis}
+\begin{sats}
+    Antag att $f[a,b] \to \mathbb{R}$ är en kontinuerlig funktion.\\
+    Antag att $f$ är deriverbar för alla $x \in (a,b)$, och att $f(a) = f(b)$\\
+    Då finns:
+    \[
+    \xi \in (a,b) \mbox{ så att } f ^\prime(\xi) = 0
+    \]
+\end{sats}
+\begin{bevis}
+	\begin{center}
+		FIGURER
+	\end{center}
+	\begin{center}
+		FIGURER
+	\end{center}
+	\begin{center}
+		FIGURER
+	\end{center}
+	\begin{center}
+		FIGURER
+	\end{center}
+\end{bevis}
+\begin{sats}
+    \textbf{Medelvärdessatsen:}\\
+    Antag att $f:[a,b] \to \mathbb{R}$ är en kontinuerlig funktion. \\
+    Antag att $f$ är deriverbar i $(a,b)$\\
+    Då finns:
+    \[
+    \xi \in (a,b) \mbox{ så att } f(b) - f(a) = f ^\prime(\xi)(b-a)
+    \]
+    \begin{center}
+    	FIGUR
+    \end{center}
+\end{sats}
+\begin{Ex}
+    \begin{align*}
+    	f(x) = x^3\\
+    	f ^\prime(x) = 3x^2\\
+    	f ^\prime(0) = 0
+    \end{align*}
+    \begin{center}
+    	
+    \end{center}
+\end{Ex}
+
+% section implicit_derivering (end)
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

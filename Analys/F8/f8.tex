@@ -1,0 +1,160 @@
+\input{../../tex/lecturePreamble}
+
+\title{
+     Analys\\
+     Föreläsning 8
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\section{Repetition} % (fold)
+\label{sec:repetition}
+\begin{sats}
+    $f$ deriverbar i $x_0$ och $x_0$ är en lokal extrempunkt $\Rightarrow$ $f^\prime(x_0) = 0$
+\end{sats}
+\begin{Rem}
+    $f^\prime(x_0) = 0 \nRightarrow x_0$ lokal extrempunkt
+\end{Rem}
+\begin{sats}
+    \textbf{Medelvärdessatsen:} \\
+    $f$ kontinuerlig på $[a,b]$\\
+    $f$ deriverbar i $(a,b)$\\
+    $\Rightarrow$ Finns $\xi \in (a,b)$ så att $f(b)-f(a)$ = $f^\prime(\xi)(b-a)$
+\end{sats}
+% section repetition (end)
+\section{Dagens föreläsning} % (fold)
+\label{sec:dagens_f_rel_sning}
+\begin{sats}
+    \textbf{Cauchys medelvärdessats:}\\
+    $f, g$ kontinuerliga på $[a,b]$\\
+    $f,g$ deriverbara  i $(a,b)$\\
+    $g ^\prime \neq 0$ i $(a,b)$\\
+    $\Rightarrow$ Finns $\xi \in (a,b)$ så att $\frac{f(b) - f(a)}{g(b)-g(a)} = \frac{f^\prime(\xi)}{g^\prime(\xi)}$
+\end{sats}
+\begin{Rem}
+    $g(x) \Rightarrow g^\prime(x) = 1 \neq 0$
+\end{Rem}
+\begin{Rem}
+    \begin{align*}
+        g(b) - g(a) \neq 0 \mbox{ eftersom } g(b) - g(a) = \overbrace{g(\xi)}^{\neq 0}\overbrace{(b-a)}^{\neq 0}
+    \end{align*}
+\end{Rem}
+\begin{bevis}
+    Sätt:
+    \[
+    h(x) = (f(b) - f(a)) \cdot g(x) - (g(b) - g(a))\cdot f(x)
+    \]
+    Här gäller:
+    \begin{itemize}
+        \item $h$ kontinuerlig på $[a,b]$
+        \item $h$ deriverbar i $(a,b)$
+        \item $h(a) = (f(b) - f(a)) \cdot g(a) - (g(b) - g(a)) \cdot f(a) = f(b)g(a) - g(b)f(a)$
+        \item $h(b) = (f(b) - f(a)) \cdot g(b) - (g(b) - g(a)) \cdot f(b) = f(b)g(a) - g(b)f(a)$
+    \end{itemize}
+    \textbf{Medelvärdessatsen} ger att det finns $\xi \in (a,b)$ så att:
+    \[
+    h^\prime(\xi) = \frac{h(b)- h(a)}{b-a} = 0
+    \]
+    Vi får:
+    \[
+    0 = h^\prime(\xi) = (f(b) - f(a))\cdot g^\prime(\xi) - (g(b)- g(a))f^\prime(\xi)
+    \]
+    dvs:
+    \[
+    \frac{f^\prime(\xi)}{g^\prime(\xi)} = \frac{f(b)- f(a)}{g(b)- g(a)}
+    \]
+    eftersom $g^\prime \neq 0$ och $g(b) - g(a) \neq 0$
+\end{bevis}
+\textbf{\underline{Tillämpning av medelvärdessatsen:}}\\
+Antag $f$ kontinuerlig på $[a,b]$\\
+Om:
+\begin{enumerate}
+    \item $f^\prime(x) \ge 0$ för $x \in (a,b)$ $\Rightarrow$ $f(x)$ är växande på $[a,b]$
+    \item $f^\prime(x) > 0$ för $x \in (a,b)$ $\Rightarrow$ $f(x)$ är strängt växande på $[a,b]$
+    \item $f^\prime(x) \le 0$ för $x \in (a,b)$ $\Rightarrow$ $f(x)$ är avtagande på $[a,b]$
+    \item $f^\prime(x) < 0$ för $x \in (a,b)$ $\Rightarrow$ $f(x)$ är strängt avtagande på $[a,b]$
+\end{enumerate}
+eftersom:
+\begin{enumerate}
+    \item Fixera godtyckligt $x, \tilde{x}$ $a \le x < \tilde{x} \le b$
+    \begin{align*}
+        f(\tilde{x}) - f(x) = \underbrace{f^\prime(\xi_{x, \tilde{x}})}_{\ge 0} \underbrace{(\tilde{x} - x)}_{\ge 0}
+    \end{align*}
+    vilket följer av medelvärdessatsen tillämpat på $f$ på intervallet $[x, \tilde{x}]$\\
+    Vi har $f(x) \le f(\tilde{x})$
+    \begin{Rem}
+        $f$ kontinuerlig på $[a,b]$\\
+        $f^\prime(x) > 0$ på (a,b) utom i ändligt många punkter i (a,b)\\
+        $\Rightarrow$ $f$ strängt växande på $[a,b]$
+    \end{Rem}
+\end{enumerate}
+% section dagens_f_rel_sning (end)
+\section{Primitv funktion $=$ "antiderivata"} % (fold)
+\label{sec:primitv_funktion}
+Givet funktion $g(x)$\\
+Vi säger att $G(x)$ är en primitiv funktion till $g(x)$ om:
+\[
+G^\prime(x) = g(x)
+\]
+Fråga:
+\begin{enumerate}
+    \item Krav på $g(x)$ för att en $G(x)$ ska existerar?
+    \item $G(x)$ entydigt bestämt av $g(x)$?
+\end{enumerate}
+\textbf{Fråga 2:} Antag att $G(x)$ och $\tilde{G}(x)$ är primitiva funktioner till $g(x)$
+\begin{align*}
+    &G^\prime(x) = g(x) &&\tilde{G}(x) = g(x)
+\end{align*}
+Sätt:
+\[
+h(x) = G(x) - \tilde{G}(x)\mbox{ , } x\in \mathbb{I}
+\]
+Då gäller:
+\begin{itemize}
+    \item $h$ är kontinuerlig på $\mathbb{I}$, eftersom $G, \tilde{G}(x)$ deriverbar på $\mathbb{I}$ och alltså kontinuerlig på $\mathbb{I}$
+    \item $h$ deriverbar på $\mathbb{I}$
+    \item $h^\prime(x) = G^\prime(x) - \tilde{G}^\prime(x) = g(x) - g(x) = 0$, $\forall x \in \mathbb{I}$
+\end{itemize}
+Fixera $c \in \mathbb{I}$
+\begin{align*}
+    h(x) - h(c) = h^\prime(\xi)(x-c) = 0 \mbox{ , } \forall x \in \mathbb{I}
+\end{align*}
+Alltså finns konstant $C$, så att
+\[
+G(x) = \tilde{G}(x) + C \mbox{ , } \forall x \in \mathbb{I}
+\]
+Svar på fråga (1):\\
+Om $g(x)$ är en kontinuerlig funktion så existerar primitiv funktion till $g(x)$
+% section primitv_funktion (end)
+\subsection{Beteckning} % (fold)
+\label{sub:beteckning}
+\[
+\underbrace{\int g(x) dx}_\text{obestämd integral} = \underbrace{G(x)}_\text{primitiv funktion} + \underbrace{C}_\text{godtycklig konstant}
+\]
+
+% subsection beteckning (end)
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
