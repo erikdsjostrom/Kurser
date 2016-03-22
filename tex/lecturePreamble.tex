@@ -47,7 +47,7 @@
             #1
         \end{array}
     \right]
-    & 
+    &
     \begin{array}{l}
         #2
     \end{array}
@@ -69,16 +69,18 @@
   {}%         Thm head spec
 
 \newtheorem{Def}{Definition}[section]
+\newtheorem*{Not}{Notation}
+\newtheorem*{Lem}{Lemma}
 
 \theoremstyle{break}
 
 \newtheorem{innerEx}{Exempel}[section]
 \newtheorem{sats}{Sats}[section]
-\newtheorem{Rem}{Anmärkning}[]
+\newtheorem*{Rem}{Anmärkning}
 
 \newenvironment{Ex}
-{\begin{mdframed} \begin{innerEx} \vspace{3pt}}
-{\vspace{3pt} \end{innerEx} \end{mdframed}}  
+{\begin{mdframed} \begin{innerEx} \vspace{0pt}}
+{\vspace{3pt} \end{innerEx} \end{mdframed}}
 
 \newenvironment{bevis}
 {\begin{mdframed} \begin{proof} \vspace{3pt}}

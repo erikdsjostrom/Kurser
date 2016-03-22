@@ -1,0 +1,359 @@
+\input{../../tex/lecturePreamble}
+\usepackage{color}
+\title{
+	 Finite Automata Theory and Formal Languages\\
+	 Föreläsning 2 - Central concepts of automata theory
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\section{Alphabets} % (fold)
+\label{sec:alphabets}
+\begin{Def}
+    An alphabet is a finite, non-empty set of symbols, usually denoted by $\Sigma$\\
+    The number of symbols in $\Sigma$ is donoted as $\abs{\Sigma}$
+\end{Def}
+
+\begin{Not}
+We will use $a,b,c,...$ to denote symbols.
+\end{Not}
+
+\begin{Rem}
+Alphabets will represent the observable events of the automata.
+\end{Rem}
+\begin{Ex}
+    Some alphabets:
+    \begin{itemize}
+        \item on/off-switch: $\Sigma$ = \{Push\}
+        \item simple vending machine: $\Sigma$ = \{5 kr, choc\}
+        \item complex vending machine $\Sigma$ = \{5 kr, 10 kr, choc, big choc\}
+        \item parity counter $\Sigma$ = \{$p_0, p_1$\}
+    \end{itemize}
+\end{Ex}
+% section alphabets (end)
+
+\section{Strings or Words} % (fold)
+\label{sec:strings_or_words}
+\begin{Def}
+    Strings/Words are finite sequences of symbols from some alphabet.
+\end{Def}
+\begin{Not}
+    We will use $w,x,y,z,...$ to denote words.
+\end{Not}
+\begin{Rem}
+    Words will represent the behaviour of an automaton.
+\end{Rem}
+\begin{Ex}
+    Some behaviours:
+    \begin{itemize}
+        \item on/off-switch: Push, Push, Push, Push
+        \item simple vending machine: 5 kr, choc, 5 kr, choc, 5 kr, choc
+        \item parity counter: $p_0p_1$ or $p_0p_0p_0p_1p_1p_0$
+    \end{itemize}
+\end{Ex}
+\begin{Rem}
+    Some words do NOT represent \emph{behaviour}
+\end{Rem}
+\begin{Ex}
+    simple vending machine: choc, choc, choc
+\end{Ex}
+% section strings_or_words (end)
+
+\section{Inductive Definition of $\Sigma^*$} % (fold)
+\label{sec:inductive_definition_of_}
+\begin{Def}
+    $\Sigma^*$ is the set of all words for a given alphabet $\Sigma$.
+\end{Def}
+This can be described inductively in at least 2 different ways:
+\begin{itemize}
+    \item Base case: $\epsilon \in \Sigma^*$
+    \item Inductive step: if $a \in \Sigma$ and $x \in \Sigma^*$ then $ax \in \Sigma^*$
+    \item We will usually work with this definition.
+\end{itemize}
+Or:
+\begin{itemize}
+    \item Base case: $\epsilon \in \Sigma^*$
+    \item Inductive step: if $a \in \Sigma$ and $x \in \Sigma^*$ then $xa \in \Sigma^*$
+\end{itemize}
+We can (recursively) \emph{define} functions over $\Sigma^*$ and (inductively) \emph{prove} properties about those functions.
+% section inductive_definition_of_ (end)s% section strings_or_words (end)
+
+\section{Concatenation} % (fold)
+\label{sec:concatenation}
+\begin{Def}
+    Given the string x and y, the concatenation xy is defined as:
+    \begin{align*}
+        &\epsilon y = y\\
+        &(ax')y = a(x'y)
+    \end{align*}
+\end{Def}
+\noindent
+Observe that in general $xy \neq xy$
+\begin{Ex}
+    If x = 010, and y = 11, then xy = 01011, and yx = 11010
+\end{Ex}
+\begin{Lem}
+    If $\Sigma$ has more than one symbol then concatenation is not commutative.
+\end{Lem}
+% section concatenation (end)
+
+\section{Prefix and Suffix} % (fold)
+\label{sec:prefix_and_suffix}
+\begin{Def}
+    Given x and y words over a certain alphabet $\Sigma$:
+    \begin{itemize}
+        \item x is a {\color{red} prefix} of y iff there exists z such that y = xz
+        \item x is a {\color{red} suffix} of y iff there xists z such that y = zx
+    \end{itemize}
+\end{Def}
+\begin{Rem}
+    $\forall x$, $\epsilon$ is both a prefix and suffix of x.
+\end{Rem}
+\begin{Rem}
+    $\forall x$, $x$ is both a prefix and suffix of x.
+\end{Rem}
+% section prefix_and_suffix (end)
+
+\section{Length and Reverse} % (fold)
+\label{sec:length_and_reverse}
+\begin{Def}
+    The {\color{red} length} function $\abs{\mbox{ }}:$ $\Sigma^* \to \mathbb{N}$ is defined as:
+    \begin{align*}
+        &\abs{\epsilon} = 0\\
+        &\abs{ax} = 1 + \abs{x}
+    \end{align*}
+\end{Def}
+\begin{Ex}
+    $\abs{01010} = 5$
+\end{Ex}
+\begin{Def}
+    The {\color{red} reverse} function $rev(\mbox{ }):$ $\Sigma^* \to \Sigma^*$ is defined as:
+    \begin{align*}
+        &rev(\epsilon) = \epsilon\\
+        &rev(ax) = rev(x)a
+    \end{align*}
+\end{Def}
+\begin{Ex}
+    $rev(a_1...a_n)$ = $a_n...a_1$
+\end{Ex}
+% section length_and_reverse (end)
+
+\section{Power} % (fold)
+\label{sec:power}
+\subsection{Of a string} % (fold)
+\label{sub:of_a_string}
+\begin{Def}
+    We define $x^n$ as follows:
+    \begin{align*}
+        &x^0 = \epsilon\\
+        &x^{n+1} = xx^n
+    \end{align*}
+\end{Def}
+\begin{Ex}
+    $(010)^3$ = $(010010010)$
+\end{Ex}
+% subsection of_a_string (end)
+\subsection{Of an alphabet} % (fold)
+\label{sub:of_an_alphabet}
+\begin{Def}
+    We define $\Sigma^n$, the set of words over $\Sigma$ with length n, as follows:
+    \begin{align*}
+        &\Sigma^0 = \{\epsilon\}\\
+        &\Sigma^{n+1} = \{ax \mid a \in \Sigma, x \in \Sigma^n\}
+    \end{align*}
+\end{Def}
+\begin{Ex}
+    $\{0,1\}^3$ = $\{000,001,010,011,100,101,110,111\}$
+\end{Ex}
+\begin{Not}
+    \begin{align*}
+        &\Sigma^* = \Sigma^0 \cup \Sigma^1 \cup \Sigma^2 ... \\
+        &\Sigma^+ = \Sigma^1 \cup \Sigma^2 \cup \Sigma^3 ...
+    \end{align*}
+\end{Not}
+% subsection of_an_alphabet (end)
+% section power (end)
+
+\section{Some properties} % (fold)
+\label{sec:some_properties}
+The following properties can be proved by induction:
+\begin{Lem}
+    Concatenation is associative: $\forall x,y,z$: $x(yz) = (xy)z$
+\end{Lem}
+\begin{Lem}
+    $\forall x$: $x\epsilon = \epsilon x = x$
+\end{Lem}
+\begin{Lem}
+    $\forall x$: $\abs{x^n} = n * \abs{x}$
+\end{Lem}
+\begin{Lem}
+    $\forall \Sigma$: $\abs{\Sigma} = \abs{\Sigma}^n$
+\end{Lem}
+\begin{Lem}
+    $\forall x$: $rev(rev(x)) = x$
+\end{Lem}
+\begin{Lem}
+    $\forall x,y$: $rev(xy) = rev(y)rev(x)$
+\end{Lem}
+% section some_properties (end)
+
+\section{Languages} % (fold)
+\label{sec:languages}
+\begin{Def}
+    Given an alphabet $\Sigma$, a {\color{red} language} $\mathcal{L}$ is a subset of $\Sigma^*$, that is, $\mathcal{L} \subseteq \Sigma^*$
+\end{Def}
+\begin{Rem}
+    If $\mathcal{L} \subseteq \Sigma^*$ and $\Sigma \subseteq \Delta$ then $\mathcal{L} \subseteq \Delta^*$
+\end{Rem}
+\begin{Rem}
+    A language can be either finite or infinite.
+\end{Rem}
+\begin{Ex}
+    Some languages:
+    \begin{itemize}
+        \item Swedish, English, French, Spanish...
+        \item Any programming language
+        \item $\emptyset$, $\{\epsilon\}$, and $\Sigma^*$ are languages over any $\Sigma$
+        \item The set of prime Natural numbers: $\{1,3,5,7,11,...\}$
+    \end{itemize}
+\end{Ex}
+% section languages (end)
+
+\section{Some Operations on Languages} % (fold)
+\label{sec:some_operations_on_languages}
+\begin{Def}
+    Given $\mathcal{L}, \mathcal{L}_1, \mathcal{L}_2$ languages, we define the following languages:
+\end{Def}
+\begin{itemize}
+\item \textbf{Union, intersection:} The same as for any set.\\
+\item \textbf{Concatenation:} $\mathcal{L}_1 \mathcal{L}_1 = \{x_1x_2 \mid x_1 \in \mathcal{L}_1, x_2 \in \mathcal{L}_2\}$\\
+\item \textbf{Closure:} $\mathcal{L}^* = \bigcup_{n \in \mathbb{N}} \mathcal{L}^n$ where $\mathcal{L}^0 = \{\epsilon\}$, $\mathcal{L}^{n+1} = \mathcal{L}^n \mathcal{L}$
+\end{itemize}
+\begin{Rem}
+        $\emptyset^* = \{\epsilon\}$\\
+        $\mathcal{L}^* = \mathcal{L}^0 \cup \mathcal{L}^1 \cup \mathcal{L}^2 \cup ... = \left\{ \epsilon \right\} \cup \left\{ x_1 ... x_n \mid n > 0, x_i \in \mathcal{L} \right\}$
+\end{Rem}
+\begin{Not}
+    $\mathcal{L}^* = \mathcal{L}^1 \cup \mathcal{L}^2 \cup \mathcal{L}^3 \cup ...$
+\end{Not}
+\begin{Ex}
+    Let $\mathcal{L} = \left\{ aa, b \right\}$, then
+    \begin{align*}
+        &\mathcal{L}^0 = \left\{ \epsilon \right\}\\
+        &\mathcal{L}^1 = \mathcal{L}\\
+        &\mathcal{L}^2 = \mathcal{L}\mathcal{L} = \left\{ aaaa, aab, baa, bb \right\}\\
+        &\mathcal{L}^3 = \mathcal{L}^2 \mathcal{L}\\
+        &\vdots\\
+        &\mathcal{L}^* = \left\{ \epsilon, aa, b, aaaa, aab, baa, bb, ... \right\}
+    \end{align*}
+\end{Ex}
+% section some_operations_on_languages (end)
+
+\section{How to Prove the Equality of Languages?} % (fold)
+\label{sec:how_to_prove_the_equality_of_languages_}
+Given the languages $\mathcal{L}$ and $\mathcal{M}$, how can we prove that $\mathcal{L} = \mathcal{M}$\\
+\bigskip
+
+\noindent
+A few possibilities:
+\begin{itemize}
+    \item Languages are sets so we prive that $\mathcal{L} \subseteq \mathcal{M}$ and $\mathcal{M} \subseteq \mathcal{L}$
+    \item Transitivity of equality: $\mathcal{L} = \mathcal{L}_1 = ... = \mathcal{L}_m = \mathcal{M}$
+    \item We can reason about the elements in the language:
+    \begin{Ex}
+        $\left\{ a(ba)^n \mid n \ge 0 \right\}$ = $\left\{ (ab)^na \mid n \ge 0 \right\}$ can be proved by induction on $n.$
+    \end{Ex}
+\end{itemize}
+% section how_to_prove_the_equality_of_languages_ (end)
+
+\section{Algebraic Laws for Languages} % (fold)
+\label{sec:algebraic_laws_for_languages}
+Laws of concatenation:
+\begin{itemize}
+    \item Associativity: $\mathcal{L}(\mathcal{M}\mathcal{N}) = (\mathcal{L}\mathcal{M})\mathcal{N}$
+    \item Not commutative: $\mathcal{L}\mathcal{M} \neq \mathcal{M}\mathcal{L}$
+    \item Distributivity: $\mathcal{L}(\mathcal{M} \cup \mathcal{N}) = \mathcal{L}\mathcal{M} \cup \mathcal{L}\mathcal{N}$
+    \item Distributivity: $(\mathcal{M} \cup \mathcal{N})\mathcal{L} = \mathcal{M}\mathcal{L} \cup \mathcal{N}\mathcal{L}$
+    \item Identity: $\mathcal{L}\left\{ \epsilon \right\} = \left\{ \epsilon \right\}\mathcal{L} = \mathcal{L}$
+    \item Annihilator: $\mathcal{L}\emptyset = \emptyset \mathcal{L} = \emptyset$
+    \item Other Rules:
+    \begin{itemize}
+        \item $\emptyset^* = \left\{ \epsilon \right\}^* = \left\{ \epsilon \right\}$
+        \item $\mathcal{L}^+ = \mathcal{L}\mathcal{L}* = \mathcal{L}^*\mathcal{L}$
+        \item $(\mathcal{L}^*)^* = \mathcal{L}^*$
+    \end{itemize}
+\end{itemize}
+\begin{Rem}
+    While:
+    \begin{align*}
+        &\mathcal{L}(\mathcal{M} \cap \mathcal{N}) \subseteq \mathcal{L}\mathcal{M} \cap \mathcal{L}\mathcal{N}
+        &&\mbox{and}
+        &&(\mathcal{M} \cap \mathcal{N})\mathcal{L} \subseteq \mathcal{M}\mathcal{L} \cap \mathcal{N}\mathcal{L}
+    \end{align*}
+    both hold, in general
+    \begin{align*}
+        &\mathcal{L}\mathcal{M} \cap \mathcal{L}\mathcal{N} \subseteq \mathcal{L}(\mathcal{M} \cap \mathcal{N})
+        &&\mbox{and}
+        &&\mathcal{M}\mathcal{L} \cap \mathcal{N}\mathcal{L} \subseteq (\mathcal{M} \cap \mathcal{N})\mathcal{L}
+    \end{align*}
+    don't.
+\end{Rem}
+\begin{Ex}
+    Consider the case where:
+    \[
+    \mathcal{L} = \left\{ \epsilon, a \right\},
+    \mathcal{M} = \left\{ a \right\},
+    \mathcal{N} = \left\{ aa \right\}
+    \]
+    Then
+    \[
+     \mathcal{L}\mathcal{M} \cap \mathcal{L}\mathcal{N} = \left\{ aa \right\}
+    \] but
+    \[
+    \mathcal{L}(\mathcal{M} \cap \mathcal{N}) = \mathcal{L}\emptyset = \emptyset
+    \]
+\end{Ex}
+% section algebraic_laws_for_languages (end)
+
+\section{Functions between Languages} % (fold)
+\label{sec:functions_between_languages}
+\begin{Def}
+    A function $f: \Sigma^* \to \Delta^*$ between 2 languages should satisfy:
+    \begin{align*}
+        &f(\epsilon) = \epsilon\\
+        &f(xy) = f(x)f(y)
+    \end{align*}
+\end{Def}
+Intuitively, $f(a_1 ... a_n) = f(a_1)...f(a_n)$
+\begin{Rem}
+    $f(a) \in \Delta^*$ if $a \in \Sigma$
+\end{Rem}
+% section functions_between_languages (end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
