@@ -1,0 +1,416 @@
+\input{../../tex/lecturePreamble}
+\usepackage{color}
+\usepackage{bussproofs}
+\usepackage{listings}
+\lstset{language=Haskell,
+        mathescape}
+\title{
+	 Finite Automata Theory and Formal Languages\\
+	 Föreläsning 3 - Proofs
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\section{How Formal Should a Proof Be?} % (fold)
+\label{sec:how_formal_should_a_proof_be_}
+Depends on the purpose but:
+\begin{itemize}
+    \item Should be convincing
+    \item Should not leave too much out
+    \item The validity of each step should be easily understood
+\end{itemize}
+Valid steps are for example:
+\begin{itemize}
+    \item Reduction to definition:
+    \begin{itemize}
+        \item "x is a positive integer" is equivalent to "x > 0"
+    \end{itemize}
+    \item Use of hypotheses
+    \item Combining previous facts in a valid way:
+    \begin{itemize}
+        \item "Given $A \Rightarrow B$ and $A$ we can conclude $B$ by \textit{modus ponens}"
+    \end{itemize}
+\end{itemize}
+% section how_formal_should_a_proof_be_ (end)
+
+\section{Form of Statements} % (fold)
+\label{sec:form_of_statements}
+Statements we want to prove are usually of the form:
+\begin{center}
+    If $H_1$ and $H_2$ ... and $H_n$ then $C_1$ and ... and $C_m$
+\end{center}
+or:
+\begin{center}
+    $P_1$ and ... and $P_k$ iff $Q_1$ and ... and $Q_m$
+\end{center}
+for $n \ge 0$; $m,k \ge 1$
+\begin{Rem}
+    Observe that one proves the \emph{conclusion} assuming the validity of the \emph{hypotheses}!
+\end{Rem}
+\begin{Ex}
+    We can easily prove "if 0 = 1 then 4 = 2.000"
+\end{Ex}
+% section form_of_statements (end)
+
+\section{Different Kinds of Proofs} % (fold)
+\label{sec:different_kinds_of_proofs}
+\textbf{Proofs by contradiction:}
+\begin{center}
+    \textit{If H then C}
+\end{center}
+is logically equivalent to
+\begin{center}
+    \textit{H and not C implies "something known to be false"}
+\end{center}
+\begin{Ex}
+    If $x \neq 0$ then $x^2 \neq 0$,   vs   ,$x \neq 0$ and $x^2 = 0$ is impossible!
+\end{Ex}
+\textbf{Proofs by Contrapositive:}\\
+\emph{"If H then C"} is logically equivalent to \emph{"If not C then not H"}\\
+\textbf{Proofs by Counterexample}\\
+We find an example that \emph{"breaks"} what we want to prove.
+\begin{Ex}
+    All Natural numbers are odd.
+\end{Ex}
+% section different_kinds_of_proofs (end)
+
+\section{Proving a Property over the Natural Numbers} % (fold)
+\label{sec:proving_a_property_over_the_natural_numbers}
+How to prove a statement over \emph{all} the Natural numbers?
+\begin{Ex}
+    $\forall n \in \mathbb{N}$, if $n \mid 4$ then $n \mid 2$.
+\end{Ex}
+First we need to look at what the Natural numbers are:
+\begin{Def}
+    They are an \emph{inductively defined set} and can be defined by the following \emph{two} rules:
+    \begin{center}
+        \AxiomC{}
+        \UnaryInfC{$0 \in \mathbb{N}$}
+        \DisplayProof
+        \hspace{3cm}
+        \AxiomC{$n \in \mathbb{N}$}
+        \UnaryInfC{$n + 1 \in \mathbb{N}$}
+        \DisplayProof
+    \end{center}
+    \end{Def}
+% section proving_a_property_over_the_natural_numbers (end)
+
+\section{Mathematical/Simple Induction} % (fold)
+\label{sec:mathematical_simple_induction}
+\begin{prooftree}
+    \AxiomC{$\overbrace{P(0)}^\text{base case}$}
+    \AxiomC{$\overbrace{\forall n \in \mathbb{N}\mbox{, } {\color{red} P(n)} \Rightarrow P(n + 1)}^\text{inductive step}$}
+    \BinaryInfC{$\underbrace{\forall n \in \mathbb{N}\mbox{, }P(n)}_\text{statement to prove}$}
+\end{prooftree}
+More generally:
+\begin{prooftree}
+    \AxiomC{$P(i), P(i+1),...,P(j)$}
+    \AxiomC{$\forall i \le j \le n \mbox{, } {\color{red} P(n)} \Rightarrow P(n + 1)$}
+    \BinaryInfC{$\forall i \le n \mbox{, } P(n)$}
+\end{prooftree}
+Hypotheses in red is called {\color{red} \emph{inductive hypotheses.}} (IH).
+% section mathematical_simple_induction (end)
+
+\section{Course-of-Values/Strong Induction} % (fold)
+\label{sec:course_of_values_strong_induction}
+Variant of mathematical induction.
+\begin{prooftree}
+    \AxiomC{$\overbrace{P(0)}^\text{base case}$}
+    \AxiomC{$\overbrace{\forall n \in \mathbb{N}\mbox{, } (\forall m \in \mathbb{N} \mbox{, } 0 \le m \le n \Rightarrow {\color{red} P(m)}) \Rightarrow P(n + 1)}^\text{inductive step}$}
+    \BinaryInfC{$\underbrace{\forall n \in \mathbb{N}\mbox{, }P(n)}_\text{statement to prove}$}
+\end{prooftree}
+Or more generally:
+\begin{prooftree}
+    \AxiomC{$P(i), P(i + 1), ..., P(j)$}
+    \AxiomC{$\forall j < n \mbox{, } (\forall m  \mbox{, } i \le m \le n \Rightarrow {\color{red} P(m)}) \Rightarrow P(n)$}
+    \BinaryInfC{$\forall i \le n \mbox{, }P(n)$}
+\end{prooftree}
+Here we might have {\color{red} several inductive hypotheses} P(m)!
+% section course_of_values_strong_induction (end)
+
+\section{Example: Proof by Induction} % (fold)
+\label{sec:example_proof_by_induction}
+\textbf{Proposition:} Let $f(0) = 0$ and $f(n+1) = f(n) + n + 1$\\
+Then $\forall n \in \mathbb{N}$, $f(n) = n(n+1)/2$
+\begin{proof}
+    By mathematical induction on n\\
+    Let $P(n)$ b $f(n) = n(n + 1)/2$
+    \begin{itemize}
+        \item \textbf{Base case:} We prove that $P(0)$ holds
+        \item \textbf{Inductive step:} We prove that if for a given $n \ge 0$ $P(n)$ holds (our IH) then $P(n + 1)$ also holds
+        \item \textbf{Closure:} Now we have established that for all $n$, $P(n)$ is true!
+    \end{itemize}
+\end{proof}
+% section example_proof_by_induction (end)
+
+\section{Example: Proof by Induction} % (fold)
+\label{sec:example_proof_by_induction2}
+\textbf{Proposition:} If $n \ge 8$ then $n$ can be written as a sum of 3's and 5's.
+\begin{proof}
+    By course-of-values induction on n\\
+    Let $P(n)$ be "n can be written as a sum of 3's and 5's"
+    \begin{itemize}
+        \item \textbf{Base case:} $P(8)$, $P(9)$ and $P(10)$ hold
+        \item \textbf{Inductive step:}
+        \begin{itemize}
+            \item We shall prove that if $P(8)$, $P(9)$, $P(10)$,..., $P(n)$ hold for $n \ge 10$ (our IH) then $P(n+1)$ holds
+            \item Observe that if $n \ge 10$ then $n \ge n + 1 - 3 \ge 8$
+            \item Hence by inductive hypotheses $P(n + 1 - 3)$ holds
+            \item By adding an extra 3 then $P(n + 1)$ holds as well
+        \end{itemize}
+        \item \textbf{Closure:} $\forall n \ge 8$, $n$ can be written as a sum of 3's and 5's.
+    \end{itemize}
+\end{proof}
+% section example_proof_by_induction2 (end)
+
+\section{Example: All Horses have the Same Colour} % (fold)
+\label{sec:example_all_horses_have_the_same_colour}
+\textbf{Proposition:} All horses have the same colour.
+\begin{proof}
+    By mathemathical induction on $n$.\\
+    Let $P(n)$ be \emph{"in any set of n horses they all have the same colour"}
+    \begin{itemize}
+        \item \textbf{Base case:}
+        \begin{itemize}
+            \item $P(0)$ is not interesting in this example
+            \item $P(1)$ is clearly true
+        \end{itemize}
+        \item \textbf{Inductive step:}
+        \begin{itemize}
+            \item Let us show that $P(n)$ (our IH) implies $P(n + 1)$
+            \item Let $h_1, h_2,..., h_n, h_{n+1}$ be a set of $n + 1$ horses
+            \item Take $h_1, h_2,..., h_n$. By IH they all have the same colour.
+            \item Now take $h_2, h_3,..., h_n,h_{n+1}$. Again by IH they all have the same colour.
+            \item Hence, by transitivity all horses $h_1, h_2,..., h_n, h_{n+1}$, must have the same colour
+        \end{itemize}
+        \item \textbf{Closure:} $\forall n$, all $n$ horses in the set have the same colour.
+    \end{itemize}
+\end{proof}
+% section example_all_horses_have_the_same_colour (end)
+
+\section{Mutual induction} % (fold)
+\label{sec:mutual_induction}
+Sometimes we cannot prove a single statement $P(n)$ but rather a group of statements $P_1(n), P_2(n),..., P_k(n)$ simultaneously by induction on $n$.\\
+\smallskip
+
+This is very common in automata theory where we need a statement for each of states of the automata.
+% section mutual_induction (end)
+
+\section{Example: Proof by Mutual Induction} % (fold)
+\label{sec:example_proof_by_mutual_induction}
+Let $f,g,h: \mathbb{N} \to \left\{ 0,1 \right\}$ be as follows:
+\begin{align*}
+    &f(0) = 0 &&g(0) = 1 &&h(0)=0\\
+    &f(n+1) = g(n) &&g(n+1) = f(n) && h(n+1) = 1 - h(n)
+\end{align*}
+\textbf{Proposition:} $\forall n$, $h(n) = f(n)$
+\begin{proof}
+    If $P(n)$ is \emph{"h(n) = f(n)"} it does no seem possible to prove $P(n) \Rightarrow P(n+1)$ directly.
+    \begin{itemize}
+        \item We strengthen \emph{P(n)} to \emph{P'(n)}: Let $P'(n)$ be $h(n) = f(n) \land h(n) = 1 - g(n)$
+        \item By mathematical induction we prove $P'(0)$: $h(0) = f(0) \land h(0) = 1 - g(0)$
+        \item Then we prove that $P'(n) \Rightarrow P'(n+1)$
+        \item Since $\forall n$, $P'(n)$ is true then $\forall n$. $P(n)$ is true.
+    \end{itemize}
+\end{proof}
+% section example_proof_by_mutual_induction (end)
+
+\section{Recursive Data Types} % (fold)
+\label{sec:recursive_data_types}
+What are (the data types of) Natural numbers, lists, trees, ...?\\
+\smallskip
+
+This is how you would defined them in Haskell:
+\begin{lstlisting}
+    data Nat = Zero | Succ Nat
+    data List a = Nil | Cons a (List a)
+    data BTree a = Leaf a | Node a (BTree a) (BTree a)
+\end{lstlisting}
+% section recursive_data_types (end)
+
+\section{Inductively Defined Sets} % (fold)
+\label{sec:inductively_defined_sets}
+\textbf{Natural Numbers:}
+\begin{itemize}
+    \item \textbf{Base case:} 0 is a Natural number
+    \item \textbf{Inductive step:} If \emph{n} is a Natural number then \emph{n + 1} is a Natural number
+    \item \textbf{Closure:} There is no other way to construct a Natural number
+\end{itemize}
+\textbf{Finite Lists:}
+\begin{itemize}
+    \item \textbf{Base case:} [] is the empty list over any set \emph{A}
+    \item \textbf{Inductive step:} If $a \in A$ and \emph{xs} is a list over \emph{A} then \emph{a:xs} is a list over \emph{A}
+    \item \textbf{Closure:} There is no other way to construct lists
+\end{itemize}
+\textbf{Finitely Branching Trees:}
+\begin{itemize}
+    \item \textbf{Base case:} If $a \in A$ then \emph{(a)} is a tree over any set \emph{A}
+    \item \textbf{Inductive step:} If $t_1,..., t_k$ are trees over ther set \emph{A} and $a \in A$ then $(a, t_1,..., t_k)$ is a tree over \emph{A}
+    \item \textbf{Closure:} There is no other way to construct trees.
+\end{itemize}
+To define a set \emph{S} by induction we need to specify:
+\begin{itemize}
+    \item \textbf{Base case:} $e_1,..., e_m \in S$
+    \item \textbf{Inductive steps:} Five $s_1,..., s_n \in S$ then $c_1[s_1,..., s_{n_1}],..., c_k[s_1,...,s_{n_k}]$
+    \item \textbf{Closure:} There is no other way to construct elements in \emph{S}. (We will usually omit this part.)
+\end{itemize}
+\begin{Ex}
+    The set of simple Boolean expressions if defined as:
+    \begin{itemize}
+        \item \textbf{Base cases:} \emph{true} and \emph{false} are Boolean expressions
+        \item if \emph{a} and \emph{b} are Boolean expressions then:
+            \begin{align*}
+                &(a)
+                &&\mbox{not }a
+                &&a \mbox{ and }b
+                &&a \mbox{ or }b
+            \end{align*}
+            are also Boolean expressions
+    \end{itemize}
+\end{Ex}
+% section inductively_defined_sets (end)
+
+\section{Proofs by Structural Induction} % (fold)
+\label{sec:proofs_by_structural_induction}
+Generalisation of mathematical induction to other inductively defined sets such as lists, trees, ...\\
+{\color{red} Very} useful in computer science: it allows to prove properties over the (finite) elments in a data type!\\
+\smallskip
+
+Given an inductively defined set \emph{S}, to prove $\forall s in S$, $P(s)$ then:
+\begin{itemize}
+    \item \textbf{Base cases:} We prove that $P(e_1),..., P(e_m)$
+    \item \textbf{Inductive steps:} Assuming $P(s_1),..., P(s_m)$ (out {\color{red} inductive hypotheses} IH), we prove $P(c_1[s_1,..., s_{n_1}], ..., P(c_k[s_1,..., s_{n_k}])$
+    \item \textbf{Closure:} $\forall s \in S$, $P(s)$ (We will usually omit this part)
+\end{itemize}
+% section proofs_by_structural_induction (end)
+
+\section{Inductive Sets and Structural Induction} % (fold)
+\label{sec:inductive_sets_and_structural_induction}
+Inductive definition of S:
+\begin{center}
+    \AxiomC{\mbox{}}
+    \UnaryInfC{$e_1 \in S$}
+    \DisplayProof
+    $\dots$
+    \AxiomC{\mbox{}}
+    \UnaryInfC{$e_m \in S$}
+    \DisplayProof
+    \hspace{1cm}
+    \AxiomC{$s_1,...,s_{n_1} \in S$}
+    \UnaryInfC{$c_1[s_1,...,s_{n_1}] \in S$}
+    \DisplayProof
+    \dots
+    \AxiomC{$s_1,..., s_{n_k} \in S$}
+    \UnaryInfC{$c_k[s_1,..., s_{n_k}] \in S$}
+    \DisplayProof
+\end{center}
+Inductive principle associated to S:
+\begin{center}
+    \[
+    \mbox{base cases: }
+    \begin{cases}
+        P(e_1)\\
+        \vdots\\
+        P(e_m)
+    \end{cases}
+    \]
+    \[
+    \mbox{inductive steps: }
+    \begin{cases}
+        \forall s_1,..., s_{n_1} \in S, \mbox{ } {\color{red} P(s_1)},..., {\color{red} P(s_{n_1})} \Rightarrow P(c_1[s_1,..., s_{n_1}])\\
+        \vdots\\
+        \forall s_1,..., s_{n_k} \in S, \mbox{ } {\color{red} P(s_1)},..., {\color{red} P(s_{n_k})} \Rightarrow P(c_k[s_{k_1},..., s_{n_k}])
+    \end{cases}
+    \hline
+    \forall s \in S, \mbox{ } P(s)
+    \]
+\end{center}
+% section inductive_sets_and_structural_induction (end)
+
+\section{Example: Structural Induction over Lists} % (fold)
+\label{sec:example_structural_induction_over_lists}
+We can now use recursion to define functions over an inductively defined set and the prove properties of these functions by structural induction.\\
+\smallskip
+
+Let us (recursively) define the append and length function over lists:
+\begin{align*}
+    &[] ++ ys = ys &&len [] = 0\\
+    &(a:xs) ++ ys = a : (xs ++ ys) && len(a:xs) = 1 + len xs
+\end{align*}
+\begin{lstlisting}
+    [] ++ ys = ys                    len [] = 0
+    (a:xs) ++ ys = a:(xs ++ ys)    len(a:xs) = 1 + len xs
+\end{lstlisting}\\
+\smallskip
+
+\noindent
+\textbf{Proposition:} $\forall xs, ys \in \mbox{ List }A$, $\mbox{len }(xs ++ ys) =$ $\mbox{len } xs + \mbox{ len } ys$
+\begin{proof}
+    By structural induction on $xs in \mbox{ List }A$\\
+    $P(xs)$ is $\forall ys \in \mbox{ List }A$, $\mbox{len }(xs ++ ys) =$ $\mbox{len } xs + \mbox{ len } ys$
+    \begin{itemize}
+        \item \textbf{Base case:} We prove $P[]$
+        \item \textbf{Inductive step:} We show $\forall xs \in \mbox{ A }, a \in A$, $P(xs) \Rightarrow P(a:xs)$
+        \item \textbf{Closure:} $\forall xs \in \mbox{ List A}$, $P(xs)$
+    \end{itemize}
+\end{proof}
+% section example_structural_induction_over_lists (end)
+
+\section{Example: Structural Induction over Lists} % (fold)
+\label{sec:example_structural_induction_over_lists2}
+Let us (recursively) define append and reverse function over lists:
+\begin{lstlisting}
+    [] ++ ys = ys                rev [] = []
+    (a:xs) ++ ys = a:(xs ++ ys)  rev(a:xs) = rev xs ++ [a]
+\end{lstlisting}
+Assume append is associative and that \lstinline|ys ++ [] = ys|\\
+\textbf{Proposition:} $\forall xs, ys \in \mbox{ List }A$, $\mbox{rev } (xs ++ ys) = \mbox{ rev } ys ++ xs$
+\begin{proof}
+    By structural induction on $xs \in \mbox{ List }A$\
+    $P(xs)$ is $\forall ys \in \mbox{ List }A$, $\mbox{rev }(xs ++ ys) = \mbox{ rev }ys ++ \mbox{ rev }xs$
+    \begin{itemize}
+        \item \textbf{Base case:} We prive $P[]$
+        \item \textbf{Inductive step:} We show $\forall xs \in \mbox{ List }A$, $a \in A$, $P(xs) \Rightarrow P(a:xs)$
+        \item \textbf{Closure:} $\forall xs \in \mbox{ List }A$, $P(xs)$
+    \end{itemize}
+\end{proof}
+% section example_structural_induction_over_lists2 (end)
+
+\section{Example: Structural Induction over Trees} % (fold)
+\label{sec:example_structural_induction_over_trees}
+Let us (recursively) define functions counting the number of edges and of nodes of a tree:
+\begin{lstlisting}
+    ne(a) = 0 nn(a) = 1             nn(a) = 1
+    ne(a, $t_1$, ..., $t_k$) = k +            nn(a, $t_1$, ..., $t_k$) = 1 +
+             ne($t_1$) + ... + ne($t_k$)                nn($t_1$) + ... + nn($t_k$)
+\end{lstlisting}
+\textbf{Proposition:}
+$\forall t \in \mbox{ Tree }A$, \emph{nn(t) = 1 + ne(t)}
+\begin{proof}
+    By structural induction on $t \in \mbox{ Tree }A$\\
+    $P(t)$ is \emph{nn(t) = 1 + ne(t)}
+    \begin{itemize}
+        \item \textbf{Base case:} We prove \emph{P(a)}
+        \item \textbf{Inductive step:} We show $\forall t_1,..., t_k \in \mbox{ Tree }A$, $a \in A$, $P(t_1),..., p(t_k) \Rightarrow P(a,t_1,..., t_k)$
+        \item \textbf{Closure:} $\forall t \in \mbox{ Tree }A$, \emph{P(t)}
+    \end{itemize}
+\end{proof}
+% section example_structural_induction_over_trees (end)
+
+\section{Proofs by Induction: Overview of the Steps to Follow} % (fold)
+\label{sec:proofs_by_induction_overview_of_the_steps_to_follow}
+\begin{itemize}
+    \item State property \emph{P} prove by induction. (Might be more general than the actual statement we need to prove)
+    \item {\color{red} Determine and state the method to use in the proof!}\\
+    \textbf{Example:} Mathematical induction on the length of the list, course-of-values induction on the height of a tree, structural induction on a certain data type
+    \item Identify and state base case(s). (Could be more than one! Not always trivial to determine)
+    \item Prove base case(s)
+    \item Identify and IH! (Will depend on the method to be used)
+    \item Prove inductive step(s)
+    \item (State closure)
+    \item Deduce your statement from \emph{P}, (if not the same)
+\end{itemize}
+% section proofs_by_induction_overview_of_the_steps_to_follow (end)
+
+\end{document}
