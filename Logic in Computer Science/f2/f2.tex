@@ -1,0 +1,209 @@
+\input{../../tex/lecturePreamble}
+\usepackage{bussproofs}
+\usepackage{natded}
+
+\title{
+	 Logic in Computer Science\\
+	 Föreläsning 2
+    \author{Erik Sjöström}
+}
+\begin{document}
+\maketitle
+
+\section{Propositional logic} % (fold)
+\label{sec:propositional_logic}
+\begin{itemize}
+    \item $\land$ conjugation "and"
+    \item $\lor$ disjunction "or"
+    \item $\rightarrow$ implication "if ... then"
+    \item $\bot$ absurdity
+    \item $\neg$ negation "not"
+\end{itemize}
+Formulas are built from atomic formulas (\textit{p, q, ...}) by using the connectives, $\lor$, $\land$...
+\begin{Ex}
+    \[
+    (p \rightarrow q) \lor (q \land \pi)
+    \]
+\end{Ex}
+The language of logic is built up from syntax, semantics, and proof rules.
+\subsection{Proof rules} % (fold)
+\label{sub:proof_rules}
+\underline{\bf{Natural deduction}} \textit{(Gentzen 1934)}\\
+There are two kinds of rules:
+\begin{itemize}
+    \item Introduction rules
+    \item Elimination rules
+\end{itemize}
+\underline{\bf{Conjugation:}}\\
+$\land$-introduction "$\land$-i":
+\begin{prooftree}
+    \AxiomC{$\phi$}
+    \AxiomC{$\psi$}
+    \BinaryInfC{$\phi \land \psi$}
+\end{prooftree}
+$\land$-elimination "$\land$-e":
+\begin{center}
+    \AxiomC{$\phi \land \psi$}
+    \UnaryInfC{$\phi$}
+    \DisplayProof
+    \AxiomC{$\phi \land \psi$}
+    \UnaryInfC{$\psi$}
+    \DisplayProof
+\end{center}
+\newpage
+\begin{Ex}
+    Show: $\phi \land \psi \vdash \psi \land \phi$
+    \[
+    \Jproof{
+            \proofline{\phi \land \psi}{Premise}
+            \proofline{\psi}{$\land$-e, 1}
+            \proofline{\phi}{$\land$-e, 1}
+            \proofline{\psi \land \phi}{$\land$-i, 2,3}
+        }
+\]
+\end{Ex}
+\underline{\bf{Implication}}\\
+$\rightarrow$-introduction
+\[
+\Jproof{
+    \cablk{
+    \proofline{\phi}{}
+    \proofline{\vdots}{}
+    \proofline{\psi}{}
+    }
+    \proofline{\phi \rightarrow \psi}{}
+    }
+\]
+$\rightarrow$-elimination
+
+\begin{center}
+    \AxiomC{$\phi$}
+    \AxiomC{$\phi \rightarrow \psi$}
+    \BinaryInfC{$\psi$}
+    \DisplayProof
+\end{center}
+\begin{Ex}
+    Show: $\phi \rightarrow (\psi_1 \land \psi_2) \vdash \phi \rightarrow \psi_1$
+    \[
+    \Jproof{
+        \proofline{\phi \rightarrow (\psi_1 \land \psi_2)}{Premise}
+        \cablk{
+        \proofline{\phi}{Assumprion}
+        \proofline{\psi_1 \land \psi_2}{$\rightarrow$-e, 1,2}
+        \proofline{\psi_1}{$\land$-e, 3}
+        }
+        \proofline{\phi \rightarrow \psi_1}{$\rightarrow$-i, 2-4}
+    }
+    \]
+\end{Ex}
+\underline{\bf{Absurdity}}\\
+$\bot$-elimination
+\begin{center}
+    \AxiomC{$\bot$}
+    \UnaryInfC{$\phi$}
+    \DisplayProof
+\end{center}
+\underline{Definition of negation $\neg \phi$}
+\[
+\neg \phi \underset{def}{=} \phi \rightarrow \bot
+\]
+\newpage
+\begin{Ex}
+    Show: $\phi \vdash \neg \neg \phi$ \texttt{i.e.} $\phi \vdash (\phi \rightarrow \bot) \rightarrow \bot$
+    \[
+    \Jproof{
+    \proofline{Q}{Premise}
+    \cablk{
+    \proofline{\phi \rightarrow \bot}{Assumption}
+    \proofline{\bot}{$\rightarrow$-e, 1,2}
+    }
+    \proofline{(\phi \rightarrow \bot) \rightarrow \bot}{$\rightarrow$-e, 2,3}
+    }
+    \]
+\end{Ex}
+\begin{Ex}
+    Show: $\phi \land \neg \phi \vdash \psi$
+    \[
+    \Jproof{
+    \proofline{\phi \land \neg \phi}{Premise}
+    \proofline{\phi}{$\land$-e, 1}
+    \proofline{\phi \rightarrow \bot}{$\land$-e, 1}
+    \proofline{\bot}{$\rightarrow$-e, 2,3}
+    \proofline{\psi}{$\bot$-e, 4}
+    }
+    \]
+\end{Ex}
+\underline{\bf{Disjunction}}
+$\lor$-introduction
+\begin{center}
+    \AxiomC{$\phi$}
+    \UnaryInfC{$\phi \land \psi$}
+    \DisplayProof
+    \AxiomC{$\psi$}
+    \UnaryInfC{$\phi \land \psi$}
+    \DisplayProof
+\end{center}
+$\lor$-elimination
+\[
+\Jproof{
+    \proofline{\phi \lor \psi}{}
+    \cablk{
+    \proofline{\phi}{}
+    \proofline{\vdots}{}
+    \proofline{\chi}{}
+    }
+    \cablk{
+    \proofline{\psi}{}
+    \proofline{\vdots}{}
+    \proofline{\chi}{}
+    }
+    \proofline{\chi}{}
+}
+\]
+\begin{Ex}
+    Show: $\phi \lor \psi \vdash \psi \lor \phi$
+    \[
+    \Jproof{
+    \proofline{\phi \lor \psi}{Premise}
+    \cablk{
+    \proofline{\phi}{Assumption}
+    \proofline{\psi \lor \phi}{$\lor$-i, 2}
+    }
+    \cablk{
+    \proofline{\psi}{Assumption}
+    \proofline{\psi \lor \phi}{$\lor$-i, 4}
+    }
+    \proofline{\psi \lor \phi}{$\lor$-e, 1, 2-3, 4-5}
+    }
+    \]
+\end{Ex}
+\underline{\bf{Proof by contradiction}}
+\[
+\Jproof{
+    \cablk{
+    \proofline{\neg \phi}{}
+    \proofline{\vdots}{}
+    \proofline{\bot}{}
+    \proofline{\phi}{}
+    }
+}
+\]
+\begin{Ex}
+    Show: $\neg \neg \phi \vdash \phi$
+    \[
+    \Jproof{
+    \proofline{\neg \neg \phi}{Premise}
+    \cablk{
+    \proofline{\neg \phi}{Assumption}
+    \proofline{\bot}{$\rightarrow$-e, 2,1}
+    }
+    \proofline{\phi}{PBC, 2-3}
+    }
+    \]
+\end{Ex}
+
+% subsection proof_rules (end)
+
+% section propositional_logic (end)
+
+\end{document}
